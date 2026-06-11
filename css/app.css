@@ -1,0 +1,8 @@
+
+body{margin:0;background:#111;color:#fff;font-family:Arial}
+header{padding:12px 20px;border-bottom:1px solid #222}
+.app{display:grid;grid-template-columns:1fr 320px}
+.preview{padding:20px}
+.side{background:#1a1a1a;padding:20px;display:flex;flex-direction:column;gap:10px}
+canvas{max-width:100%;border:1px solid #333;border-radius:10px}
+.timeline{margin-top:10px}
