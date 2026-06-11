@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Montaż</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0a0f;
+    --surface: #141419;
+    --panel: #1c1c24;
+    --border: #2a2a36;
+    --accent: #a78bfa;
+    --accent2: #f472b6;
+    --text: #f0f0f5;
+    --muted: #6b6b80;
+    --pill: #232330;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    max-width: 430px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    user-select: none;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px 10px;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 10;
+    border-bottom: 1px solid var(--border);
+  }
+  .topbar h1 { font-size: 17px; font-weight: 600; letter-spacing: -0.3px; }
+  .topbar-btn {
+    background: none; border: none; color: var(--accent); font-size: 14px;
+    font-weight: 500; cursor: pointer; padding: 4px 8px;
+    font-family: inherit;
+  }
+  .topbar-btn.export {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff; border-radius: 20px; padding: 7px 16px; font-weight: 600;
+    font-size: 13px;
+  }
+
+  /* VIDEO PREVIEW */
+  .preview-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9/16;
+    background: #080810;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .preview-wrap video, .preview-wrap .placeholder {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .placeholder {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 12px; color: var(--muted); font-size: 14px;
+  }
+  .placeholder-icon { font-size: 48px; opacity: 0.4; }
+  .upload-label {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--pill); border: 1px solid var(--border);
+    color: var(--text); border-radius: 24px; padding: 10px 20px;
+    font-size: 14px; font-weight: 500; cursor: pointer;
+  }
+  .upload-label svg { flex-shrink: 0; }
+  input[type=file] { display: none; }
+
+  /* FILTER OVERLAY */
+  .filter-canvas {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    mix-blend-mode: normal;
+  }
+
+  /* CAPTION OVERLAY */
+  .caption-overlay {
+    position: absolute;
+    left: 50%; transform: translateX(-50%);
+    bottom: 60px;
+    max-width: 88%;
+    text-align: center;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    pointer-events: none;
+    transition: all 0.2s;
+    word-break: break-word;
+    line-height: 1.3;
+  }
+
+  /* VIDEO FILTER via CSS */
+  .preview-wrap.f-vivid video   { filter: saturate(1.8) contrast(1.15); }
+  .preview-wrap.f-fade video    { filter: saturate(0.6) brightness(1.1) contrast(0.9); }
+  .preview-wrap.f-bw video      { filter: grayscale(1) contrast(1.2); }
+  .preview-wrap.f-warm video    { filter: saturate(1.3) sepia(0.3) brightness(1.05); }
+  .preview-wrap.f-cold video    { filter: saturate(0.9) hue-rotate(30deg) brightness(1.05); }
+  .preview-wrap.f-drama video   { filter: contrast(1.4) saturate(1.5) brightness(0.9); }
+  .preview-wrap.f-retro video   { filter: sepia(0.5) saturate(1.3) contrast(1.1); }
+
+  /* TABS */
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .tab {
+    flex: 1; padding: 13px 8px; text-align: center; font-size: 12px;
+    font-weight: 500; color: var(--muted); cursor: pointer; border: none;
+    background: none; font-family: inherit; letter-spacing: 0.2px;
+    position: relative; transition: color 0.15s;
+  }
+  .tab.active { color: var(--accent); }
+  .tab.active::after {
+    content: ''; position: absolute; bottom: 0; left: 20%; right: 20%;
+    height: 2px; background: var(--accent); border-radius: 2px 2px 0 0;
+  }
+  .tab-icon { font-size: 16px; display: block; margin-bottom: 3px; }
+
+  /* PANELS */
+  .panel { display: none; flex-direction: column; flex: 1; overflow-y: auto; }
+  .panel.active { display: flex; }
+
+  /* --- FILTER PANEL --- */
+  .filters-scroll {
+    display: flex; gap: 10px; padding: 16px 20px;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .filters-scroll::-webkit-scrollbar { display: none; }
+  .filter-item {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    cursor: pointer; flex-shrink: 0;
+  }
+  .filter-thumb {
+    width: 68px; height: 92px; border-radius: 10px; overflow: hidden;
+    border: 2px solid transparent; transition: border-color 0.15s;
+    background: #222;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    position: relative;
+  }
+  .filter-item.active .filter-thumb { border-color: var(--accent); }
+  .filter-label { font-size: 11px; color: var(--muted); font-weight: 500; }
+  .filter-item.active .filter-label { color: var(--accent); }
+
+  .filter-thumb-bg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    background: linear-gradient(160deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border-radius: 8px;
+  }
+  .thumb-vivid .filter-thumb-bg   { filter: saturate(1.8) contrast(1.15); }
+  .thumb-fade .filter-thumb-bg    { filter: saturate(0.5) brightness(1.2); background: linear-gradient(160deg, #e0d8cc,#c8bfb0,#b0a898); }
+  .thumb-bw .filter-thumb-bg      { filter: grayscale(1); }
+  .thumb-warm .filter-thumb-bg    { filter: sepia(0.4) saturate(1.3); background: linear-gradient(160deg,#3b2a1a,#6b4226,#c47a35); }
+  .thumb-cold .filter-thumb-bg    { filter: hue-rotate(30deg); background: linear-gradient(160deg,#0a1628,#102040,#1a4060); }
+  .thumb-drama .filter-thumb-bg   { filter: contrast(1.5) saturate(1.5); background: linear-gradient(160deg,#0a0010,#1a0030,#400060); }
+  .thumb-retro .filter-thumb-bg   { background: linear-gradient(160deg,#8b4513,#cd853f,#f4a460); filter: sepia(0.5); }
+
+  /* Sliders */
+  .sliders { padding: 12px 20px 20px; display: flex; flex-direction: column; gap: 16px; }
+  .slider-row { display: flex; flex-direction: column; gap: 6px; }
+  .slider-label {
+    display: flex; justify-content: space-between;
+    font-size: 12px; color: var(--muted); font-weight: 500;
+  }
+  .slider-label span:last-child { color: var(--text); }
+  input[type=range] {
+    -webkit-appearance: none; width: 100%; height: 4px;
+    background: var(--border); border-radius: 4px; outline: none;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 18px; height: 18px; border-radius: 50%;
+    background: var(--accent); cursor: pointer;
+    box-shadow: 0 0 0 3px rgba(167,139,250,0.2);
+  }
+
+  /* --- CAPTIONS PANEL --- */
+  .caption-panel { padding: 16px 20px; display: flex; flex-direction: column; gap: 14px; }
+  .caption-input {
+    background: var(--panel); border: 1px solid var(--border); border-radius: 12px;
+    padding: 12px 14px; font-family: inherit; font-size: 15px; color: var(--text);
+    resize: none; outline: none; min-height: 70px; transition: border-color 0.2s;
+  }
+  .caption-input:focus { border-color: var(--accent); }
+  .caption-input::placeholder { color: var(--muted); }
+
+  .style-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .style-pill {
+    padding: 7px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    cursor: pointer; border: 1.5px solid var(--border); background: var(--pill);
+    color: var(--muted); transition: all 0.15s; font-family: inherit;
+  }
+  .style-pill.active { border-color: var(--accent); color: var(--accent); background: rgba(167,139,250,0.1); }
+
+  .section-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.8px; color: var(--muted); margin-bottom: 2px;
+  }
+  .color-row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .color-dot {
+    width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+    border: 2px solid transparent; transition: border-color 0.15s, transform 0.1s;
+  }
+  .color-dot.active { border-color: #fff; transform: scale(1.15); }
+
+  .size-row { display: flex; gap: 8px; align-items: center; }
+  .size-btn {
+    background: var(--pill); border: 1.5px solid var(--border); color: var(--muted);
+    border-radius: 10px; padding: 7px 14px; cursor: pointer; font-family: inherit;
+    font-weight: 600; transition: all 0.15s;
+  }
+  .size-btn.active { border-color: var(--accent); color: var(--accent); }
+
+  .pos-row { display: flex; gap: 8px; }
+  .pos-btn {
+    flex: 1; background: var(--pill); border: 1.5px solid var(--border); color: var(--muted);
+    border-radius: 10px; padding: 8px 6px; cursor: pointer; font-size: 12px;
+    font-family: inherit; font-weight: 500; transition: all 0.15s; text-align: center;
+  }
+  .pos-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(167,139,250,0.08); }
+
+  .toggle-row { display: flex; align-items: center; justify-content: space-between; }
+  .toggle-label { font-size: 13px; color: var(--text); font-weight: 500; }
+  .toggle {
+    width: 44px; height: 26px; background: var(--border); border-radius: 13px;
+    position: relative; cursor: pointer; transition: background 0.2s; border: none;
+  }
+  .toggle.on { background: var(--accent); }
+  .toggle::after {
+    content: ''; position: absolute; width: 20px; height: 20px; border-radius: 50%;
+    background: #fff; top: 3px; left: 3px; transition: left 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+  .toggle.on::after { left: 21px; }
+
+  /* --- TRIM PANEL --- */
+  .trim-panel { padding: 16px 20px; display: flex; flex-direction: column; gap: 16px; }
+  .timeline-wrap {
+    background: var(--panel); border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .timeline-track {
+    height: 56px; background: linear-gradient(90deg, #1a1a2e, #16213e, #0f3460, #1a1a2e);
+    position: relative; display: flex; align-items: center;
+  }
+  .timeline-handle {
+    position: absolute; top: 0; bottom: 0; width: 3px;
+    background: var(--accent); cursor: ew-resize; border-radius: 2px;
+  }
+  .timeline-handle::before {
+    content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 11px; height: 22px; background: var(--accent); border-radius: 4px;
+    box-shadow: 0 0 0 2px var(--bg);
+  }
+  .timeline-selected {
+    position: absolute; top: 0; bottom: 0;
+    background: rgba(167,139,250,0.18); border-top: 2px solid var(--accent); border-bottom: 2px solid var(--accent);
+  }
+  .trim-time { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); padding: 8px 12px; }
+
+  .speed-row { display: flex; gap: 8px; }
+  .speed-btn {
+    flex: 1; text-align: center; padding: 10px 4px; background: var(--pill);
+    border: 1.5px solid var(--border); border-radius: 10px; cursor: pointer;
+    font-size: 12px; font-weight: 600; color: var(--muted); font-family: inherit;
+    transition: all 0.15s;
+  }
+  .speed-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(167,139,250,0.08); }
+
+  /* EXPORT TOAST */
+  .toast {
+    position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff; border-radius: 24px; padding: 12px 24px; font-size: 14px; font-weight: 600;
+    box-shadow: 0 8px 32px rgba(167,139,250,0.35); z-index: 100;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Scrollbar */
+  .panel::-webkit-scrollbar { width: 0; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <button class="topbar-btn" onclick="resetAll()">Anuluj</button>
+  <h1>Montaż</h1>
+  <button class="topbar-btn export" onclick="exportVideo()">Eksportuj</button>
+</div>
+
+<!-- VIDEO PREVIEW -->
+<div class="preview-wrap" id="previewWrap">
+  <div class="placeholder" id="placeholder">
+    <div class="placeholder-icon">🎬</div>
+    <label class="upload-label" for="videoFile">
+      <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M12 4v12M8 8l4-4 4 4"/>
+      </svg>
+      Wgraj wideo
+    </label>
+    <input type="file" id="videoFile" accept="video/*" onchange="loadVideo(this)">
+  </div>
+
+  <video id="videoEl" style="display:none" loop muted playsinline></video>
+  <div class="caption-overlay" id="captionEl" style="display:none"></div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('filters',this)">
+    <span class="tab-icon">✨</span>Filtry
+  </button>
+  <button class="tab" onclick="switchTab('captions',this)">
+    <span class="tab-icon">💬</span>Napisy
+  </button>
+  <button class="tab" onclick="switchTab('trim',this)">
+    <span class="tab-icon">✂️</span>Cięcie
+  </button>
+</div>
+
+<!-- FILTERS PANEL -->
+<div class="panel active" id="panel-filters">
+  <div class="filters-scroll">
+    <div class="filter-item active thumb-none" data-filter="" onclick="applyFilter(this,'')">
+      <div class="filter-thumb"><div class="filter-thumb-bg"></div></div>
+      <span class="filter-label">Oryginał</span>
+    </div>
+    <div class="filter-item thumb-vivid" data-filter="f-vivid" onclick="applyFilter(this,'f-vivid')">
+      <div class="filter-thumb"><div class="filter-thumb-bg"></div></div>
+      <span class="filter-label">Vivid</span>
+    </div>
+    <div class="filter-item thumb-fade" data-filter="f-fade" onclick="applyFilter(this,'f-fade')">
+      <div class="filter-thumb"><div class="filter-thumb-bg"></div></div>
+      <span class="filter-label">Fade</span>
+    </div>
+    <div class="filter-item thumb-bw" data-filter="f-bw" onclick="applyFilter(this,'f-bw')">
+      <div class="filter-thumb"><div class="filter-thumb-bg"></div></div>
+      <span class="filter-label">B&W</span>
+    </div>
+    <div class="filter-item thumb-warm" data-filter="f-warm" onclick="applyFilter(this,'f-warm')">
+      <div class="filter-thumb"><div class="filter-thumb-bg"></div></div>
+      <span class="filter-label">Warm</span>
+    </div>
+    <div class="filter-item thumb-cold" data-filter="f-cold" onclick="applyFilter(this,'f-cold')">
+      <div class="filter-thumb"><div class="filter-thumb-bg"></div></div>
+      <span class="filter-label">Cold</span>
+    </div>
+    <div class="filter-item thumb-drama" data-filter="f-drama" onclick="applyFilter(this,'f-drama')">
+      <div class="filter-thumb"><div class="filter-thumb-bg"></div></div>
+      <span class="filter-label">Drama</span>
+    </div>
+    <div class="filter-item thumb-retro" data-filter="f-retro" onclick="applyFilter(this,'f-retro')">
+      <div class="filter-thumb"><div class="filter-thumb-bg"></div></div>
+      <span class="filter-label">Retro</span>
+    </div>
+  </div>
+
+  <div class="sliders">
+    <div class="slider-row">
+      <div class="slider-label"><span>Jasność</span><span id="brightVal">0</span></div>
+      <input type="range" min="-50" max="50" value="0" oninput="updateAdj('bright',this.value)">
+    </div>
+    <div class="slider-row">
+      <div class="slider-label"><span>Kontrast</span><span id="contrastVal">0</span></div>
+      <input type="range" min="-50" max="50" value="0" oninput="updateAdj('contrast',this.value)">
+    </div>
+    <div class="slider-row">
+      <div class="slider-label"><span>Nasycenie</span><span id="satVal">0</span></div>
+      <input type="range" min="-50" max="50" value="0" oninput="updateAdj('sat',this.value)">
+    </div>
+    <div class="slider-row">
+      <div class="slider-label"><span>Temperatura</span><span id="tempVal">0</span></div>
+      <input type="range" min="-50" max="50" value="0" oninput="updateAdj('temp',this.value)">
+    </div>
+  </div>
+</div>
+
+<!-- CAPTIONS PANEL -->
+<div class="panel" id="panel-captions">
+  <div class="caption-panel">
+    <div>
+      <div class="section-label">Tekst napisu</div>
+      <textarea class="caption-input" id="captionText" placeholder="Wpisz napis…" rows="2"
+        oninput="updateCaption()"></textarea>
+    </div>
+
+    <div>
+      <div class="section-label">Styl</div>
+      <div class="style-row">
+        <button class="style-pill active" onclick="setStyle(this,'normal')" style="font-weight:400">Aa</button>
+        <button class="style-pill" onclick="setStyle(this,'bold')" style="font-weight:800">Aa</button>
+        <button class="style-pill" onclick="setStyle(this,'outline')" style="-webkit-text-stroke:1px #a78bfa;color:transparent">Aa</button>
+        <button class="style-pill" onclick="setStyle(this,'shadow')">🌑 Cień</button>
+        <button class="style-pill" onclick="setStyle(this,'bg')">▮ Tło</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Kolor</div>
+      <div class="color-row">
+        <div class="color-dot active" style="background:#ffffff" onclick="setColor(this,'#ffffff')"></div>
+        <div class="color-dot" style="background:#f472b6" onclick="setColor(this,'#f472b6')"></div>
+        <div class="color-dot" style="background:#a78bfa" onclick="setColor(this,'#a78bfa')"></div>
+        <div class="color-dot" style="background:#34d399" onclick="setColor(this,'#34d399')"></div>
+        <div class="color-dot" style="background:#fbbf24" onclick="setColor(this,'#fbbf24')"></div>
+        <div class="color-dot" style="background:#f87171" onclick="setColor(this,'#f87171')"></div>
+        <div class="color-dot" style="background:#000000;border:2px solid #444" onclick="setColor(this,'#000000')"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Rozmiar</div>
+      <div class="size-row">
+        <button class="size-btn" style="font-size:11px" onclick="setSize(this,14)">S</button>
+        <button class="size-btn active" style="font-size:14px" onclick="setSize(this,20)">M</button>
+        <button class="size-btn" style="font-size:17px" onclick="setSize(this,26)">L</button>
+        <button class="size-btn" style="font-size:20px" onclick="setSize(this,34)">XL</button>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label">Pozycja</div>
+      <div class="pos-row">
+        <button class="pos-btn" onclick="setPos(this,'top')">⬆ Góra</button>
+        <button class="pos-btn active" onclick="setPos(this,'bottom')">⬇ Dół</button>
+        <button class="pos-btn" onclick="setPos(this,'center')">⊙ Środek</button>
+      </div>
+    </div>
+
+    <div class="toggle-row">
+      <span class="toggle-label">Animacja pojawiania</span>
+      <button class="toggle on" id="animToggle" onclick="toggleAnim(this)"></button>
+    </div>
+  </div>
+</div>
+
+<!-- TRIM PANEL -->
+<div class="panel" id="panel-trim">
+  <div class="trim-panel">
+    <div>
+      <div class="section-label" style="margin-bottom:8px">Oś czasu</div>
+      <div class="timeline-wrap">
+        <div class="timeline-track" id="timeline">
+          <div class="timeline-selected" id="tlSelected" style="left:0%;width:100%"></div>
+          <div class="timeline-handle" id="handleL" style="left:0%"></div>
+          <div class="timeline-handle" id="handleR" style="right:0%;left:auto"></div>
+        </div>
+        <div class="trim-time">
+          <span id="trimStart">0:00</span>
+          <span id="trimDur">Czas trwania: –</span>
+          <span id="trimEnd">0:00</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-label" style="margin-bottom:8px">Prędkość</div>
+      <div class="speed-row">
+        <button class="speed-btn" onclick="setSpeed(this,0.5)">0.5×</button>
+        <button class="speed-btn active" onclick="setSpeed(this,1)">1×</button>
+        <button class="speed-btn" onclick="setSpeed(this,1.5)">1.5×</button>
+        <button class="speed-btn" onclick="setSpeed(this,2)">2×</button>
+      </div>
+    </div>
+
+    <div class="toggle-row">
+      <span class="toggle-label">Wycisz dźwięk</span>
+      <button class="toggle" id="muteToggle" onclick="toggleMute(this)"></button>
+    </div>
+
+    <div class="toggle-row">
+      <span class="toggle-label">Odwróć film (lustro)</span>
+      <button class="toggle" id="mirrorToggle" onclick="toggleMirror(this)"></button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ Gotowe do eksportu!</div>
+
+<script>
+  // State
+  let captionConfig = {
+    text: '', color: '#ffffff', size: 20, pos: 'bottom',
+    style: 'normal', anim: true
+  };
+  let adj = { bright: 0, contrast: 0, sat: 0, temp: 0 };
+  let currentFilter = '';
+
+  // --- VIDEO LOAD ---
+  function loadVideo(input) {
+    const file = input.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    const vid = document.getElementById('videoEl');
+    vid.src = url;
+    vid.style.display = 'block';
+    vid.play();
+    document.getElementById('placeholder').style.display = 'none';
+
+    vid.onloadedmetadata = () => {
+      const dur = vid.duration;
+      document.getElementById('trimEnd').textContent = fmtTime(dur);
+      document.getElementById('trimDur').textContent = 'Czas: ' + fmtTime(dur);
+    };
+  }
+
+  function fmtTime(s) {
+    const m = Math.floor(s/60), sec = Math.floor(s%60);
+    return m + ':' + String(sec).padStart(2,'0');
+  }
+
+  // --- TABS ---
+  function switchTab(name, el) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('panel-'+name).classList.add('active');
+  }
+
+  // --- FILTERS ---
+  function applyFilter(el, cls) {
+    document.querySelectorAll('.filter-item').forEach(i => i.classList.remove('active'));
+    el.classList.add('active');
+    const wrap = document.getElementById('previewWrap');
+    ['f-vivid','f-fade','f-bw','f-warm','f-cold','f-drama','f-retro'].forEach(c => wrap.classList.remove(c));
+    if (cls) wrap.classList.add(cls);
+    currentFilter = cls;
+    applyAdjustments();
+  }
+
+  function updateAdj(key, val) {
+    adj[key] = parseInt(val);
+    document.getElementById(key === 'bright' ? 'brightVal' : key === 'contrast' ? 'contrastVal' : key === 'sat' ? 'satVal' : 'tempVal').textContent = (val > 0 ? '+' : '') + val;
+    applyAdjustments();
+  }
+
+  function applyAdjustments() {
+    const vid = document.getElementById('videoEl');
+    const b = 1 + adj.bright / 100;
+    const c = 1 + adj.contrast / 100;
+    const s = 1 + adj.sat / 100;
+    const h = adj.temp * 0.5;
+    let base = `brightness(${b}) contrast(${c}) saturate(${s}) hue-rotate(${h}deg)`;
+
+    // Layer on top of filter class — we handle manually if filter is active
+    if (currentFilter) {
+      const filters = {
+        'f-vivid': 'saturate(1.8) contrast(1.15)',
+        'f-fade': 'saturate(0.6) brightness(1.1) contrast(0.9)',
+        'f-bw': 'grayscale(1) contrast(1.2)',
+        'f-warm': 'saturate(1.3) sepia(0.3) brightness(1.05)',
+        'f-cold': 'saturate(0.9) hue-rotate(30deg) brightness(1.05)',
+        'f-drama': 'contrast(1.4) saturate(1.5) brightness(0.9)',
+        'f-retro': 'sepia(0.5) saturate(1.3) contrast(1.1)',
+      };
+      vid.style.filter = filters[currentFilter] + ' ' + base;
+    } else {
+      vid.style.filter = base;
+    }
+    // Remove CSS class-based filter since we're doing it inline
+    const wrap = document.getElementById('previewWrap');
+    ['f-vivid','f-fade','f-bw','f-warm','f-cold','f-drama','f-retro'].forEach(c => wrap.classList.remove(c));
+  }
+
+  // --- CAPTIONS ---
+  function updateCaption() {
+    captionConfig.text = document.getElementById('captionText').value;
+    renderCaption();
+  }
+
+  function setStyle(el, style) {
+    document.querySelectorAll('.style-pill').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    captionConfig.style = style;
+    renderCaption();
+  }
+
+  function setColor(el, color) {
+    document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+    el.classList.add('active');
+    captionConfig.color = color;
+    renderCaption();
+  }
+
+  function setSize(el, size) {
+    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    captionConfig.size = size;
+    renderCaption();
+  }
+
+  function setPos(el, pos) {
+    document.querySelectorAll('.pos-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    captionConfig.pos = pos;
+    renderCaption();
+  }
+
+  function toggleAnim(btn) {
+    btn.classList.toggle('on');
+    captionConfig.anim = btn.classList.contains('on');
+  }
+
+  function renderCaption() {
+    const el = document.getElementById('captionEl');
+    if (!captionConfig.text) { el.style.display = 'none'; return; }
+    el.style.display = 'block';
+    el.textContent = captionConfig.text;
+    el.style.color = captionConfig.color;
+    el.style.fontSize = captionConfig.size + 'px';
+
+    // Position
+    if (captionConfig.pos === 'top') {
+      el.style.bottom = 'auto'; el.style.top = '40px';
+    } else if (captionConfig.pos === 'center') {
+      el.style.bottom = 'auto'; el.style.top = '50%'; el.style.transform = 'translate(-50%,-50%)';
+    } else {
+      el.style.top = 'auto'; el.style.bottom = '60px'; el.style.transform = 'translateX(-50%)';
+    }
+
+    // Style
+    el.style.fontWeight = captionConfig.style === 'bold' ? '900' : '700';
+    el.style.webkitTextStroke = captionConfig.style === 'outline' ? `2px ${captionConfig.color}` : '';
+    el.style.color = captionConfig.style === 'outline' ? 'transparent' : captionConfig.color;
+    el.style.textShadow = captionConfig.style === 'shadow'
+      ? '0 2px 12px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.6)'
+      : captionConfig.style === 'bg' ? 'none' : '0 2px 8px rgba(0,0,0,0.7)';
+    el.style.background = captionConfig.style === 'bg'
+      ? 'rgba(0,0,0,0.55)' : 'none';
+    el.style.padding = captionConfig.style === 'bg' ? '6px 14px' : '0';
+    el.style.borderRadius = captionConfig.style === 'bg' ? '8px' : '0';
+
+    if (captionConfig.anim) {
+      el.style.animation = 'none';
+      el.offsetHeight; // reflow
+      el.style.animation = 'fadeUp 0.4s ease';
+    }
+  }
+
+  // Caption animation
+  const styleEl = document.createElement('style');
+  styleEl.textContent = `@keyframes fadeUp { from { opacity:0; transform: translateX(-50%) translateY(10px); } to { opacity:1; transform: translateX(-50%) translateY(0); } }`;
+  document.head.appendChild(styleEl);
+
+  // --- TRIM / SPEED ---
+  function setSpeed(el, speed) {
+    document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    const vid = document.getElementById('videoEl');
+    vid.playbackRate = speed;
+  }
+
+  function toggleMute(btn) {
+    btn.classList.toggle('on');
+    document.getElementById('videoEl').muted = btn.classList.contains('on');
+  }
+
+  function toggleMirror(btn) {
+    btn.classList.toggle('on');
+    const vid = document.getElementById('videoEl');
+    vid.style.transform = btn.classList.contains('on') ? 'scaleX(-1)' : '';
+  }
+
+  // Basic timeline drag (visual only)
+  let dragging = null, tlStartX = 0, tlStartVal = 0;
+  const handleL = document.getElementById('handleL');
+  const handleR = document.getElementById('handleR');
+  let leftPct = 0, rightPct = 100;
+
+  function startDrag(handle, e) {
+    dragging = handle;
+    tlStartX = e.touches ? e.touches[0].clientX : e.clientX;
+    tlStartVal = handle === 'L' ? leftPct : rightPct;
+    e.preventDefault();
+  }
+  handleL.addEventListener('touchstart', e => startDrag('L', e), {passive:false});
+  handleR.addEventListener('touchstart', e => startDrag('R', e), {passive:false});
+  handleL.addEventListener('mousedown', e => startDrag('L', e));
+  handleR.addEventListener('mousedown', e => startDrag('R', e));
+
+  document.addEventListener('touchmove', moveDrag, {passive:false});
+  document.addEventListener('mousemove', moveDrag);
+  document.addEventListener('touchend', () => dragging = null);
+  document.addEventListener('mouseup', () => dragging = null);
+
+  function moveDrag(e) {
+    if (!dragging) return;
+    e.preventDefault();
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    const tl = document.getElementById('timeline');
+    const rect = tl.getBoundingClientRect();
+    const pct = Math.min(100, Math.max(0, ((x - rect.left) / rect.width) * 100));
+    if (dragging === 'L') {
+      leftPct = Math.min(pct, rightPct - 5);
+      handleL.style.left = leftPct + '%';
+    } else {
+      rightPct = Math.max(pct, leftPct + 5);
+      handleR.style.left = rightPct + '%';
+    }
+    document.getElementById('tlSelected').style.left = leftPct + '%';
+    document.getElementById('tlSelected').style.width = (rightPct - leftPct) + '%';
+
+    const vid = document.getElementById('videoEl');
+    if (vid.duration) {
+      const dur = vid.duration;
+      const s = leftPct / 100 * dur;
+      const en = rightPct / 100 * dur;
+      document.getElementById('trimStart').textContent = fmtTime(s);
+      document.getElementById('trimEnd').textContent = fmtTime(en);
+      document.getElementById('trimDur').textContent = 'Czas: ' + fmtTime(en - s);
+    }
+  }
+
+  // --- EXPORT ---
+  function exportVideo() {
+    showToast('✅ Eksport gotowy!');
+  }
+
+  function resetAll() {
+    showToast('↩️ Zresetowano projekt');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2400);
+  }
+</script>
+</body>
+</html>
