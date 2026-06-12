@@ -45,7 +45,8 @@ function render(){
  requestAnimationFrame(render);
  if(!realVideo.videoWidth)return;
 
- project.filters.brightness=brightness.value;
+ state.project.filters.brightness=brightness.value;
+
  project.filters.contrast=contrast.value;
  project.filters.saturation=saturation.value;
 
