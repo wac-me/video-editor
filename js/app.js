@@ -44,16 +44,7 @@ canvas.onmousemove=e=>{
 };
 window.onmouseup=()=>drag=null;
 
-function render(){
- requestAnimationFrame(render);
- if(!realVideo.videoWidth)return;
 
- state.project.filters.brightness=brightness.value;
-
- project.filters.contrast=contrast.value;
- project.filters.saturation=saturation.value;
-
- realVideo.playbackRate=Number(speed.value);
 
  ctx.clearRect(0,0,canvas.width,canvas.height);
  ctx.filter=`brightness(${brightness.value}%) contrast(${contrast.value}%) saturate(${saturation.value}%)`;
