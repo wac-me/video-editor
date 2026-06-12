@@ -57,7 +57,7 @@ function render(){
  ctx.drawImage(realVideo,0,0,canvas.width,canvas.height);
  ctx.filter='none';
 
- project.captions.forEach(c=>{
+ state.project.captions.forEach(c=>{
   if(realVideo.currentTime>=c.start&&realVideo.currentTime<=c.end){
    ctx.font=`${c.size}px Arial`;
    ctx.textAlign='center';
