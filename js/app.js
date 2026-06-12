@@ -19,7 +19,7 @@ videoInput.onchange=e=>{
 };
 
 addCaption.onclick=()=>{
- project.captions.push({
+ state.project.captions.push({
   text:captionText.value,
   start:Number(capStart.value||0),
   end:Number(capEnd.value||9999),
