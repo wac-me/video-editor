@@ -12,7 +12,8 @@ videoInput.onchange=e=>{
  realVideo.onloadedmetadata=()=>{
   canvas.width=realVideo.videoWidth; canvas.height=realVideo.videoHeight;
   trimEnd.value=realVideo.duration.toFixed(1);
-  project.trim.end=realVideo.duration;
+  
+  state.project.trim.end=realVideo.duration;
   render();
  };
 };
