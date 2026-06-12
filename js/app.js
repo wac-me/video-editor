@@ -3,7 +3,7 @@ import { state } from "./core/state.js";
 const video=videoInput, realVideo=document.getElementById('video');
 const canvas=document.getElementById('canvas'), ctx=canvas.getContext('2d');
 
-const project={captions:[],filters:{brightness:100,contrast:100,saturation:100},trim:{start:0,end:0},crop:'Original',speed:1};
+
 let drag=null;
 
 videoInput.onchange=e=>{
