@@ -1,7 +1,17 @@
 import { state } from "./core/state.js";
 import { initRenderer, render } 
 from "./core/renderer.js";
+import { exportWebM } from "./core/exporter.js";
 
+
+exportBtn.onclick=()=>{
+
+    exportWebM(
+        canvas,
+        realVideo
+    );
+
+};
 
 const video=videoInput, realVideo=document.getElementById('video');
 const canvas=document.getElementById('canvas'), 
