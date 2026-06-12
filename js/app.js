@@ -1,3 +1,4 @@
+import { state } from "./core/state.js";
 
 const video=videoInput, realVideo=document.getElementById('video');
 const canvas=document.getElementById('canvas'), ctx=canvas.getContext('2d');
