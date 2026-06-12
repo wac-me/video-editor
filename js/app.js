@@ -31,7 +31,7 @@ canvas.onmousedown=e=>{
  const r=canvas.getBoundingClientRect();
  const x=(e.clientX-r.left)*(canvas.width/r.width);
  const y=(e.clientY-r.top)*(canvas.height/r.height);
- drag=project.captions.find(c=>Math.abs(c.x-x)<120&&Math.abs(c.y-y)<60);
+ state,drag=project.captions.find(c=>Math.abs(c.x-x)<120&&Math.abs(c.y-y)<60);
 };
 canvas.onmousemove=e=>{
  if(!drag)return;
