@@ -4,6 +4,8 @@ import { state } from "../core/state.js";
 export function addCaption(data){
 
     state.project.captions.push({
+        
+        id: "cap_" + Date.now(),
 
         text: data.text,
 
