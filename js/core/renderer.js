@@ -4,29 +4,54 @@ let video;
 let canvas;
 let ctx;
 
+const brightness =
+    document.getElementById("brightness");
+
+const contrast =
+    document.getElementById("contrast");
+
+const saturation =
+    document.getElementById("saturation");
+
+const speed =
+    document.getElementById("speed");
+
 
 export function initRenderer(videoElement, canvasElement) {
 
     video = videoElement;
+
     canvas = canvasElement;
+
     ctx = canvas.getContext("2d");
+
+    // uruchom pętlę renderowania
+    render();
 
 }
 
 
-export function render(){
+export function render() {
 
     requestAnimationFrame(render);
 
-    if(!video.videoWidth) return;
+    if (!video) return;
+
+    if (!video.videoWidth) return;
 
 
-    state.project.filters.brightness = brightness.value;
-    state.project.filters.contrast = contrast.value;
-    state.project.filters.saturation = saturation.value;
+    state.project.filters.brightness =
+        Number(brightness.value);
+
+    state.project.filters.contrast =
+        Number(contrast.value);
+
+    state.project.filters.saturation =
+        Number(saturation.value);
 
 
-    video.playbackRate = Number(speed.value);
+    video.playbackRate =
+        Number(speed.value || 1);
 
 
     ctx.clearRect(
@@ -38,11 +63,9 @@ export function render(){
 
 
     ctx.filter =
-    `
-    brightness(${brightness.value}%)
-    contrast(${contrast.value}%)
-    saturate(${saturation.value}%)
-    `;
+        `brightness(${brightness.value}%)
+         contrast(${contrast.value}%)
+         saturate(${saturation.value}%)`;
 
 
     ctx.drawImage(
@@ -54,24 +77,25 @@ export function render(){
     );
 
 
-    ctx.filter="none";
+    ctx.filter = "none";
 
 
-    state.project.captions.forEach(c=>{
+    state.project.captions.forEach(c => {
 
-        if(
-          video.currentTime >= c.start &&
-          video.currentTime <= c.end
-        ){
+        if (
+            video.currentTime >= c.start &&
+            video.currentTime <= c.end
+        ) {
 
-            ctx.font=`${c.size}px Arial`;
+            ctx.font = `${c.size}px Arial`;
 
-            ctx.textAlign="center";
+            ctx.textAlign = "center";
 
-            ctx.strokeStyle="black";
-            ctx.lineWidth=4;
+            ctx.strokeStyle = "black";
 
-            ctx.fillStyle=c.color;
+            ctx.lineWidth = 4;
+
+            ctx.fillStyle = c.color;
 
 
             ctx.strokeText(
@@ -92,5 +116,3 @@ export function render(){
     });
 
 }
-
-
