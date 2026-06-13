@@ -1,34 +1,54 @@
 import { state } from "./core/state.js";
-import { initRenderer, render } from "./core/renderer.js";
+import { initRenderer } from "./core/renderer.js";
 import { exportWebM } from "./core/exporter.js";
-import { addCaption, selectCaption } from "./captions/captions.js";
+import { addCaption } from "./captions/captions.js";
 
 
-const video = videoInput;
-const realVideo = document.getElementById("video");
+const videoInput =
+    document.getElementById("videoInput");
 
-const canvas = document.getElementById("canvas");
+const realVideo =
+    document.getElementById("video");
 
-
-let drag = null;
-
-
-// inicjalizacja renderera
-initRenderer(realVideo, canvas);
+const canvas =
+    document.getElementById("canvas");
 
 
-// eksport
-exportBtn.onclick = () => {
-
-    exportWebM(
-        canvas,
-        realVideo
-    );
-
-};
+const exportBtn =
+    document.getElementById("exportBtn");
 
 
-// ładowanie filmu
+const addCaptionBtn =
+    document.getElementById("addCaption");
+
+
+const saveProject =
+    document.getElementById("saveProject");
+
+
+const loadProject =
+    document.getElementById("loadProject");
+
+
+
+const captionText =
+    document.getElementById("captionText");
+
+const capStart =
+    document.getElementById("capStart");
+
+const capEnd =
+    document.getElementById("capEnd");
+
+
+
+initRenderer(
+    realVideo,
+    canvas
+);
+
+
+
 videoInput.onchange = e => {
 
     const file = e.target.files[0];
@@ -36,21 +56,40 @@ videoInput.onchange = e => {
     if(!file) return;
 
 
-    realVideo.src = URL.createObjectURL(file);
+    realVideo.src =
+        URL.createObjectURL(file);
 
 
-    realVideo.onloadedmetadata = () => {
 
-        canvas.width = realVideo.videoWidth;
-        canvas.height = realVideo.videoHeight;
+    realVideo.onloadedmetadata = ()=>{
 
 
-        trimEnd.value = realVideo.duration.toFixed(1);
+        canvas.width =
+            realVideo.videoWidth;
 
-        state.project.trim.end = realVideo.duration;
+
+        canvas.height =
+            realVideo.videoHeight;
 
 
-        render();
+
+        if(window.trimEnd){
+
+            trimEnd.value =
+                realVideo.duration.toFixed(1);
+
+        }
+
+
+        state.project.trim.end =
+            realVideo.duration;
+
+
+
+        // start podglądu
+        realVideo.play();
+
+
 
     };
 
@@ -59,133 +98,117 @@ videoInput.onchange = e => {
 
 
 // dodawanie napisów
-addCaption.onclick = () => {
+
+addCaptionBtn.onclick = ()=>{
+
 
     addCaption({
 
-        text: captionText.value,
+        text:
+            captionText.value,
 
-        start: capStart.value,
 
-        end: capEnd.value
+        start:
+            Number(capStart.value || 0),
+
+
+        end:
+            Number(capEnd.value || 9999)
 
     });
 
-};
-
-
-
-// zaznaczanie napisu
-canvas.onmousedown = e => {
-
-
-    const r = canvas.getBoundingClientRect();
-
-
-    const x =
-    (e.clientX - r.left) *
-    (canvas.width / r.width);
-
-
-    const y =
-    (e.clientY - r.top) *
-    (canvas.height / r.height);
-
-
-
-    drag = selectCaption(x,y);
-
-    state.drag = drag;
 
 };
 
 
 
-// przesuwanie napisów
-canvas.onmousemove = e => {
+// eksport
+
+exportBtn.onclick = ()=>{
 
 
-    if(!drag) return;
-
-
-    const r = canvas.getBoundingClientRect();
-
-
-    drag.x =
-    (e.clientX - r.left) *
-    (canvas.width / r.width);
-
-
-    drag.y =
-    (e.clientY - r.top) *
-    (canvas.height / r.height);
-
-
-};
-
-
-window.onmouseup = () => {
-
-    drag = null;
-    state.drag = null;
-
-};
-
-
-
-// zapis projektu JSON
-saveProject.onclick = () => {
-
-
-    const data = JSON.stringify(
-        state.project,
-        null,
-        2
+    exportWebM(
+        canvas,
+        realVideo
     );
 
 
-    const a=document.createElement("a");
+};
+
+
+
+// zapis JSON
+
+saveProject.onclick = ()=>{
+
+
+    const data =
+        JSON.stringify(
+            state.project,
+            null,
+            2
+        );
+
+
+    const blob =
+        new Blob(
+            [data],
+            {
+                type:"application/json"
+            }
+        );
+
+
+    const a =
+        document.createElement("a");
 
 
     a.href =
-    URL.createObjectURL(
-        new Blob(
-            [data],
-            {type:"application/json"}
-        )
-    );
+        URL.createObjectURL(blob);
 
 
-    a.download="project.json";
+    a.download =
+        "project.json";
+
 
     a.click();
+
 
 };
 
 
 
-// import projektu
-loadProject.onchange = e => {
+// import JSON
+
+loadProject.onchange = e=>{
 
 
-    const file = e.target.files[0];
+    const file =
+        e.target.files[0];
+
 
     if(!file) return;
 
 
-    const reader = new FileReader();
+
+    const reader =
+        new FileReader();
 
 
-    reader.onload = () => {
+
+    reader.onload = ()=>{
+
 
         Object.assign(
             state.project,
             JSON.parse(reader.result)
         );
 
+
     };
 
 
     reader.readAsText(file);
+
 
 };
