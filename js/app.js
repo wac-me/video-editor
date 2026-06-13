@@ -2,6 +2,8 @@ import { state } from "./core/state.js";
 import { initRenderer, render } 
 from "./core/renderer.js";
 import { exportWebM } from "./core/exporter.js";
+import { addCaption, selectCaption }
+from "./captions/captions.js";
 
 
 exportBtn.onclick=()=>{
