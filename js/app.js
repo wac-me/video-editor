@@ -1,12 +1,24 @@
 import { state } from "./core/state.js";
-import { initRenderer, render } 
-from "./core/renderer.js";
+import { initRenderer, render } from "./core/renderer.js";
 import { exportWebM } from "./core/exporter.js";
-import { addCaption, selectCaption }
-from "./captions/captions.js";
+import { addCaption, selectCaption } from "./captions/captions.js";
 
 
-exportBtn.onclick=()=>{
+const video = videoInput;
+const realVideo = document.getElementById("video");
+
+const canvas = document.getElementById("canvas");
+
+
+let drag = null;
+
+
+// inicjalizacja renderera
+initRenderer(realVideo, canvas);
+
+
+// eksport
+exportBtn.onclick = () => {
 
     exportWebM(
         canvas,
@@ -15,92 +27,165 @@ exportBtn.onclick=()=>{
 
 };
 
-const video=videoInput, realVideo=document.getElementById('video');
-const canvas=document.getElementById('canvas'), 
+
+// ładowanie filmu
+videoInput.onchange = e => {
+
+    const file = e.target.files[0];
+
+    if(!file) return;
 
 
-let drag=null;
+    realVideo.src = URL.createObjectURL(file);
 
-videoInput.onchange=e=>{
- const f=e.target.files[0]; if(!f)return;
- realVideo.src=URL.createObjectURL(f);
- realVideo.onloadedmetadata=()=>{
-  canvas.width=realVideo.videoWidth; canvas.height=realVideo.videoHeight;
-  trimEnd.value=realVideo.duration.toFixed(1);
-  
-  state.project.trim.end=realVideo.duration;
-  render();
- };
-};
 
-addCaption.onclick=()=>{
+    realVideo.onloadedmetadata = () => {
 
- addCaption({
+        canvas.width = realVideo.videoWidth;
+        canvas.height = realVideo.videoHeight;
 
-  text:captionText.value,
 
-  start:capStart.value,
+        trimEnd.value = realVideo.duration.toFixed(1);
 
-  end:capEnd.value
+        state.project.trim.end = realVideo.duration;
 
- });
+
+        render();
+
+    };
 
 };
 
-canvas.onmousedown=e=>{
- const r=canvas.getBoundingClientRect();
- const x=(e.clientX-r.left)*(canvas.width/r.width);
- const y=(e.clientY-r.top)*(canvas.height/r.height);
- state.drag = state.project.captions.find(c=>Math.abs(c.x-x)<120&&Math.abs(c.y-y)<60);
-};
-canvas.onmousemove=e=>{
- if(!drag)return;
- const r=canvas.getBoundingClientRect();
- drag.x=(e.clientX-r.left)*(canvas.width/r.width);
- drag.y=(e.clientY-r.top)*(canvas.height/r.height);
-};
-window.onmouseup=()=>drag=null;
 
 
+// dodawanie napisów
+addCaption.onclick = () => {
 
- ctx.clearRect(0,0,canvas.width,canvas.height);
- ctx.filter=`brightness(${brightness.value}%) contrast(${contrast.value}%) saturate(${saturation.value}%)`;
- ctx.drawImage(realVideo,0,0,canvas.width,canvas.height);
- ctx.filter='none';
+    addCaption({
 
- state.project.captions.forEach(c=>{
-  if(realVideo.currentTime>=c.start&&realVideo.currentTime<=c.end){
-   ctx.font=`${c.size}px Arial`;
-   ctx.textAlign='center';
-   ctx.strokeStyle='black';ctx.lineWidth=4;
-   ctx.fillStyle=c.color;
-   ctx.strokeText(c.text,c.x,c.y);
-   ctx.fillText(c.text,c.x,c.y);
-  }
- });
-}
+        text: captionText.value,
 
-saveProject.onclick=()=>{
- const data=JSON.stringify(project,null,2);
- const a=document.createElement('a');
- a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));
- a.download='project.json'; a.click();
+        start: capStart.value,
+
+        end: capEnd.value
+
+    });
+
 };
 
-loadProject.onchange=e=>{
- const f=e.target.files[0]; if(!f)return;
- const r=new FileReader();
- r.onload=()=>Object.assign(project,JSON.parse(r.result));
- r.readAsText(f);
+
+
+// zaznaczanie napisu
+canvas.onmousedown = e => {
+
+
+    const r = canvas.getBoundingClientRect();
+
+
+    const x =
+    (e.clientX - r.left) *
+    (canvas.width / r.width);
+
+
+    const y =
+    (e.clientY - r.top) *
+    (canvas.height / r.height);
+
+
+
+    drag = selectCaption(x,y);
+
+    state.drag = drag;
+
 };
 
-exportBtn.onclick = () => {
-    exportWebM();
+
+
+// przesuwanie napisów
+canvas.onmousemove = e => {
+
+
+    if(!drag) return;
+
+
+    const r = canvas.getBoundingClientRect();
+
+
+    drag.x =
+    (e.clientX - r.left) *
+    (canvas.width / r.width);
+
+
+    drag.y =
+    (e.clientY - r.top) *
+    (canvas.height / r.height);
+
+
 };
- realVideo.currentTime=Number(trimStart.value||0);
- rec.start(); realVideo.play();
- const stopAt=Number(trimEnd.value||realVideo.duration);
- const timer=setInterval(()=>{
-  if(realVideo.currentTime>=stopAt){clearInterval(timer); rec.stop(); realVideo.pause();}
- },100);
+
+
+window.onmouseup = () => {
+
+    drag = null;
+    state.drag = null;
+
+};
+
+
+
+// zapis projektu JSON
+saveProject.onclick = () => {
+
+
+    const data = JSON.stringify(
+        state.project,
+        null,
+        2
+    );
+
+
+    const a=document.createElement("a");
+
+
+    a.href =
+    URL.createObjectURL(
+        new Blob(
+            [data],
+            {type:"application/json"}
+        )
+    );
+
+
+    a.download="project.json";
+
+    a.click();
+
+};
+
+
+
+// import projektu
+loadProject.onchange = e => {
+
+
+    const file = e.target.files[0];
+
+    if(!file) return;
+
+
+    const reader = new FileReader();
+
+
+    reader.onload = () => {
+
+        Object.assign(
+            state.project,
+            JSON.parse(reader.result)
+        );
+
+    };
+
+
+    reader.readAsText(file);
+
 };
