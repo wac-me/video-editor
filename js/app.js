@@ -34,12 +34,17 @@ videoInput.onchange=e=>{
 };
 
 addCaption.onclick=()=>{
- state.project.captions.push({
+
+ addCaption({
+
   text:captionText.value,
-  start:Number(capStart.value||0),
-  end:Number(capEnd.value||9999),
-  x:200,y:200,size:48,color:'#fff'
+
+  start:capStart.value,
+
+  end:capEnd.value
+
  });
+
 };
 
 canvas.onmousedown=e=>{
