@@ -19,15 +19,10 @@ header{
 }
 
 
-.side{
-    width:100%;
-    box-sizing:border-box;
-}
-
-
 .preview{
     padding:20px;
     width:100%;
+    box-sizing:border-box;
     overflow:hidden;
 }
 
@@ -35,6 +30,9 @@ header{
 .side{
     background:#1a1a1a;
     padding:20px;
+    width:100%;
+    box-sizing:border-box;
+
     display:flex;
     flex-direction:column;
     gap:10px;
@@ -45,17 +43,17 @@ canvas{
 
     display:block;
 
-    width:100%;
-
     max-width:100%;
+
+    width:auto;
+
+    height:auto;
 
     background:#000;
 
     border:1px solid #333;
 
     border-radius:10px;
-    
-    height:auto;
 
 }
 
@@ -74,28 +72,16 @@ input{
 
 }
 
+
 input[type="range"]{
+
     width:100%;
+
 }
+
 
 #video{
+
     display:none;
-}
-
-
-@media(max-width:800px){
-
-    .app{
-
-        grid-template-columns:1fr;
-
-    }
-
-
-    .side{
-
-        width:auto;
-
-    }
 
 }
