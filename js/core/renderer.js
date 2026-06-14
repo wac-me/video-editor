@@ -3,6 +3,9 @@ let canvas = null;
 let ctx = null;
 
 
+import { state } from "./state.js";
+
+
 
 export function initRenderer(
     videoElement,
@@ -35,23 +38,7 @@ export function initRenderer(
 export function renderFrame(){
 
 
-    if(!video){
-
-        console.log(
-            "RENDERER: brak video"
-        );
-
-        return;
-
-    }
-
-
-
-    if(!canvas || !ctx){
-
-        console.log(
-            "RENDERER: brak canvas"
-        );
+    if(!video || !canvas || !ctx){
 
         return;
 
@@ -64,21 +51,6 @@ export function renderFrame(){
         !video.videoWidth ||
         !video.videoHeight
     ){
-
-        console.log(
-            "RENDERER: brak klatki",
-            {
-                ready:
-                video.readyState,
-
-                width:
-                video.videoWidth,
-
-                height:
-                video.videoHeight
-            }
-        );
-
 
         return;
 
@@ -96,6 +68,7 @@ export function renderFrame(){
 
 
 
+
     ctx.clearRect(
         0,
         0,
@@ -105,6 +78,8 @@ export function renderFrame(){
 
 
 
+    // film
+
     ctx.drawImage(
         video,
         0,
@@ -112,6 +87,63 @@ export function renderFrame(){
         canvas.width,
         canvas.height
     );
+
+
+
+
+    // napisy
+
+    state.project.captions.forEach(c=>{
+
+
+        if(
+            video.currentTime >= c.start &&
+            video.currentTime <= c.end
+        ){
+
+
+            ctx.font =
+                `${c.size}px Arial`;
+
+
+            ctx.textAlign =
+                "center";
+
+
+
+            ctx.strokeStyle =
+                "black";
+
+
+            ctx.lineWidth =
+                4;
+
+
+
+            ctx.fillStyle =
+                c.color;
+
+
+
+            ctx.strokeText(
+                c.text,
+                c.x,
+                c.y
+            );
+
+
+
+            ctx.fillText(
+                c.text,
+                c.x,
+                c.y
+            );
+
+
+        }
+
+
+    });
 
 
 
