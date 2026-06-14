@@ -1,57 +1,84 @@
 import { state } from "./state.js";
 
+
 let video;
+
 let canvas;
+
 let ctx;
+
+
 
 const brightness =
     document.getElementById("brightness");
 
+
 const contrast =
     document.getElementById("contrast");
 
+
 const saturation =
     document.getElementById("saturation");
+
 
 const speed =
     document.getElementById("speed");
 
 
-export function initRenderer(videoElement, canvasElement) {
+
+export function initRenderer(
+    videoElement,
+    canvasElement
+){
 
     video = videoElement;
 
     canvas = canvasElement;
 
-    ctx = canvas.getContext("2d");
+    ctx =
+        canvas.getContext("2d");
 
-    // uruchom pętlę renderowania
+
     render();
 
 }
 
 
-export function render() {
+
+
+export function render(){
+
 
     requestAnimationFrame(render);
 
-    if (!video) return;
-
-    if (!video.videoWidth) return;
 
 
-    state.project.filters.brightness =
-        Number(brightness.value);
-
-    state.project.filters.contrast =
-        Number(contrast.value);
-
-    state.project.filters.saturation =
-        Number(saturation.value);
+    if(!video) return;
 
 
-    video.playbackRate =
-        Number(speed.value || 1);
+
+    if(
+        !video.videoWidth ||
+        video.readyState < 2
+    ){
+
+        return;
+
+    }
+
+
+
+    const b =
+        brightness?.value || 100;
+
+
+    const c =
+        contrast?.value || 100;
+
+
+    const s =
+        saturation?.value || 100;
+
 
 
     ctx.clearRect(
@@ -62,10 +89,14 @@ export function render() {
     );
 
 
+
     ctx.filter =
-        `brightness(${brightness.value}%)
-         contrast(${contrast.value}%)
-         saturate(${saturation.value}%)`;
+        `
+        brightness(${b}%)
+        contrast(${c}%)
+        saturate(${s}%)
+        `;
+
 
 
     ctx.drawImage(
@@ -77,42 +108,61 @@ export function render() {
     );
 
 
-    ctx.filter = "none";
+
+    ctx.filter="none";
 
 
-    state.project.captions.forEach(c => {
 
-        if (
-            video.currentTime >= c.start &&
-            video.currentTime <= c.end
-        ) {
+    state.project.captions.forEach(caption=>{
 
-            ctx.font = `${c.size}px Arial`;
 
-            ctx.textAlign = "center";
+        if(
+            video.currentTime >= caption.start &&
+            video.currentTime <= caption.end
+        ){
 
-            ctx.strokeStyle = "black";
 
-            ctx.lineWidth = 4;
+            ctx.font =
+                `${caption.size}px Arial`;
 
-            ctx.fillStyle = c.color;
+
+            ctx.textAlign =
+                "center";
+
+
+            ctx.strokeStyle =
+                "black";
+
+
+            ctx.lineWidth =
+                4;
+
+
+            ctx.fillStyle =
+                caption.color;
+
 
 
             ctx.strokeText(
-                c.text,
-                c.x,
-                c.y
+                caption.text,
+                caption.x,
+                caption.y
             );
+
 
 
             ctx.fillText(
-                c.text,
-                c.x,
-                c.y
+                caption.text,
+                caption.x,
+                caption.y
             );
+
 
         }
 
+
     });
+
+
 
 }
