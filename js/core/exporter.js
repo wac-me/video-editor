@@ -179,7 +179,7 @@ export function exportWebM(canvas, video){
         );
 
 
-        recorder.start();
+        recorder.start(100);
 
 
         loop();
