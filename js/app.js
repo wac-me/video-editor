@@ -56,8 +56,12 @@ videoInput.onchange = e => {
     if(!file) return;
 
 
-    realVideo.src =
-        URL.createObjectURL(file);
+    const url = URL.createObjectURL(file);
+
+
+    realVideo.src = url;
+
+    realVideo.load();
 
 
 
@@ -86,9 +90,22 @@ videoInput.onchange = e => {
 
 
 
-        // start podglądu
-        realVideo.play();
+        console.log(
+            "VIDEO:",
+            realVideo.videoWidth,
+            realVideo.videoHeight,
+            realVideo.duration
+        );
 
+
+        // tylko próba startu
+        realVideo.play()
+        .catch(err=>{
+            console.log(
+                "Autoplay blocked:",
+                err
+            );
+        });
 
 
     };
