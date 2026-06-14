@@ -1,3 +1,5 @@
+import { renderFrame } from "./renderer.js";
+
 export function exportWebM(canvas, video){
 
 
@@ -153,33 +155,12 @@ export function exportWebM(canvas, video){
 
     function loop(){
 
+    renderFrame();
 
-        // najważniejsze dla Safari
+    animation =
+        requestAnimationFrame(loop);
 
-        const ctx =
-            canvas.getContext("2d");
-
-
-        if(video.readyState>=2){
-
-
-            ctx.drawImage(
-                video,
-                0,
-                0,
-                canvas.width,
-                canvas.height
-            );
-
-
-        }
-
-
-        animation =
-            requestAnimationFrame(loop);
-
-
-    }
+}
 
 
 
