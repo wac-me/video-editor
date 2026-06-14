@@ -1,17 +1,27 @@
 import { state } from "./core/state.js";
-import { initRenderer } from "./core/renderer.js";
+
+import {
+    initRenderer,
+    renderFrame
+} from "./core/renderer.js";
+
 import { exportWebM } from "./core/exporter.js";
+
 import { addCaption } from "./captions/captions.js";
+
 
 
 const videoInput =
     document.getElementById("videoInput");
 
+
 const realVideo =
     document.getElementById("video");
 
+
 const canvas =
     document.getElementById("canvas");
+
 
 
 const exportBtn =
@@ -21,13 +31,6 @@ const exportBtn =
 const addCaptionBtn =
     document.getElementById("addCaption");
 
-
-const saveProject =
-    document.getElementById("saveProject");
-
-
-const loadProject =
-    document.getElementById("loadProject");
 
 
 const captionText =
@@ -50,6 +53,7 @@ initRenderer(
 
 
 
+
 videoInput.onchange = e => {
 
 
@@ -61,12 +65,10 @@ videoInput.onchange = e => {
 
 
 
-    const url =
+    realVideo.src =
         URL.createObjectURL(file);
 
 
-
-    realVideo.src = url;
 
     realVideo.load();
 
@@ -89,23 +91,7 @@ videoInput.onchange = e => {
 
 
 
-        const trimEnd =
-            document.getElementById("trimEnd");
-
-
-        if(trimEnd){
-
-            trimEnd.value =
-                realVideo.duration.toFixed(1);
-
-        }
-
-
-
-        // ustaw pierwszą klatkę
-
         realVideo.currentTime = 0;
-
 
 
     };
@@ -114,9 +100,9 @@ videoInput.onchange = e => {
 
     realVideo.onseeked = ()=>{
 
-        console.log(
-            "FRAME READY"
-        );
+
+        renderFrame();
+
 
     };
 
@@ -125,7 +111,7 @@ videoInput.onchange = e => {
 
 
 
-// dodanie napisu
+
 
 addCaptionBtn.onclick = ()=>{
 
@@ -137,20 +123,30 @@ addCaptionBtn.onclick = ()=>{
 
 
         start:
-            Number(capStart.value || 0),
+            Number(
+                capStart.value || 0
+            ),
 
 
         end:
-            Number(capEnd.value || 9999)
+            Number(
+                capEnd.value || 9999
+            )
 
     });
+
+
+
+    // natychmiastowy podgląd
+
+    renderFrame();
 
 
 };
 
 
 
-// eksport
+
 
 exportBtn.onclick = ()=>{
 
@@ -160,81 +156,5 @@ exportBtn.onclick = ()=>{
         realVideo
     );
 
-
-};
-
-
-
-// zapis projektu
-
-saveProject.onclick = ()=>{
-
-
-    const data =
-        JSON.stringify(
-            state.project,
-            null,
-            2
-        );
-
-
-    const blob =
-        new Blob(
-            [data],
-            {
-                type:"application/json"
-            }
-        );
-
-
-    const a =
-        document.createElement("a");
-
-
-    a.href =
-        URL.createObjectURL(blob);
-
-
-    a.download =
-        "project.json";
-
-
-    a.click();
-
-};
-
-
-
-// import
-
-loadProject.onchange = e=>{
-
-
-    const file =
-        e.target.files[0];
-
-
-    if(!file) return;
-
-
-
-    const reader =
-        new FileReader();
-
-
-
-    reader.onload = ()=>{
-
-
-        Object.assign(
-            state.project,
-            JSON.parse(reader.result)
-        );
-
-
-    };
-
-
-    reader.readAsText(file);
 
 };
