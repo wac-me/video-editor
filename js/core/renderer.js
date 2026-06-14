@@ -2,9 +2,7 @@ import { state } from "./state.js";
 
 
 let video;
-
 let canvas;
-
 let ctx;
 
 
@@ -35,14 +33,12 @@ export function initRenderer(
 
     canvas = canvasElement;
 
-    ctx =
-        canvas.getContext("2d");
+    ctx = canvas.getContext("2d");
 
 
     render();
 
 }
-
 
 
 
@@ -81,6 +77,15 @@ export function render(){
 
 
 
+    if(speed){
+
+        video.playbackRate =
+            Number(speed.value || 1);
+
+    }
+
+
+
     ctx.clearRect(
         0,
         0,
@@ -91,11 +96,11 @@ export function render(){
 
 
     ctx.filter =
-        `
-        brightness(${b}%)
-        contrast(${c}%)
-        saturate(${s}%)
-        `;
+    `
+    brightness(${b}%)
+    contrast(${c}%)
+    saturate(${s}%)
+    `;
 
 
 
@@ -113,17 +118,17 @@ export function render(){
 
 
 
-    state.project.captions.forEach(caption=>{
+    state.project.captions.forEach(c=>{
 
 
         if(
-            video.currentTime >= caption.start &&
-            video.currentTime <= caption.end
+            video.currentTime >= c.start &&
+            video.currentTime <= c.end
         ){
 
 
             ctx.font =
-                `${caption.size}px Arial`;
+                `${c.size}px Arial`;
 
 
             ctx.textAlign =
@@ -139,22 +144,22 @@ export function render(){
 
 
             ctx.fillStyle =
-                caption.color;
+                c.color;
 
 
 
             ctx.strokeText(
-                caption.text,
-                caption.x,
-                caption.y
+                c.text,
+                c.x,
+                c.y
             );
 
 
 
             ctx.fillText(
-                caption.text,
-                caption.x,
-                caption.y
+                c.text,
+                c.x,
+                c.y
             );
 
 
@@ -162,7 +167,6 @@ export function render(){
 
 
     });
-
 
 
 }
