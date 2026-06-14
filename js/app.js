@@ -54,6 +54,7 @@ initRenderer(
 
 
 
+
 videoInput.onchange = e => {
 
 
@@ -65,9 +66,12 @@ videoInput.onchange = e => {
 
 
 
-    realVideo.src =
+    const url =
         URL.createObjectURL(file);
 
+
+
+    realVideo.src = url;
 
 
     realVideo.load();
@@ -77,49 +81,76 @@ videoInput.onchange = e => {
     realVideo.onloadedmetadata = ()=>{
 
 
-    canvas.width =
-        realVideo.videoWidth;
+        canvas.width =
+            realVideo.videoWidth;
 
 
-    canvas.height =
-        realVideo.videoHeight;
-
-
-
-    state.project.trim.end =
-        realVideo.duration;
+        canvas.height =
+            realVideo.videoHeight;
 
 
 
-    realVideo.currentTime = 0;
+        state.project.trim.end =
+            realVideo.duration;
 
 
 
-};
+        realVideo.currentTime = 0;
+
+
+    };
 
 
 
-realVideo.onloadeddata = ()=>{
 
 
-    renderFrame();
+    realVideo.onloadeddata = ()=>{
 
 
-};
+        console.log(
+            "VIDEO READY"
+        );
 
 
 
-realVideo.onseeked = ()=>{
+        realVideo.play()
+        .then(()=>{
 
 
-    renderFrame();
+            realVideo.pause();
 
 
-};
+            renderFrame();
+
+
+        })
+        .catch(err=>{
+
+
+            console.log(
+                "PLAY ERROR",
+                err
+            );
+
+
+            renderFrame();
+
+
+        });
+
+
+    };
+
+
 
 
 
     realVideo.onseeked = ()=>{
+
+
+        console.log(
+            "SEEK READY"
+        );
 
 
         renderFrame();
@@ -129,6 +160,7 @@ realVideo.onseeked = ()=>{
 
 
 };
+
 
 
 
@@ -154,16 +186,17 @@ addCaptionBtn.onclick = ()=>{
                 capEnd.value || 9999
             )
 
+
     });
 
 
-
-    // natychmiastowy podgląd
 
     renderFrame();
 
 
 };
+
+
 
 
 
