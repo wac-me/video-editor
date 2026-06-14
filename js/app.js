@@ -22,7 +22,7 @@ const addCaptionBtn =
     document.getElementById("addCaption");
 
 
-const saveProject =
+const saveProjectBtn =
     document.getElementById("saveProject");
 
 
@@ -49,6 +49,8 @@ initRenderer(
 
 
 
+// upload video
+
 videoInput.onchange = e => {
 
     const file = e.target.files[0];
@@ -56,7 +58,13 @@ videoInput.onchange = e => {
     if(!file) return;
 
 
-    const url = URL.createObjectURL(file);
+    console.log("FILE:", file);
+
+
+
+    const url =
+        URL.createObjectURL(file);
+
 
 
     realVideo.src = url;
@@ -65,7 +73,23 @@ videoInput.onchange = e => {
 
 
 
+    console.log(
+        "VIDEO ELEMENT:",
+        realVideo
+    );
+
+
+
     realVideo.onloadedmetadata = ()=>{
+
+
+        console.log(
+            "META:",
+            realVideo.videoWidth,
+            realVideo.videoHeight,
+            realVideo.duration
+        );
+
 
 
         canvas.width =
@@ -77,7 +101,16 @@ videoInput.onchange = e => {
 
 
 
-        if(window.trimEnd){
+        state.project.trim.end =
+            realVideo.duration;
+
+
+
+        const trimEnd =
+            document.getElementById("trimEnd");
+
+
+        if(trimEnd){
 
             trimEnd.value =
                 realVideo.duration.toFixed(1);
@@ -85,27 +118,14 @@ videoInput.onchange = e => {
         }
 
 
-        state.project.trim.end =
-            realVideo.duration;
+
+        // pokaż pierwszą klatkę
+        realVideo.currentTime = 0;
 
 
 
-        console.log(
-            "VIDEO:",
-            realVideo.videoWidth,
-            realVideo.videoHeight,
-            realVideo.duration
-        );
+        realVideo.pause();
 
-
-        // tylko próba startu
-        realVideo.play()
-        .catch(err=>{
-            console.log(
-                "Autoplay blocked:",
-                err
-            );
-        });
 
 
     };
@@ -143,37 +163,34 @@ addCaptionBtn.onclick = ()=>{
 
 exportBtn.onclick = ()=>{
 
-
     exportWebM(
         canvas,
         realVideo
     );
 
-
 };
 
 
 
-// zapis JSON
+// zapis projektu
 
-saveProject.onclick = ()=>{
-
-
-    const data =
-        JSON.stringify(
-            state.project,
-            null,
-            2
-        );
+saveProjectBtn.onclick = ()=>{
 
 
     const blob =
         new Blob(
-            [data],
+            [
+                JSON.stringify(
+                    state.project,
+                    null,
+                    2
+                )
+            ],
             {
                 type:"application/json"
             }
         );
+
 
 
     const a =
@@ -190,12 +207,11 @@ saveProject.onclick = ()=>{
 
     a.click();
 
-
 };
 
 
 
-// import JSON
+// import projektu
 
 loadProject.onchange = e=>{
 
@@ -226,6 +242,5 @@ loadProject.onchange = e=>{
 
 
     reader.readAsText(file);
-
 
 };
