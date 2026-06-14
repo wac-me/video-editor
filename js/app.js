@@ -29,24 +29,31 @@ window.onerror=function(
 const videoInput =
     document.getElementById("videoInput");
 
+
 const realVideo =
     document.getElementById("video");
+
 
 const canvas =
     document.getElementById("canvas");
 
+
 const exportBtn =
     document.getElementById("exportBtn");
+
 
 const addCaptionBtn =
     document.getElementById("addCaption");
 
 
+
 const captionText =
     document.getElementById("captionText");
 
+
 const capStart =
     document.getElementById("capStart");
+
 
 const capEnd =
     document.getElementById("capEnd");
@@ -60,17 +67,46 @@ initRenderer(
 
 
 
+
+
+realVideo.onerror = ()=>{
+
+    console.log(
+        "VIDEO ERROR",
+        realVideo.error
+    );
+
+};
+
+
+
+
+
 function debugVideo(){
 
     console.log({
-        readyState: realVideo.readyState,
-        width: realVideo.videoWidth,
-        height: realVideo.videoHeight,
-        duration: realVideo.duration,
-        current: realVideo.currentTime
+
+        readyState:
+            realVideo.readyState,
+
+        width:
+            realVideo.videoWidth,
+
+        height:
+            realVideo.videoHeight,
+
+        duration:
+            realVideo.duration,
+
+        current:
+            realVideo.currentTime
+
     });
 
 }
+
+
+
 
 
 
@@ -89,6 +125,7 @@ videoInput.onchange = e => {
         URL.createObjectURL(file);
 
 
+
     console.log(
         "FILE",
         file.name,
@@ -97,18 +134,29 @@ videoInput.onchange = e => {
 
 
 
-    realVideo.src=url;
+    realVideo.src = url;
 
-    realVideo.muted=true;
 
-    realVideo.playsInline=true;
+    realVideo.muted = true;
+
+
+    realVideo.playsInline = true;
+
+
+    realVideo.setAttribute(
+        "playsinline",
+        ""
+    );
 
 
     realVideo.load();
 
 
 
-    realVideo.onloadedmetadata=()=>{
+
+
+
+    realVideo.onloadedmetadata = ()=>{
 
 
         console.log(
@@ -135,11 +183,11 @@ videoInput.onchange = e => {
 
 
         /*
-        Safari potrzebuje faktycznej klatki
+          Safari wymaga pobrania realnej klatki
         */
 
 
-        realVideo.currentTime=0;
+        realVideo.currentTime = 0.01;
 
 
 
@@ -149,7 +197,11 @@ videoInput.onchange = e => {
 
 
 
-    realVideo.onloadeddata=()=>{
+
+
+
+
+    realVideo.onloadeddata = async ()=>{
 
 
         console.log(
@@ -161,7 +213,50 @@ videoInput.onchange = e => {
 
 
 
-        renderFrame();
+
+        try{
+
+
+            await realVideo.play();
+
+
+
+            setTimeout(()=>{
+
+
+                realVideo.pause();
+
+
+                console.log(
+                    "FIRST FRAME READY"
+                );
+
+
+                debugVideo();
+
+
+                renderFrame();
+
+
+
+            },300);
+
+
+
+        }
+        catch(e){
+
+
+            console.log(
+                "PLAY BLOCKED",
+                e
+            );
+
+
+            renderFrame();
+
+
+        }
 
 
 
@@ -171,7 +266,11 @@ videoInput.onchange = e => {
 
 
 
-    realVideo.oncanplay=()=>{
+
+
+
+
+    realVideo.oncanplay = ()=>{
 
 
         console.log(
@@ -182,22 +281,25 @@ videoInput.onchange = e => {
         debugVideo();
 
 
-
-        renderFrame();
-
-
     };
 
 
 
 
 
-    realVideo.onseeked=()=>{
+
+
+
+
+    realVideo.onseeked = ()=>{
 
 
         console.log(
             "SEEKED"
         );
+
+
+        debugVideo();
 
 
         renderFrame();
@@ -215,25 +317,27 @@ videoInput.onchange = e => {
 
 
 
-addCaptionBtn.onclick=()=>{
+
+
+addCaptionBtn.onclick = ()=>{
 
 
     addCaption({
 
         text:
-        captionText.value,
+            captionText.value,
 
 
         start:
-        Number(
-            capStart.value || 0
-        ),
+            Number(
+                capStart.value || 0
+            ),
 
 
         end:
-        Number(
-            capEnd.value || 9999
-        )
+            Number(
+                capEnd.value || 9999
+            )
 
     });
 
@@ -242,6 +346,7 @@ addCaptionBtn.onclick=()=>{
     renderFrame();
 
 
+
 };
 
 
@@ -249,12 +354,17 @@ addCaptionBtn.onclick=()=>{
 
 
 
-exportBtn.onclick=()=>{
+
+
+exportBtn.onclick = ()=>{
 
 
     exportWebM(
+
         canvas,
+
         realVideo
+
     );
 
 
