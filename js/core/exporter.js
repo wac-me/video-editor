@@ -1,14 +1,23 @@
 export function exportWebM(canvas, video){
 
 
+    const fps = 30;
+
+
     const stream =
-        canvas.captureStream(30);
+        canvas.captureStream(fps);
 
 
+
+    // audio jeśli dostępne
 
     try {
 
-        video.captureStream()
+        const audioStream =
+            video.captureStream();
+
+
+        audioStream
         .getAudioTracks()
         .forEach(track=>{
 
@@ -17,21 +26,62 @@ export function exportWebM(canvas, video){
         });
 
 
-    } catch(e){}
+    } catch(e){
+
+        console.log(
+            "NO AUDIO TRACK",
+            e
+        );
+
+    }
 
 
 
-    const recorder =
-        new MediaRecorder(stream);
+
+    const options = {
+
+        mimeType:
+            "video/webm"
+
+    };
 
 
 
-    const chunks = [];
+    let recorder;
+
+
+    try {
+
+        recorder =
+            new MediaRecorder(
+                stream,
+                options
+            );
+
+
+    }
+    catch(e){
+
+        console.log(
+            "MEDIA RECORDER ERROR",
+            e
+        );
+
+        recorder =
+            new MediaRecorder(
+                stream
+            );
+
+    }
 
 
 
-    recorder.ondataavailable = e=>{
 
+    const chunks=[];
+
+
+
+    recorder.ondataavailable=e=>{
 
         if(e.data.size){
 
@@ -43,7 +93,8 @@ export function exportWebM(canvas, video){
 
 
 
-    recorder.onstop = ()=>{
+
+    recorder.onstop=()=>{
 
 
         const blob =
@@ -53,6 +104,12 @@ export function exportWebM(canvas, video){
                     type:"video/webm"
                 }
             );
+
+
+        console.log(
+            "WEBM SIZE",
+            blob.size
+        );
 
 
 
@@ -65,30 +122,90 @@ export function exportWebM(canvas, video){
             document.createElement("a");
 
 
-
-        a.href =
-            url;
+        a.href=url;
 
 
-
-        a.download =
+        a.download=
             "export.webm";
 
 
-
-        document.body.appendChild(a);
-
-
         a.click();
+
 
 
         setTimeout(()=>{
 
             URL.revokeObjectURL(url);
 
-            a.remove();
+        },2000);
 
-        },1000);
+
+    };
+
+
+
+
+
+
+    let animation;
+
+
+
+    function loop(){
+
+
+        // najważniejsze dla Safari
+
+        const ctx =
+            canvas.getContext("2d");
+
+
+        if(video.readyState>=2){
+
+
+            ctx.drawImage(
+                video,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+        }
+
+
+        animation =
+            requestAnimationFrame(loop);
+
+
+    }
+
+
+
+
+
+
+    video.currentTime=0;
+
+
+
+    video.onseeked=()=>{
+
+
+        console.log(
+            "EXPORT START"
+        );
+
+
+        recorder.start();
+
+
+        loop();
+
+
+
+        video.play();
 
 
 
@@ -96,26 +213,26 @@ export function exportWebM(canvas, video){
 
 
 
-    // start od początku filmu
-
-    video.currentTime = 0;
 
 
-
-    recorder.start();
-
+    video.onended=()=>{
 
 
-    video.play();
-
-
-
-    video.onended = ()=>{
+        console.log(
+            "EXPORT END"
+        );
 
 
         recorder.stop();
 
 
+        cancelAnimationFrame(
+            animation
+        );
+
+
     };
+
+
 
 }
