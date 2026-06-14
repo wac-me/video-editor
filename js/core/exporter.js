@@ -167,30 +167,27 @@ export function exportWebM(canvas, video){
 
 
 
-    video.currentTime=0;
+    video.currentTime = 0;
 
 
-
-    video.onseeked=()=>{
-
-
-        console.log(
-            "EXPORT START"
-        );
+video.onseeked = ()=>{
 
 
-        recorder.start(100);
+    console.log(
+        "EXPORT START"
+    );
 
 
-        loop();
+    recorder.start(100);
 
 
-
-        video.play();
-
+    loop();
 
 
-    };
+    video.play();
+
+
+};
 
 
 
