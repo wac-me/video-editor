@@ -11,24 +11,45 @@ import { addCaption } from "./captions/captions.js";
 
 
 
-const videoInput = document.getElementById("videoInput");
-
-const realVideo = document.getElementById("video");
-
-const canvas = document.getElementById("canvas");
-
-const exportBtn = document.getElementById("exportBtn");
-
-const addCaptionBtn = document.getElementById("addCaption");
-
-
-const captionText = document.getElementById("captionText");
-
-const capStart = document.getElementById("capStart");
-
-const capEnd = document.getElementById("capEnd");
+window.onerror=function(
+    msg,
+    url,
+    line
+){
+    alert(
+        "ERROR:\n"+
+        msg+
+        "\nLINIA:"+
+        line
+    );
+};
 
 
+
+const videoInput =
+    document.getElementById("videoInput");
+
+const realVideo =
+    document.getElementById("video");
+
+const canvas =
+    document.getElementById("canvas");
+
+const exportBtn =
+    document.getElementById("exportBtn");
+
+const addCaptionBtn =
+    document.getElementById("addCaption");
+
+
+const captionText =
+    document.getElementById("captionText");
+
+const capStart =
+    document.getElementById("capStart");
+
+const capEnd =
+    document.getElementById("capEnd");
 
 
 
@@ -39,45 +60,63 @@ initRenderer(
 
 
 
+function debugVideo(){
+
+    console.log({
+        readyState: realVideo.readyState,
+        width: realVideo.videoWidth,
+        height: realVideo.videoHeight,
+        duration: realVideo.duration,
+        current: realVideo.currentTime
+    });
+
+}
 
 
 
 videoInput.onchange = e => {
 
 
-    const file = e.target.files[0];
+    const file =
+        e.target.files[0];
 
 
     if(!file) return;
 
 
 
-    const url = URL.createObjectURL(file);
+    const url =
+        URL.createObjectURL(file);
+
+
+    console.log(
+        "FILE",
+        file.name,
+        file.size
+    );
 
 
 
-    console.log("FILE", file.name);
+    realVideo.src=url;
 
+    realVideo.muted=true;
 
+    realVideo.playsInline=true;
 
-    realVideo.src = url;
 
     realVideo.load();
 
 
 
-
-
-
-    realVideo.onloadedmetadata = ()=>{
+    realVideo.onloadedmetadata=()=>{
 
 
         console.log(
-            "METADATA",
-            realVideo.videoWidth,
-            realVideo.videoHeight,
-            realVideo.duration
+            "METADATA OK"
         );
+
+
+        debugVideo();
 
 
 
@@ -95,26 +134,53 @@ videoInput.onchange = e => {
 
 
 
+        /*
+        Safari potrzebuje faktycznej klatki
+        */
+
+
+        realVideo.currentTime=0;
+
+
+
     };
 
 
 
 
 
-
-
-    realVideo.onloadeddata = ()=>{
+    realVideo.onloadeddata=()=>{
 
 
         console.log(
-            "DATA READY",
-            realVideo.readyState,
-            realVideo.videoWidth,
-            realVideo.videoHeight
+            "DATA OK"
         );
 
 
-        realVideo.currentTime = 0;
+        debugVideo();
+
+
+
+        renderFrame();
+
+
+
+    };
+
+
+
+
+
+    realVideo.oncanplay=()=>{
+
+
+        console.log(
+            "CAN PLAY"
+        );
+
+
+        debugVideo();
+
 
 
         renderFrame();
@@ -126,9 +192,7 @@ videoInput.onchange = e => {
 
 
 
-
-
-    realVideo.onseeked = ()=>{
+    realVideo.onseeked=()=>{
 
 
         console.log(
@@ -143,24 +207,6 @@ videoInput.onchange = e => {
 
 
 
-
-
-
-
-    realVideo.oncanplay = ()=>{
-
-
-        console.log(
-            "CAN PLAY"
-        );
-
-
-        renderFrame();
-
-
-    };
-
-
 };
 
 
@@ -169,19 +215,25 @@ videoInput.onchange = e => {
 
 
 
-
-addCaptionBtn.onclick = ()=>{
+addCaptionBtn.onclick=()=>{
 
 
     addCaption({
 
-        text: captionText.value,
+        text:
+        captionText.value,
+
 
         start:
-            Number(capStart.value || 0),
+        Number(
+            capStart.value || 0
+        ),
+
 
         end:
-            Number(capEnd.value || 9999)
+        Number(
+            capEnd.value || 9999
+        )
 
     });
 
@@ -197,8 +249,7 @@ addCaptionBtn.onclick = ()=>{
 
 
 
-
-exportBtn.onclick = ()=>{
+exportBtn.onclick=()=>{
 
 
     exportWebM(
