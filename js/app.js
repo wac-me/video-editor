@@ -155,7 +155,6 @@ videoInput.onchange = e => {
 
 
 
-
     realVideo.onloadedmetadata = ()=>{
 
 
@@ -183,7 +182,7 @@ videoInput.onchange = e => {
 
 
         /*
-          Safari wymaga pobrania realnej klatki
+          wymuszamy pierwszą klatkę
         */
 
 
@@ -201,7 +200,7 @@ videoInput.onchange = e => {
 
 
 
-    realVideo.onloadeddata = async ()=>{
+    realVideo.onloadeddata = ()=>{
 
 
         console.log(
@@ -210,53 +209,6 @@ videoInput.onchange = e => {
 
 
         debugVideo();
-
-
-
-
-        try{
-
-
-            await realVideo.play();
-
-
-
-            setTimeout(()=>{
-
-
-                realVideo.pause();
-
-
-                console.log(
-                    "FIRST FRAME READY"
-                );
-
-
-                debugVideo();
-
-
-                renderFrame();
-
-
-
-            },300);
-
-
-
-        }
-        catch(e){
-
-
-            console.log(
-                "PLAY BLOCKED",
-                e
-            );
-
-
-            renderFrame();
-
-
-        }
 
 
 
@@ -281,6 +233,7 @@ videoInput.onchange = e => {
         debugVideo();
 
 
+
     };
 
 
@@ -302,7 +255,20 @@ videoInput.onchange = e => {
         debugVideo();
 
 
-        renderFrame();
+
+        requestAnimationFrame(()=>{
+
+
+            renderFrame();
+
+
+            console.log(
+                "FRAME RENDERED"
+            );
+
+
+        });
+
 
 
     };
