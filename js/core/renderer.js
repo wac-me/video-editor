@@ -9,6 +9,7 @@ let ctx;
 
 
 
+
 const brightness =
     document.getElementById("brightness");
 
@@ -23,6 +24,8 @@ const saturation =
 
 const speed =
     document.getElementById("speed");
+
+
 
 
 
@@ -55,6 +58,7 @@ export function initRenderer(
 
 
 
+
 export function render(){
 
 
@@ -62,12 +66,9 @@ export function render(){
 
 
 
-    if(!video) return;
-
-
-
     if(
-        video.videoWidth
+        video &&
+        video.readyState >= 2
     ){
 
         drawFrame();
@@ -76,6 +77,8 @@ export function render(){
 
 
 }
+
+
 
 
 
@@ -86,16 +89,16 @@ export function renderFrame(){
 
 
     console.log(
-        "RENDER FRAME",
+        "RENDER",
         video.readyState,
         video.videoWidth,
-        video.videoHeight,
-        video.currentTime
+        video.videoHeight
     );
 
 
 
     if(
+        video.readyState >= 2 &&
         video.videoWidth
     ){
 
@@ -105,6 +108,9 @@ export function renderFrame(){
 
 
 }
+
+
+
 
 
 
@@ -141,6 +147,7 @@ function drawFrame(){
 
 
 
+
     ctx.clearRect(
         0,
         0,
@@ -152,12 +159,14 @@ function drawFrame(){
 
 
 
+
     ctx.filter =
     `
     brightness(${b}%)
     contrast(${c}%)
     saturate(${s}%)
     `;
+
 
 
 
@@ -183,17 +192,18 @@ function drawFrame(){
 
 
 
-    state.project.captions.forEach(caption=>{
+    state.project.captions.forEach(c=>{
 
 
         if(
-            video.currentTime >= caption.start &&
-            video.currentTime <= caption.end
+            video.currentTime >= c.start &&
+            video.currentTime <= c.end
         ){
 
 
+
             ctx.font =
-                `${caption.size}px Arial`;
+                `${c.size}px Arial`;
 
 
 
@@ -206,31 +216,30 @@ function drawFrame(){
                 "black";
 
 
-
             ctx.lineWidth =
                 4;
 
 
 
             ctx.fillStyle =
-                caption.color;
+                c.color;
 
 
 
 
 
             ctx.strokeText(
-                caption.text,
-                caption.x,
-                caption.y
+                c.text,
+                c.x,
+                c.y
             );
 
 
 
             ctx.fillText(
-                caption.text,
-                caption.x,
-                caption.y
+                c.text,
+                c.x,
+                c.y
             );
 
 
