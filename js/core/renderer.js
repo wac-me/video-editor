@@ -1,33 +1,6 @@
-import { state } from "./state.js";
-
-
-let video;
-
-let canvas;
-
-let ctx;
-
-
-
-
-const brightness =
-    document.getElementById("brightness");
-
-
-const contrast =
-    document.getElementById("contrast");
-
-
-const saturation =
-    document.getElementById("saturation");
-
-
-const speed =
-    document.getElementById("speed");
-
-
-
-
+let video = null;
+let canvas = null;
+let ctx = null;
 
 
 
@@ -36,50 +9,24 @@ export function initRenderer(
     canvasElement
 ){
 
-    video =
-        videoElement;
-
-
-    canvas =
-        canvasElement;
-
+    video = videoElement;
+    canvas = canvasElement;
 
     ctx =
-        canvas.getContext("2d");
+        canvas.getContext(
+            "2d",
+            {
+                alpha:false
+            }
+        );
 
 
-    render();
-
-
-}
-
-
-
-
-
-
-
-export function render(){
-
-
-    requestAnimationFrame(render);
-
-
-
-    if(
-        video &&
-        video.readyState >= 2
-    ){
-
-        drawFrame();
-
-    }
-
+    console.log(
+        "RENDERER INIT",
+        video
+    );
 
 }
-
-
-
 
 
 
@@ -88,63 +35,64 @@ export function render(){
 export function renderFrame(){
 
 
-    console.log(
-        "RENDER",
-        video.readyState,
-        video.videoWidth,
-        video.videoHeight
-    );
+    if(!video){
+
+        console.log(
+            "RENDERER: brak video"
+        );
+
+        return;
+
+    }
+
+
+
+    if(!canvas || !ctx){
+
+        console.log(
+            "RENDERER: brak canvas"
+        );
+
+        return;
+
+    }
 
 
 
     if(
-        video.readyState >= 2 &&
-        video.videoWidth
+        video.readyState < 2 ||
+        !video.videoWidth ||
+        !video.videoHeight
     ){
 
-        drawFrame();
+        console.log(
+            "RENDERER: brak klatki",
+            {
+                ready:
+                video.readyState,
 
-    }
+                width:
+                video.videoWidth,
 
-
-}
-
-
-
-
-
-
-
-
-
-function drawFrame(){
+                height:
+                video.videoHeight
+            }
+        );
 
 
-
-    const b =
-        brightness?.value || 100;
-
-
-    const c =
-        contrast?.value || 100;
-
-
-    const s =
-        saturation?.value || 100;
-
-
-
-
-
-    if(speed){
-
-        video.playbackRate =
-            Number(speed.value || 1);
+        return;
 
     }
 
 
 
+
+    canvas.width =
+        video.videoWidth;
+
+
+    canvas.height =
+        video.videoHeight;
 
 
 
@@ -154,21 +102,6 @@ function drawFrame(){
         canvas.width,
         canvas.height
     );
-
-
-
-
-
-
-    ctx.filter =
-    `
-    brightness(${b}%)
-    contrast(${c}%)
-    saturate(${s}%)
-    `;
-
-
-
 
 
 
@@ -182,80 +115,10 @@ function drawFrame(){
 
 
 
-
-
-    ctx.filter =
-        "none";
-
-
-
-
-
-
-    state.project.captions.forEach(c=>{
-
-
-        if(
-            video.currentTime >= c.start &&
-            video.currentTime <= c.end
-        ){
-
-
-
-            ctx.font =
-                `${c.size}px Arial`;
-
-
-
-            ctx.textAlign =
-                "center";
-
-
-
-            ctx.strokeStyle =
-                "black";
-
-
-            ctx.lineWidth =
-                4;
-
-
-
-            ctx.fillStyle =
-                c.color;
-
-
-
-
-
-            ctx.strokeText(
-                c.text,
-                c.x,
-                c.y
-            );
-
-
-
-            ctx.fillText(
-                c.text,
-                c.x,
-                c.y
-            );
-
-
-        }
-
-
-    });
-
+    console.log(
+        "FRAME OK",
+        canvas.width,
+        canvas.height
+    );
 
 }
-
-console.log(
- "RENDER",
- video.readyState,
- video.videoWidth,
- video.videoHeight
-);
-
-
