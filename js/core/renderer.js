@@ -2,46 +2,71 @@ import { state } from "./state.js";
 
 
 let video;
+
 let canvas;
+
 let ctx;
+
 
 
 const brightness =
     document.getElementById("brightness");
 
+
 const contrast =
     document.getElementById("contrast");
 
+
 const saturation =
     document.getElementById("saturation");
+
 
 const speed =
     document.getElementById("speed");
 
 
 
-export function initRenderer(videoElement, canvasElement){
 
-    video = videoElement;
 
-    canvas = canvasElement;
+export function initRenderer(
+    videoElement,
+    canvasElement
+){
 
-    ctx = canvas.getContext("2d");
+    video =
+        videoElement;
+
+
+    canvas =
+        canvasElement;
+
+
+    ctx =
+        canvas.getContext("2d");
+
 
     render();
 
+
 }
+
+
+
 
 
 
 export function render(){
 
+
     requestAnimationFrame(render);
+
+
 
     if(!video) return;
 
+
+
     if(
-        video.readyState >= 2 &&
         video.videoWidth
     ){
 
@@ -49,14 +74,28 @@ export function render(){
 
     }
 
+
 }
+
+
+
 
 
 
 export function renderFrame(){
 
+
+    console.log(
+        "RENDER FRAME",
+        video.readyState,
+        video.videoWidth,
+        video.videoHeight,
+        video.currentTime
+    );
+
+
+
     if(
-        video.readyState >= 2 &&
         video.videoWidth
     ){
 
@@ -64,11 +103,16 @@ export function renderFrame(){
 
     }
 
+
 }
 
 
 
+
+
+
 function drawFrame(){
+
 
 
     const b =
@@ -84,6 +128,19 @@ function drawFrame(){
 
 
 
+
+
+    if(speed){
+
+        video.playbackRate =
+            Number(speed.value || 1);
+
+    }
+
+
+
+
+
     ctx.clearRect(
         0,
         0,
@@ -92,12 +149,18 @@ function drawFrame(){
     );
 
 
+
+
+
     ctx.filter =
     `
     brightness(${b}%)
     contrast(${c}%)
     saturate(${s}%)
     `;
+
+
+
 
 
     ctx.drawImage(
@@ -109,7 +172,14 @@ function drawFrame(){
     );
 
 
-    ctx.filter="none";
+
+
+
+    ctx.filter =
+        "none";
+
+
+
 
 
 
@@ -126,16 +196,26 @@ function drawFrame(){
                 `${caption.size}px Arial`;
 
 
-            ctx.textAlign="center";
+
+            ctx.textAlign =
+                "center";
 
 
-            ctx.strokeStyle="black";
 
-            ctx.lineWidth=4;
+            ctx.strokeStyle =
+                "black";
+
+
+
+            ctx.lineWidth =
+                4;
+
 
 
             ctx.fillStyle =
                 caption.color;
+
+
 
 
 
@@ -146,14 +226,18 @@ function drawFrame(){
             );
 
 
+
             ctx.fillText(
                 caption.text,
                 caption.x,
                 caption.y
             );
 
+
         }
 
+
     });
+
 
 }
