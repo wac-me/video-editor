@@ -9,10 +9,11 @@
 <div class="app">
 <div class="preview">
 <input type="file" id="videoInput" accept="video/*">
-<video 
+<video
     id="video"
-    controls
-    playsinline>
+    playsinline
+    preload="metadata"
+    style="display:none;">
 </video>
 <canvas id="canvas"></canvas>
 <div class="timeline">
