@@ -77,24 +77,45 @@ videoInput.onchange = e => {
     realVideo.onloadedmetadata = ()=>{
 
 
-        canvas.width =
-            realVideo.videoWidth;
+    canvas.width =
+        realVideo.videoWidth;
 
 
-        canvas.height =
-            realVideo.videoHeight;
-
-
-
-        state.project.trim.end =
-            realVideo.duration;
+    canvas.height =
+        realVideo.videoHeight;
 
 
 
-        realVideo.currentTime = 0;
+    state.project.trim.end =
+        realVideo.duration;
 
 
-    };
+
+    realVideo.currentTime = 0;
+
+
+
+};
+
+
+
+realVideo.onloadeddata = ()=>{
+
+
+    renderFrame();
+
+
+};
+
+
+
+realVideo.onseeked = ()=>{
+
+
+    renderFrame();
+
+
+};
 
 
 
