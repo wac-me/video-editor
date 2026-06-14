@@ -11,30 +11,24 @@ import { addCaption } from "./captions/captions.js";
 
 
 
-const videoInput =
-    document.getElementById("videoInput");
+const videoInput = document.getElementById("videoInput");
 
-const realVideo =
-    document.getElementById("video");
+const realVideo = document.getElementById("video");
 
-const canvas =
-    document.getElementById("canvas");
+const canvas = document.getElementById("canvas");
 
-const exportBtn =
-    document.getElementById("exportBtn");
+const exportBtn = document.getElementById("exportBtn");
 
-const addCaptionBtn =
-    document.getElementById("addCaption");
+const addCaptionBtn = document.getElementById("addCaption");
 
 
-const captionText =
-    document.getElementById("captionText");
+const captionText = document.getElementById("captionText");
 
-const capStart =
-    document.getElementById("capStart");
+const capStart = document.getElementById("capStart");
 
-const capEnd =
-    document.getElementById("capEnd");
+const capEnd = document.getElementById("capEnd");
+
+
 
 
 
@@ -47,25 +41,31 @@ initRenderer(
 
 
 
+
 videoInput.onchange = e => {
 
 
-    const file =
-        e.target.files[0];
+    const file = e.target.files[0];
 
 
     if(!file) return;
 
 
 
-    const url =
-        URL.createObjectURL(file);
+    const url = URL.createObjectURL(file);
+
+
+
+    console.log("FILE", file.name);
 
 
 
     realVideo.src = url;
 
     realVideo.load();
+
+
+
 
 
 
@@ -95,10 +95,9 @@ videoInput.onchange = e => {
 
 
 
-        realVideo.currentTime = 0.1;
-
-
     };
+
+
 
 
 
@@ -115,6 +114,9 @@ videoInput.onchange = e => {
         );
 
 
+        realVideo.currentTime = 0;
+
+
         renderFrame();
 
 
@@ -124,13 +126,32 @@ videoInput.onchange = e => {
 
 
 
+
+
     realVideo.onseeked = ()=>{
 
 
         console.log(
-            "SEEKED",
-            realVideo.videoWidth,
-            realVideo.videoHeight
+            "SEEKED"
+        );
+
+
+        renderFrame();
+
+
+    };
+
+
+
+
+
+
+
+    realVideo.oncanplay = ()=>{
+
+
+        console.log(
+            "CAN PLAY"
         );
 
 
@@ -154,20 +175,13 @@ addCaptionBtn.onclick = ()=>{
 
     addCaption({
 
-        text:
-            captionText.value,
-
+        text: captionText.value,
 
         start:
-            Number(
-                capStart.value || 0
-            ),
-
+            Number(capStart.value || 0),
 
         end:
-            Number(
-                capEnd.value || 9999
-            )
+            Number(capEnd.value || 9999)
 
     });
 
@@ -175,7 +189,9 @@ addCaptionBtn.onclick = ()=>{
 
     renderFrame();
 
+
 };
+
 
 
 
