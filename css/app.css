@@ -14,12 +14,21 @@ header{
 
 .app{
     display:grid;
-    grid-template-columns:1fr 320px;
+    grid-template-columns:1fr;
+    width:100%;
+}
+
+
+.side{
+    width:100%;
+    box-sizing:border-box;
 }
 
 
 .preview{
     padding:20px;
+    width:100%;
+    overflow:hidden;
 }
 
 
@@ -45,6 +54,8 @@ canvas{
     border:1px solid #333;
 
     border-radius:10px;
+    
+    height:auto;
 
 }
 
@@ -61,6 +72,10 @@ input{
 
     font-size:16px;
 
+}
+
+input[type="range"]{
+    width:100%;
 }
 
 #video{
