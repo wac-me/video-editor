@@ -14,32 +14,24 @@ import { addCaption } from "./captions/captions.js";
 const videoInput =
     document.getElementById("videoInput");
 
-
 const realVideo =
     document.getElementById("video");
-
 
 const canvas =
     document.getElementById("canvas");
 
-
-
 const exportBtn =
     document.getElementById("exportBtn");
-
 
 const addCaptionBtn =
     document.getElementById("addCaption");
 
 
-
 const captionText =
     document.getElementById("captionText");
 
-
 const capStart =
     document.getElementById("capStart");
-
 
 const capEnd =
     document.getElementById("capEnd");
@@ -73,12 +65,20 @@ videoInput.onchange = e => {
 
     realVideo.src = url;
 
-
     realVideo.load();
 
 
 
     realVideo.onloadedmetadata = ()=>{
+
+
+        console.log(
+            "METADATA",
+            realVideo.videoWidth,
+            realVideo.videoHeight,
+            realVideo.duration
+        );
+
 
 
         canvas.width =
@@ -95,7 +95,7 @@ videoInput.onchange = e => {
 
 
 
-        realVideo.currentTime = 0;
+        realVideo.currentTime = 0.1;
 
 
     };
@@ -108,35 +108,14 @@ videoInput.onchange = e => {
 
 
         console.log(
-            "VIDEO READY"
+            "DATA READY",
+            realVideo.readyState,
+            realVideo.videoWidth,
+            realVideo.videoHeight
         );
 
 
-
-        realVideo.play()
-        .then(()=>{
-
-
-            realVideo.pause();
-
-
-            renderFrame();
-
-
-        })
-        .catch(err=>{
-
-
-            console.log(
-                "PLAY ERROR",
-                err
-            );
-
-
-            renderFrame();
-
-
-        });
+        renderFrame();
 
 
     };
@@ -149,7 +128,9 @@ videoInput.onchange = e => {
 
 
         console.log(
-            "SEEK READY"
+            "SEEKED",
+            realVideo.videoWidth,
+            realVideo.videoHeight
         );
 
 
@@ -160,6 +141,8 @@ videoInput.onchange = e => {
 
 
 };
+
+
 
 
 
@@ -186,16 +169,13 @@ addCaptionBtn.onclick = ()=>{
                 capEnd.value || 9999
             )
 
-
     });
 
 
 
     renderFrame();
 
-
 };
-
 
 
 
