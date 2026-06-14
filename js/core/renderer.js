@@ -250,3 +250,12 @@ function drawFrame(){
 
 
 }
+
+console.log(
+ "RENDER",
+ video.readyState,
+ video.videoWidth,
+ video.videoHeight
+);
+
+
