@@ -22,7 +22,7 @@ const addCaptionBtn =
     document.getElementById("addCaption");
 
 
-const saveProjectBtn =
+const saveProject =
     document.getElementById("saveProject");
 
 
@@ -30,12 +30,13 @@ const loadProject =
     document.getElementById("loadProject");
 
 
-
 const captionText =
     document.getElementById("captionText");
 
+
 const capStart =
     document.getElementById("capStart");
+
 
 const capEnd =
     document.getElementById("capEnd");
@@ -49,16 +50,14 @@ initRenderer(
 
 
 
-// upload video
-
 videoInput.onchange = e => {
 
-    const file = e.target.files[0];
+
+    const file =
+        e.target.files[0];
+
 
     if(!file) return;
-
-
-    console.log("FILE:", file);
 
 
 
@@ -73,23 +72,7 @@ videoInput.onchange = e => {
 
 
 
-    console.log(
-        "VIDEO ELEMENT:",
-        realVideo
-    );
-
-
-
     realVideo.onloadedmetadata = ()=>{
-
-
-        console.log(
-            "META:",
-            realVideo.videoWidth,
-            realVideo.videoHeight,
-            realVideo.duration
-        );
-
 
 
         canvas.width =
@@ -119,22 +102,30 @@ videoInput.onchange = e => {
 
 
 
-        // pokaż pierwszą klatkę
+        // ustaw pierwszą klatkę
+
         realVideo.currentTime = 0;
-
-
-
-        realVideo.pause();
 
 
 
     };
 
+
+
+    realVideo.onseeked = ()=>{
+
+        console.log(
+            "FRAME READY"
+        );
+
+    };
+
+
 };
 
 
 
-// dodawanie napisów
+// dodanie napisu
 
 addCaptionBtn.onclick = ()=>{
 
@@ -163,10 +154,12 @@ addCaptionBtn.onclick = ()=>{
 
 exportBtn.onclick = ()=>{
 
+
     exportWebM(
         canvas,
         realVideo
     );
+
 
 };
 
@@ -174,23 +167,24 @@ exportBtn.onclick = ()=>{
 
 // zapis projektu
 
-saveProjectBtn.onclick = ()=>{
+saveProject.onclick = ()=>{
+
+
+    const data =
+        JSON.stringify(
+            state.project,
+            null,
+            2
+        );
 
 
     const blob =
         new Blob(
-            [
-                JSON.stringify(
-                    state.project,
-                    null,
-                    2
-                )
-            ],
+            [data],
             {
                 type:"application/json"
             }
         );
-
 
 
     const a =
@@ -211,7 +205,7 @@ saveProjectBtn.onclick = ()=>{
 
 
 
-// import projektu
+// import
 
 loadProject.onchange = e=>{
 
