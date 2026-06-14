@@ -12,8 +12,14 @@
 <video
     id="video"
     playsinline
-    preload="metadata"
-    style="display:none;">
+    muted
+    preload="auto"
+    style="
+    position:absolute;
+    width:1px;
+    height:1px;
+    opacity:0;
+    pointer-events:none;">
 </video>
 <canvas id="canvas"></canvas>
 <div class="timeline">
