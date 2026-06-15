@@ -1,5 +1,11 @@
 let currentScreen = "start";
 
+function goBack(){
+
+    showScreen("editor");
+
+}
+
 
 function showScreen(id){
 
