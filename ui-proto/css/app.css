@@ -83,24 +83,34 @@ font-size:25px;
 
 .screen{
 
-display:none;
+    display:none;
 
-flex:1;
+    flex:1;
 
-padding:20px;
+    padding:20px;
+
+    opacity:0;
+
+    transform:translateX(20px);
+
+    transition:
+    opacity .25s ease,
+    transform .25s ease;
 
 }
-
 
 
 .screen.active{
 
-display:flex;
+    display:flex;
 
-flex-direction:column;
+    flex-direction:column;
+
+    opacity:1;
+
+    transform:translateX(0);
 
 }
-
 
 
 
