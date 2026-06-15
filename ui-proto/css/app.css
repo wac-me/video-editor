@@ -7,13 +7,13 @@ body{
 
 margin:0;
 
-background:#111;
+height:100vh;
+
+background:#121212;
 
 color:white;
 
 font-family:Arial,sans-serif;
-
-height:100vh;
 
 }
 
@@ -37,32 +37,13 @@ height:60px;
 
 display:flex;
 
-justify-content:space-between;
-
 align-items:center;
+
+justify-content:space-between;
 
 padding:15px 20px;
 
 border-bottom:1px solid #333;
-
-}
-
-button svg{
-
-width:28px;
-
-height:28px;
-
-stroke-width:1.5;
-
-margin-bottom:8px;
-
-}
-
-
-.logo svg{
-
-width:20px;
 
 }
 
@@ -84,17 +65,17 @@ display:block;
 
 font-size:10px;
 
-font-weight:normal;
-
 color:#888;
+
+font-weight:normal;
 
 }
 
 
 
-.menu{
+.menu svg{
 
-font-size:25px;
+width:25px;
 
 }
 
@@ -102,35 +83,75 @@ font-size:25px;
 
 .screen{
 
-    display:none;
+display:none;
 
-    flex:1;
+flex:1;
 
-    padding:20px;
+padding:20px;
 
-    opacity:0;
+opacity:0;
 
-    transform:translateX(20px);
+transform:translateX(20px);
 
-    transition:
-    opacity .25s ease,
-    transform .25s ease;
+transition:.25s;
 
 }
+
 
 
 .screen.active{
 
-    display:flex;
+display:flex;
 
-    flex-direction:column;
+flex-direction:column;
 
-    opacity:1;
+opacity:1;
 
-    transform:translateX(0);
+transform:none;
 
 }
 
+
+
+
+
+button{
+
+background:#1c1c1c;
+
+border:1px solid #333;
+
+border-radius:12px;
+
+color:white;
+
+padding:15px;
+
+font-size:15px;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+justify-content:center;
+
+gap:8px;
+
+}
+
+
+
+button svg{
+
+width:28px;
+
+height:28px;
+
+stroke-width:1.5;
+
+}
 
 
 
@@ -138,15 +159,7 @@ font-size:25px;
 
 margin:auto;
 
-background:none;
-
-border:1px solid #555;
-
-color:white;
-
-padding:40px;
-
-border-radius:20px;
+padding:45px;
 
 font-size:22px;
 
@@ -154,10 +167,11 @@ font-size:22px;
 
 
 
-
 .canvas{
 
 flex:1;
+
+min-height:200px;
 
 background:#000;
 
@@ -171,9 +185,9 @@ align-items:center;
 
 justify-content:center;
 
-font-size:24px;
-
 color:#666;
+
+font-size:24px;
 
 }
 
@@ -193,33 +207,18 @@ margin-top:15px;
 
 
 
-button{
-
-background:#1b1b1b;
-
-color:white;
-
-border:1px solid #333;
-
-border-radius:12px;
-
-padding:15px;
-
-font-size:16px;
-
-}
-
-
 
 .timeline{
 
-margin:20px 0;
-
-background:#222;
+margin:15px 0;
 
 padding:20px;
 
+background:#1b1b1b;
+
 border-radius:10px;
+
+color:#777;
 
 }
 
@@ -239,19 +238,23 @@ gap:10px;
 
 .caption{
 
-color:white;
-
 font-size:35px;
 
 }
 
 
 
+label{
+
+padding:15px;
+
+border-bottom:1px solid #333;
+
+}
+
 
 
 .export{
-
-margin-top:30px;
 
 background:white;
 
@@ -259,10 +262,14 @@ color:black;
 
 }
 
-label{
 
-padding:15px;
 
-border-bottom:1px solid #333;
+@media(max-width:600px){
+
+.canvas{
+
+aspect-ratio:9/16;
+
+}
 
 }
