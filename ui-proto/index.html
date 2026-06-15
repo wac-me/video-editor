@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="pl">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>EV Video Editor UI</title>
+
+<link rel="stylesheet" href="css/app.css">
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+<header>
+
+<div class="logo">
+EV
+<span>video editor</span>
+</div>
+
+
+<div class="menu">
+☰
+</div>
+
+</header>
+
+
+
+<!-- START -->
+
+<section id="start" class="screen active">
+
+
+<button class="upload">
+
+＋
+
+<br>
+
+Upload video
+<br>
+or project
+
+</button>
+
+
+</section>
+
+
+
+
+<!-- EDITOR -->
+
+
+<section id="editor" class="screen">
+
+
+<div class="canvas">
+
+
+VIDEO
+FRAME
+
+</div>
+
+
+
+<div class="bottom">
+
+
+<button onclick="showScreen('cut')">
+
+✂
+<br>
+CUT
+
+</button>
+
+
+<button onclick="showScreen('text')">
+
+Aa
+<br>
+TEXT
+
+</button>
+
+
+<button onclick="showScreen('export')">
+
+▣
+<br>
+SAVE
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- CUT -->
+
+
+<section id="cut" class="screen">
+
+
+<div class="canvas">
+
+VIDEO
+
+</div>
+
+
+
+<div class="timeline">
+
+━━━━━━━━━━
+
+</div>
+
+
+
+
+<div class="tools">
+
+
+<button>
+
+◷
+<br>
+Speed
+
+</button>
+
+
+<button>
+
+≡
+<br>
+Adjust
+
+</button>
+
+
+<button>
+
+✦
+<br>
+FX
+
+</button>
+
+
+<button onclick="showScreen('editor')">
+
+▣
+<br>
+Save
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+<!-- TEXT -->
+
+
+<section id="text" class="screen">
+
+
+<div class="canvas">
+
+
+VIDEO
+
+<br>
+
+<span class="caption">
+TEST
+</span>
+
+
+</div>
+
+
+
+<div class="timeline">
+
+━━━━━━━━━━
+
+</div>
+
+
+
+
+<div class="tools">
+
+
+<button>
+
+＋
+<br>
+Add
+
+</button>
+
+
+
+<button>
+
+Aa
+<br>
+Font
+
+</button>
+
+
+
+<button>
+
+✦
+<br>
+FX
+
+</button>
+
+
+
+<button onclick="showScreen('editor')">
+
+▣
+<br>
+Save
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- EXPORT -->
+
+
+<section id="export" class="screen">
+
+
+<h2>
+Export
+</h2>
+
+
+
+<label>
+
+<input type="radio" name="format">
+
+WEBM
+
+</label>
+
+
+<label>
+
+<input type="radio" name="format">
+
+MP4
+
+</label>
+
+
+
+<button class="export">
+
+EXPORT
+
+</button>
+
+
+
+<button>
+
+Save project
+
+</button>
+
+
+
+</section>
+
+
+
+</div>
+
+
+<script src="js/ui.js"></script>
+
+
+</body>
+
+</html>
