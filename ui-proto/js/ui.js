@@ -1,40 +1,37 @@
-let currentScreen = "start";
-
-function goBack(){
-
-    showScreen("editor");
-
-}
+let currentScreen="start";
 
 
 function showScreen(id){
 
-    const current =
-        document.getElementById(currentScreen);
+
+const current =
+document.getElementById(currentScreen);
 
 
-    const next =
-        document.getElementById(id);
-
-
-
-    if(!next || currentScreen === id)
-        return;
+const next =
+document.getElementById(id);
 
 
 
-    current.classList.remove("active");
-
-
-    setTimeout(()=>{
-
-        next.classList.add("active");
-
-    },50);
+if(!next || currentScreen===id)
+return;
 
 
 
-    currentScreen = id;
+current.classList.remove("active");
+
+
+
+setTimeout(()=>{
+
+next.classList.add("active");
+
+},100);
+
+
+
+currentScreen=id;
+
 
 }
 
@@ -42,30 +39,27 @@ function showScreen(id){
 
 
 
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
+document.querySelector(".upload")
+.onclick=()=>{
 
 
-    const upload =
-        document.querySelector(".upload");
+showScreen("editor");
 
 
-
-    if(upload){
-
-
-        upload.onclick = ()=>{
-
-
-            showScreen("editor");
-
-
-        };
-
-
-    }
+};
 
 
 
-});
+
+
+window.onload=()=>{
+
+
+if(window.lucide){
+
+lucide.createIcons();
+
+}
+
+
+};
