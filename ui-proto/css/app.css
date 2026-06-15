@@ -47,6 +47,25 @@ border-bottom:1px solid #333;
 
 }
 
+button svg{
+
+width:28px;
+
+height:28px;
+
+stroke-width:1.5;
+
+margin-bottom:8px;
+
+}
+
+
+.logo svg{
+
+width:20px;
+
+}
+
 
 
 .logo{
