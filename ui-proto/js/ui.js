@@ -1,14 +1,65 @@
+let currentScreen = "start";
+
+
 function showScreen(id){
 
-document
-.querySelectorAll(".screen")
-.forEach(
-s=>s.classList.remove("active")
-);
+    const current =
+        document.getElementById(currentScreen);
 
 
-document
-.getElementById(id)
-.classList.add("active");
+    const next =
+        document.getElementById(id);
+
+
+
+    if(!next || currentScreen === id)
+        return;
+
+
+
+    current.classList.remove("active");
+
+
+    setTimeout(()=>{
+
+        next.classList.add("active");
+
+    },50);
+
+
+
+    currentScreen = id;
 
 }
+
+
+
+
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+
+    const upload =
+        document.querySelector(".upload");
+
+
+
+    if(upload){
+
+
+        upload.onclick = ()=>{
+
+
+            showScreen("editor");
+
+
+        };
+
+
+    }
+
+
+
+});
