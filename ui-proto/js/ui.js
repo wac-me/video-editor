@@ -1,36 +1,54 @@
-let currentScreen="start";
+let currentScreen = "start";
+
+let screenHistory = [];
+
 
 
 function showScreen(id){
 
 
-const current =
-document.getElementById(currentScreen);
+    const current =
+        document.getElementById(currentScreen);
 
 
-const next =
-document.getElementById(id);
-
-
-
-if(!next || currentScreen===id)
-return;
+    const next =
+        document.getElementById(id);
 
 
 
-current.classList.remove("active");
+    if(!next || currentScreen === id){
+
+        return;
+
+    }
 
 
 
-setTimeout(()=>{
+    // zapamiętaj poprzedni ekran
 
-next.classList.add("active");
-
-},100);
+    screenHistory.push(currentScreen);
 
 
 
-currentScreen=id;
+    if(current){
+
+        current.classList.remove("active");
+
+    }
+
+
+
+    setTimeout(()=>{
+
+
+        next.classList.add("active");
+
+
+    },50);
+
+
+
+    currentScreen = id;
 
 
 }
@@ -39,27 +57,117 @@ currentScreen=id;
 
 
 
-document.querySelector(".upload")
-.onclick=()=>{
+
+function goBack(){
 
 
-showScreen("editor");
+    if(screenHistory.length === 0){
+
+        return;
+
+    }
 
 
-};
+
+    const previous =
+        screenHistory.pop();
 
 
 
+    const current =
+        document.getElementById(currentScreen);
 
 
-window.onload=()=>{
+
+    const next =
+        document.getElementById(previous);
 
 
-if(window.lucide){
 
-lucide.createIcons();
+    if(current){
+
+        current.classList.remove("active");
+
+    }
+
+
+
+    setTimeout(()=>{
+
+
+        if(next){
+
+            next.classList.add("active");
+
+        }
+
+
+    },50);
+
+
+
+    currentScreen = previous;
+
 
 }
 
 
-};
+
+
+
+
+
+const upload =
+document.querySelector(".upload");
+
+
+
+if(upload){
+
+
+    upload.onclick = ()=>{
+
+
+        showScreen("editor");
+
+
+    };
+
+
+}
+
+
+
+
+
+
+
+window.addEventListener(
+"load",
+()=>{
+
+
+    if(window.lucide){
+
+
+        lucide.createIcons();
+
+
+        console.log(
+            "LUCIDE OK"
+        );
+
+
+    }
+    else{
+
+
+        console.log(
+            "LUCIDE NOT LOADED"
+        );
+
+
+    }
+
+
+});
