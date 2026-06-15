@@ -8,8 +8,6 @@
 
 <title>EV Video Editor UI</title>
 
-
-
 <link rel="stylesheet" href="css/app.css">
 
 </head>
@@ -24,35 +22,39 @@
 <header>
 
 <div class="logo">
+
 EV
-<span>video editor</span>
+
+<span>
+video editor
+</span>
+
 </div>
 
 
-
-
 <div class="menu">
-☰
+
+<i data-lucide="menu"></i>
+
 </div>
 
 </header>
 
 
 
-<!-- START -->
 
 <section id="start" class="screen active">
 
 
 <button class="upload">
 
-＋
+<i data-lucide="upload"></i>
 
-<br>
-
+<span>
 Upload video
 <br>
 or project
+</span>
 
 </button>
 
@@ -62,17 +64,13 @@ or project
 
 
 
-<!-- EDITOR -->
-
 
 <section id="editor" class="screen">
 
 
 <div class="canvas">
 
-
-VIDEO
-FRAME
+VIDEO FRAME
 
 </div>
 
@@ -92,6 +90,7 @@ CUT
 </button>
 
 
+
 <button onclick="showScreen('text')">
 
 <i data-lucide="type"></i>
@@ -103,11 +102,14 @@ TEXT
 </button>
 
 
+
 <button onclick="showScreen('export')">
 
-▣
-<br>
+<i data-lucide="save"></i>
+
+<span>
 SAVE
+</span>
 
 </button>
 
@@ -121,8 +123,6 @@ SAVE
 
 
 
-
-<!-- CUT -->
 
 
 <section id="cut" class="screen">
@@ -135,13 +135,11 @@ VIDEO
 </div>
 
 
-
 <div class="timeline">
 
-━━━━━━━━━━
+TIMELINE
 
 </div>
-
 
 
 
@@ -150,39 +148,43 @@ VIDEO
 
 <button>
 
-◷
-<br>
+<i data-lucide="clock"></i>
+
+<span>
 Speed
+</span>
 
 </button>
 
 
 <button>
 
-≡
-<br>
+<i data-lucide="sliders"></i>
+
+<span>
 Adjust
+</span>
 
 </button>
 
 
 <button>
 
-✦
-<br>
+<i data-lucide="sparkles"></i>
+
+<span>
 FX
+</span>
 
 </button>
 
 
-<button onclick="showScreen('save')">
+<button onclick="showScreen('export')">
 
 <i data-lucide="save"></i>
 
 <span>
-
 SAVE
-
 </span>
 
 </button>
@@ -198,14 +200,11 @@ SAVE
 
 
 
-<!-- TEXT -->
-
 
 <section id="text" class="screen">
 
 
 <div class="canvas">
-
 
 VIDEO
 
@@ -215,14 +214,13 @@ VIDEO
 TEST
 </span>
 
-
 </div>
 
 
 
 <div class="timeline">
 
-━━━━━━━━━━
+TEXT TIMELINE
 
 </div>
 
@@ -234,9 +232,11 @@ TEST
 
 <button>
 
-＋
-<br>
+<i data-lucide="plus"></i>
+
+<span>
 Add
+</span>
 
 </button>
 
@@ -244,9 +244,11 @@ Add
 
 <button>
 
-Aa
-<br>
+<i data-lucide="type"></i>
+
+<span>
 Font
+</span>
 
 </button>
 
@@ -254,19 +256,23 @@ Font
 
 <button>
 
-✦
-<br>
+<i data-lucide="sparkles"></i>
+
+<span>
 FX
+</span>
 
 </button>
 
 
 
-<button onclick="showScreen('editor')">
+<button onclick="showScreen('export')">
 
-▣
-<br>
-Save
+<i data-lucide="save"></i>
+
+<span>
+SAVE
+</span>
 
 </button>
 
@@ -280,10 +286,6 @@ Save
 
 
 
-
-
-
-<!-- EXPORT -->
 
 
 <section id="export" class="screen">
@@ -304,6 +306,7 @@ WEBM
 </label>
 
 
+
 <label>
 
 <input type="radio" name="format">
@@ -316,36 +319,35 @@ MP4
 
 <button class="export">
 
+<i data-lucide="download"></i>
+
 EXPORT
 
 </button>
 
 
 
-<button>
+<button onclick="showScreen('editor')">
 
-Save project
+BACK
 
 </button>
-
 
 
 </section>
 
 
 
+
 </div>
+
+
 
 
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <script src="js/ui.js"></script>
 
-<script>
-
-lucide.createIcons();
-
-</script>
 
 </body>
 
