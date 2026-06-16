@@ -330,10 +330,25 @@ BACK
 
 
 
-<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.js"></script>
 
 <script src="js/ui.js"></script>
 
+<script>
+
+window.addEventListener(
+"load",
+()=>{
+
+    if(window.lucide){
+
+        lucide.createIcons();
+
+    }
+
+});
+
+</script>
 
 </body>
 
