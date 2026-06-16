@@ -1,3 +1,4 @@
+
 *{
 box-sizing:border-box;
 }
@@ -145,11 +146,22 @@ gap:8px;
 
 button svg{
 
-width:24px;
+width:26px;
 
-height:24px;
+height:26px;
 
 stroke-width:1.5;
+
+flex-shrink:0;
+
+}
+
+
+button span{
+
+line-height:1;
+
+font-size:13px;
 
 }
 
