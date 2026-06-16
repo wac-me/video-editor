@@ -1,102 +1,110 @@
 :root{
 
---bg:#080808;
-
---panel:#161616;
-
---button:#1b1b1b;
-
---border:#333;
-
---accent:#c85cff;
-
---text:#ffffff;
-
---muted:#888;
+    --bg:#080808;
+    --panel:#161616;
+    --button:#1b1b1b;
+    --border:#333;
+    --accent:#c85cff;
+    --text:#ffffff;
+    --muted:#888;
 
 }
+
+
+/* RESET */
+
 *{
-box-sizing:border-box;
+
+    box-sizing:border-box;
+
 }
+
 
 
 body{
 
-margin:0;
+    margin:0;
 
-background:var(--bg);
+    background:var(--bg);
 
-color:var(--text);
+    color:var(--text);
 
-font-family:Arial,sans-serif;
+    font-family:Arial,sans-serif;
 
-height:100vh;
+    height:100vh;
 
 }
 
 
+
+
+/* APP */
 
 .app{
 
-height:100vh;
+    height:100vh;
 
-display:flex;
+    display:flex;
 
-flex-direction:column;
+    flex-direction:column;
 
 }
+
+
+
+/* HEADER */
+
+header{
+
+    height:60px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px 20px;
+
+    background:var(--bg);
+
+    border-bottom:1px solid var(--border);
+
+}
+
+
+
+/* LOGO */
 
 .logo{
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
+
+    font-size:22px;
+
+    font-weight:bold;
 
 }
+
 
 
 .logo-full{
 
-height:35px;
+    height:35px;
 
-display:block;
+    display:block;
 
 }
+
 
 
 .logo-icon{
 
-height:32px;
+    height:32px;
 
-display:none;
-
-}
-
-header{
-
-height:60px;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:15px 20px;
-
-background:var(--bg);
-
-border-bottom:1px solid #222;
-
-}
-
-
-
-.logo{
-
-font-size:22px;
-
-font-weight:bold;
+    display:none;
 
 }
 
@@ -104,13 +112,13 @@ font-weight:bold;
 
 .logo span{
 
-display:block;
+    display:block;
 
-font-size:10px;
+    font-size:10px;
 
-color:#888;
+    color:var(--muted);
 
-font-weight:normal;
+    font-weight:normal;
 
 }
 
@@ -118,25 +126,27 @@ font-weight:normal;
 
 .menu svg{
 
-width:35px;
+    width:35px;
 
 }
 
 
 
+/* SCREENS */
+
 .screen{
 
-display:none;
+    display:none;
 
-flex:1;
+    flex:1;
 
-padding:20px;
+    padding:20px;
 
-opacity:0;
+    opacity:0;
 
-transform:translateX(20px);
+    transform:translateX(20px);
 
-transition:.25s;
+    transition:.25s;
 
 }
 
@@ -144,53 +154,57 @@ transition:.25s;
 
 .screen.active{
 
-display:flex;
+    display:flex;
 
-flex-direction:column;
+    flex-direction:column;
 
-opacity:1;
+    opacity:1;
 
-transform:none;
+    transform:none;
 
 }
 
 
 
 
+
+/* BUTTONS */
 
 button{
 
-background:var(--button);
+    background:var(--button);
 
-color:var(--text);
+    color:var(--text);
 
-border:1px solid var(--border);
+    border:1px solid var(--border);
 
-border-radius:12px;
+    border-radius:12px;
 
-padding:15px;
+    padding:15px;
 
-font-size:16px;
+    min-height:75px;
 
-transition:.2s ease;
+    font-size:16px;
 
-display:flex;
+    transition:.2s ease;
 
-flex-direction:column;
+    display:flex;
 
-align-items:center;
+    flex-direction:column;
 
-justify-content:center;
+    align-items:center;
 
-gap:8px;
+    justify-content:center;
+
+    gap:8px;
 
 }
 
-button span{
 
-font-size:14px;
 
-line-height:1;
+button:hover{
+
+    border-color:#555;
 
 }
 
@@ -198,153 +212,184 @@ line-height:1;
 
 button svg{
 
-width:28px;
+    width:28px;
 
-height:28px;
+    height:28px;
 
-stroke-width:1.5;
+    stroke-width:1.5;
 
-margin:0;
+    margin:0;
 
 }
+
 
 
 button span{
 
-line-height:1;
+    font-size:13px;
 
-font-size:13px;
-
-}
-
-button{
-
-min-height:75px;
-
-justify-content:center;
-
-gap:8px;
+    line-height:1;
 
 }
 
 
-button:hover{
 
-border-color:#555;
-
-}
+/* ACTIVE BUTTON */
 
 button.active{
 
-border-color:#d89b3c;
+    border-color:var(--accent);
 
-color:#d89b3c;
+    color:var(--accent);
+
+    background:#151015;
+
+    box-shadow:
+    0 0 0 1px rgba(200,92,255,.15);
 
 }
+
 
 
 button.active svg{
 
-stroke:#d89b3c;
+    stroke:var(--accent);
 
 }
+
+
+
+/* UPLOAD */
 
 .upload{
 
-margin:auto;
+    margin:auto;
 
-padding:45px;
+    padding:45px;
 
-font-size:22px;
+    font-size:22px;
 
 }
 
 
+
+.upload-icon{
+
+    width:64px;
+
+    height:64px;
+
+    stroke-width:1.3;
+
+    margin-bottom:15px;
+
+}
+
+
+
+.upload span{
+
+    font-size:22px;
+
+}
+
+
+
+/* VIDEO AREA */
 
 .canvas{
 
-flex:1;
+    flex:1;
 
-min-height:200px;
+    min-height:200px;
 
-background:#000;
+    background:#000;
 
-border:1px solid #333;
+    border:1px solid var(--border);
 
-border-radius:12px;
+    border-radius:12px;
 
-display:flex;
+    display:flex;
 
-align-items:center;
+    align-items:center;
 
-justify-content:center;
+    justify-content:center;
 
-color:#666;
+    color:#666;
 
-font-size:24px;
+    font-size:24px;
 
 }
 
 
+
+/* MAIN MENU */
 
 .bottom{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(3,1fr);
 
-gap:10px;
+    gap:10px;
 
-margin-top:15px;
+    margin-top:15px;
 
 }
 
 
 
+/* TIMELINE */
 
 .timeline{
 
-margin:15px 0;
+    margin:15px 0;
 
-padding:20px;
+    padding:20px;
 
-background:#1b1b1b;
+    background:var(--panel);
 
-border-radius:10px;
+    border-radius:10px;
 
-color:#777;
+    color:var(--muted);
 
 }
 
 
+
+/* TOOL BUTTONS */
 
 .tools{
 
-display:grid;
+    display:grid;
 
-grid-template-columns:repeat(3,1fr);
+    grid-template-columns:repeat(3,1fr);
 
-gap:10px;
+    gap:10px;
 
-margin-top:15px;
+    margin-top:15px;
 
 }
 
 
+
+/* CAPTION PREVIEW */
 
 .caption{
 
-font-size:35px;
+    font-size:35px;
 
 }
 
 
 
+/* EXPORT */
+
 label{
 
-padding:15px;
+    padding:15px;
 
-border-bottom:1px solid #333;
+    border-bottom:1px solid var(--border);
 
 }
 
@@ -352,59 +397,22 @@ border-bottom:1px solid #333;
 
 .export{
 
-background:white;
+    background:white;
 
-color:black;
+    color:black;
 
 }
 
 
+
+/* MOBILE */
 
 @media(max-width:600px){
 
-.canvas{
+    .canvas{
 
-aspect-ratio:9/16;
+        min-height:300px;
 
-}
-
-}
-
-.upload-icon{
-
-width:64px;
-
-height:64px;
-
-stroke-width:1.3;
-
-margin-bottom:15px;
-
-}
-
-
-.upload span{
-
-font-size:22px;
-
-}
-
-button.active{
-
-border-color:var(--accent);
-
-color:var(--accent);
-
-background:#151015;
-
-box-shadow:
-0 0 0 1px rgba(200,92,255,.15);
-
-}
-
-
-button.active svg{
-
-stroke:var(--accent);
+    }
 
 }
