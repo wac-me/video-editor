@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="dotGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff4fd8"/>
+      <stop offset="50%" stop-color="#8b5cff"/>
+      <stop offset="100%" stop-color="#35b8ff"/>
+    </linearGradient>
+    <linearGradient id="bgGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#171717"/>
+      <stop offset="100%" stop-color="#090909"/>
+    </linearGradient>
+  </defs>
+
+  <!-- app background -->
+  <rect width="1024" height="1024" rx="220" fill="url(#bgGradient)"/>
+
+  <!-- camera body -->
+  <g fill="none" stroke="#ffffff" stroke-width="42" stroke-linejoin="round">
+    <rect x="220" y="360" width="500" height="320" rx="55"/>
+    <path d="M720 430 L850 370 L850 670 L720 610 Z"/>
+    <circle cx="470" cy="520" r="90"/>
+  </g>
+
+  <!-- lens center -->
+  <circle cx="470" cy="520" r="28" fill="#ffffff"/>
+
+  <!-- recording/accent dot -->
+  <circle cx="750" cy="320" r="65" fill="url(#dotGradient)"/>
+
+  <!-- subtle highlight -->
+  <circle cx="750" cy="320" r="22" fill="#ffffff" opacity="0.35"/>
+</svg>
