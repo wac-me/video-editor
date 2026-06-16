@@ -2,12 +2,13 @@ let currentScreen = "start";
 
 
 
+
+
 function updateLogo(screen){
 
 
     const app =
         document.querySelector(".app");
-
 
 
     if(!app)
@@ -17,20 +18,16 @@ function updateLogo(screen){
 
     if(screen === "start"){
 
-
         app.classList.add(
             "start-mode"
         );
 
-
     }
     else{
-
 
         app.classList.remove(
             "start-mode"
         );
-
 
     }
 
@@ -42,11 +39,12 @@ function updateLogo(screen){
 
 
 
+
 function updateActiveButton(screen){
 
 
     document
-    .querySelectorAll("button")
+    .querySelectorAll(".tool-btn")
     .forEach(btn=>{
 
 
@@ -59,22 +57,18 @@ function updateActiveButton(screen){
 
 
 
-
-
     const btn =
         document.querySelector(
-            `[onclick*="${screen}"]`
+            `.tool-btn[onclick*="${screen}"]`
         );
 
 
 
     if(btn){
 
-
         btn.classList.add(
             "active"
         );
-
 
     }
 
@@ -91,13 +85,13 @@ function updateActiveButton(screen){
 function goBack(){
 
 
-    if(currentScreen !== "start"){
-
+    if(
+        currentScreen !== "start"
+    ){
 
         showScreen(
             "editor"
         );
-
 
     }
 
@@ -110,15 +104,14 @@ function goBack(){
 
 
 
-function showScreen(id){
 
+function showScreen(id){
 
 
     const current =
         document.getElementById(
             currentScreen
         );
-
 
 
     const next =
@@ -133,17 +126,13 @@ function showScreen(id){
 
 
 
-
     if(current){
-
 
         current.classList.remove(
             "active"
         );
 
-
     }
-
 
 
 
@@ -155,10 +144,7 @@ function showScreen(id){
         );
 
 
-
     },50);
-
-
 
 
 
@@ -169,9 +155,7 @@ function showScreen(id){
     updateLogo(id);
 
 
-
     updateActiveButton(id);
-
 
 
 }
@@ -189,23 +173,16 @@ document.addEventListener(
 ()=>{
 
 
-
     updateLogo(
         "start"
     );
 
 
-
     if(window.lucide){
-
 
         lucide.createIcons();
 
-
     }
-
-
-
 
 
 
