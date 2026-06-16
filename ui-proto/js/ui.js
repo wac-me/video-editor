@@ -1,6 +1,42 @@
+import { icons } from "./icons.js";
+
 let currentScreen="start";
 
+function initIcons(){
 
+
+document
+.querySelectorAll("[data-icon]")
+.forEach(icon=>{
+
+
+const name =
+icon.dataset.icon;
+
+
+if(icons[name]){
+
+
+icon.setAttribute(
+"data-lucide",
+icons[name]
+);
+
+
+}
+
+
+});
+
+
+if(window.lucide){
+
+    lucide.createIcons();
+
+}
+
+
+}
 
 function updateLogo(screen){
 
@@ -106,6 +142,7 @@ document.addEventListener(
 "DOMContentLoaded",
 ()=>{
 
+initIcons();
 
 updateLogo(
 "start"
