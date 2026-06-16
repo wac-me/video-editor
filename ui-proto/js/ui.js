@@ -2,8 +2,6 @@ let currentScreen = "start";
 
 
 
-
-
 function updateLogo(screen){
 
 
@@ -19,18 +17,67 @@ function updateLogo(screen){
 
     if(screen === "start"){
 
+
         app.classList.add(
             "start-mode"
         );
 
+
     }
     else{
+
 
         app.classList.remove(
             "start-mode"
         );
 
+
     }
+
+}
+
+
+
+
+
+
+
+function updateActiveButton(screen){
+
+
+    document
+    .querySelectorAll("button")
+    .forEach(btn=>{
+
+
+        btn.classList.remove(
+            "active"
+        );
+
+
+    });
+
+
+
+
+
+    const btn =
+        document.querySelector(
+            `[onclick*="${screen}"]`
+        );
+
+
+
+    if(btn){
+
+
+        btn.classList.add(
+            "active"
+        );
+
+
+    }
+
 
 }
 
@@ -46,9 +93,11 @@ function goBack(){
 
     if(currentScreen !== "start"){
 
+
         showScreen(
             "editor"
         );
+
 
     }
 
@@ -62,6 +111,7 @@ function goBack(){
 
 
 function showScreen(id){
+
 
 
     const current =
@@ -83,13 +133,17 @@ function showScreen(id){
 
 
 
+
     if(current){
+
 
         current.classList.remove(
             "active"
         );
 
+
     }
+
 
 
 
@@ -101,7 +155,10 @@ function showScreen(id){
         );
 
 
+
     },50);
+
+
 
 
 
@@ -112,7 +169,13 @@ function showScreen(id){
     updateLogo(id);
 
 
+
+    updateActiveButton(id);
+
+
+
 }
+
 
 
 
@@ -126,21 +189,18 @@ document.addEventListener(
 ()=>{
 
 
+
     updateLogo(
         "start"
     );
 
 
 
-    /*
-      Lucide tylko raz
-      Safari friendly
-    */
-
-
     if(window.lucide){
 
+
         lucide.createIcons();
+
 
     }
 
