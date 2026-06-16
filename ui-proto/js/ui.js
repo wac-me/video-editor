@@ -2,6 +2,30 @@ let currentScreen = "start";
 
 
 
+function initIcons(){
+
+    if(window.lucide){
+
+        lucide.createIcons();
+
+        console.log(
+            "LUCIDE OK"
+        );
+
+    }
+    else{
+
+        console.log(
+            "LUCIDE NOT READY"
+        );
+
+    }
+
+}
+
+
+
+
 function goBack(){
 
     if(currentScreen !== "start"){
@@ -15,11 +39,13 @@ function goBack(){
 
 
 
+
 function updateLogo(screen){
 
 
     const app =
         document.querySelector(".app");
+
 
 
     if(!app)
@@ -57,6 +83,7 @@ function showScreen(id){
         );
 
 
+
     const next =
         document.getElementById(
             id
@@ -64,7 +91,7 @@ function showScreen(id){
 
 
 
-    if(!next || currentScreen===id)
+    if(!next || currentScreen === id)
         return;
 
 
@@ -93,12 +120,20 @@ function showScreen(id){
     currentScreen=id;
 
 
-updateLogo(id);
+
+    updateLogo(id);
 
 
-if(window.lucide){
 
-    lucide.createIcons();
+    // odświeżenie ikon Lucide
+
+    setTimeout(()=>{
+
+        initIcons();
+
+    },100);
+
+
 
 }
 
@@ -111,14 +146,13 @@ document.addEventListener(
 ()=>{
 
 
-    updateLogo("start");
+    updateLogo(
+        "start"
+    );
 
 
-    if(window.lucide){
+    initIcons();
 
-        lucide.createIcons();
-
-    }
 
 
 
@@ -141,6 +175,7 @@ document.addEventListener(
 
 
         };
+
 
     }
 
