@@ -30,7 +30,31 @@ flex-direction:column;
 
 }
 
+.logo{
 
+display:flex;
+
+align-items:center;
+
+}
+
+
+.logo-full{
+
+height:35px;
+
+display:block;
+
+}
+
+
+.logo-icon{
+
+height:32px;
+
+display:none;
+
+}
 
 header{
 
