@@ -2,42 +2,6 @@ let currentScreen = "start";
 
 
 
-function initIcons(){
-
-    if(window.lucide){
-
-        lucide.createIcons();
-
-        console.log(
-            "LUCIDE OK"
-        );
-
-    }
-    else{
-
-        console.log(
-            "LUCIDE NOT READY"
-        );
-
-    }
-
-}
-
-
-
-
-function goBack(){
-
-    if(currentScreen !== "start"){
-
-        showScreen("editor");
-
-    }
-
-}
-
-
-
 
 
 function updateLogo(screen){
@@ -74,6 +38,29 @@ function updateLogo(screen){
 
 
 
+
+
+
+function goBack(){
+
+
+    if(currentScreen !== "start"){
+
+        showScreen(
+            "editor"
+        );
+
+    }
+
+}
+
+
+
+
+
+
+
+
 function showScreen(id){
 
 
@@ -91,7 +78,7 @@ function showScreen(id){
 
 
 
-    if(!next || currentScreen === id)
+    if(!next)
         return;
 
 
@@ -107,6 +94,7 @@ function showScreen(id){
 
 
     setTimeout(()=>{
+
 
         next.classList.add(
             "active"
@@ -124,18 +112,10 @@ function showScreen(id){
     updateLogo(id);
 
 
-
-    // odświeżenie ikon Lucide
-
-    setTimeout(()=>{
-
-        initIcons();
-
-    },100);
-
-
-
 }
+
+
+
 
 
 
@@ -151,7 +131,20 @@ document.addEventListener(
     );
 
 
-    initIcons();
+
+    /*
+      Lucide tylko raz
+      Safari friendly
+    */
+
+
+    if(window.lucide){
+
+        lucide.createIcons();
+
+    }
+
+
 
 
 
