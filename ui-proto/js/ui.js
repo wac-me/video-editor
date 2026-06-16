@@ -1,82 +1,88 @@
-let currentScreen = "start";
-
-
+let currentScreen="start";
 
 
 
 function updateLogo(screen){
 
 
-    const app =
-        document.querySelector(".app");
+const app=document.querySelector(".app");
 
 
-    if(!app)
-        return;
+if(screen==="start"){
 
+app.classList.add(
+"start-mode"
+);
 
+}
+else{
 
-    if(screen === "start"){
+app.classList.remove(
+"start-mode"
+);
 
-        app.classList.add(
-            "start-mode"
-        );
+}
 
-    }
-    else{
-
-        app.classList.remove(
-            "start-mode"
-        );
-
-    }
 
 }
 
 
 
 
+function showScreen(id){
+
+
+const current=
+document.getElementById(currentScreen);
+
+
+const next=
+document.getElementById(id);
 
 
 
-
-function updateActiveButton(screen){
-
-
-    document
-    .querySelectorAll(".tool-btn")
-    .forEach(btn=>{
-
-
-        btn.classList.remove(
-            "active"
-        );
-
-
-    });
+if(!next)
+return;
 
 
 
-    const btn =
-        document.querySelector(
-            `.tool-btn[onclick*="${screen}"]`
-        );
+if(current){
 
-
-
-    if(btn){
-
-        btn.classList.add(
-            "active"
-        );
-
-    }
-
+current.classList.remove(
+"active"
+);
 
 }
 
 
 
+setTimeout(()=>{
+
+
+next.classList.add(
+"active"
+);
+
+
+},50);
+
+
+
+currentScreen=id;
+
+
+updateLogo(id);
+
+
+
+if(window.lucide){
+
+lucide.createIcons();
+
+}
+
+
+}
 
 
 
@@ -85,85 +91,13 @@ function updateActiveButton(screen){
 function goBack(){
 
 
-    if(
-        currentScreen !== "start"
-    ){
+if(currentScreen!=="start"){
 
-        showScreen(
-            "editor"
-        );
-
-    }
+showScreen("editor");
 
 }
 
-
-
-
-
-
-
-
-
-function showScreen(id){
-
-
-    const current =
-        document.getElementById(
-            currentScreen
-        );
-
-
-    const next =
-        document.getElementById(
-            id
-        );
-
-
-
-    if(!next)
-        return;
-
-
-
-    if(current){
-
-        current.classList.remove(
-            "active"
-        );
-
-    }
-
-
-
-    setTimeout(()=>{
-
-
-        next.classList.add(
-            "active"
-        );
-
-
-    },50);
-
-
-
-    currentScreen=id;
-
-
-
-    updateLogo(id);
-
-
-    updateActiveButton(id);
-
-
 }
-
-
-
-
-
 
 
 
@@ -173,41 +107,38 @@ document.addEventListener(
 ()=>{
 
 
-    updateLogo(
-        "start"
-    );
-
-
-    if(window.lucide){
-
-        lucide.createIcons();
-
-    }
+updateLogo(
+"start"
+);
 
 
 
-    const upload =
-        document.querySelector(
-            ".upload"
-        );
+if(window.lucide){
+
+lucide.createIcons();
+
+}
 
 
 
-    if(upload){
+const upload=
+document.querySelector(".upload");
 
 
-        upload.onclick=()=>{
+
+if(upload){
 
 
-            showScreen(
-                "editor"
-            );
+upload.onclick=()=>{
 
 
-        };
+showScreen("editor");
 
 
-    }
+};
+
+
+}
 
 
 
