@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>EV Video Editor UI</title>
+<title>EV Video Editor</title>
 
 <link rel="stylesheet" href="css/app.css">
 
@@ -16,7 +16,7 @@
 <body>
 
 
-<div class="app">
+<div class="app start-mode">
 
 
 <header>
@@ -24,21 +24,24 @@
 
 <div class="logo">
 
-<img
+<img 
 class="logo-full"
-src="assets/logo-full.svg">
+src="assets/VE_video_editor_camera_logo.svg">
 
-
-<img
+<img 
 class="logo-icon"
-src="assets/logo-icon.svg">
+src="assets/VE_video_editor_app_icon.svg">
 
 </div>
 
 
 
-<div class="menu">
+<div 
+class="menu"
+onclick="goBack()">
+
 ☰
+
 </div>
 
 
@@ -48,19 +51,13 @@ src="assets/logo-icon.svg">
 
 
 
-<!-- START -->
-
-
 <section id="start" class="screen active">
 
 
 <button class="upload">
 
 
-<i 
-data-lucide="upload"
-class="upload-icon">
-</i>
+<i data-lucide="upload-cloud"></i>
 
 
 <span>
@@ -82,12 +79,6 @@ or project
 
 
 
-
-
-
-<!-- EDITOR -->
-
-
 <section id="editor" class="screen">
 
 
@@ -102,8 +93,9 @@ VIDEO FRAME
 <div class="bottom">
 
 
-<button onclick="showScreen('cut')">
-
+<button 
+class="tool-btn"
+onclick="showScreen('cut')">
 
 <i data-lucide="scissors"></i>
 
@@ -111,17 +103,18 @@ VIDEO FRAME
 CUT
 </span>
 
-
 </button>
 
 
 
 
-
-<button onclick="showScreen('text')">
+<button
+class="tool-btn"
+onclick="showScreen('text')">
 
 
 <i data-lucide="type"></i>
+
 
 <span>
 TEXT
@@ -134,10 +127,12 @@ TEXT
 
 
 
-<button onclick="showScreen('export')">
+<button
+onclick="showScreen('export')">
 
 
 <i data-lucide="save"></i>
+
 
 <span>
 SAVE
@@ -159,9 +154,6 @@ SAVE
 
 
 
-<!-- CUT -->
-
-
 <section id="cut" class="screen">
 
 
@@ -175,47 +167,55 @@ VIDEO
 
 <div class="timeline">
 
-━━━━━━━━━━
+VIDEO TIMELINE
 
 </div>
-
 
 
 
 <div class="tools">
 
 
-<button>
+<button class="tool-btn active">
+
 
 <i data-lucide="clock"></i>
+
 
 <span>
 Speed
 </span>
 
+
 </button>
 
 
 
-<button>
+<button class="tool-btn">
 
-<i data-lucide="sliders"></i>
+
+<i data-lucide="sliders-horizontal"></i>
+
 
 <span>
 Adjust
 </span>
 
+
 </button>
 
 
 
-<button>
+<button class="tool-btn">
+
 
 <i data-lucide="sparkles"></i>
+
 
 <span>
 FX
 </span>
+
 
 </button>
 
@@ -232,8 +232,6 @@ FX
 
 
 
-
-<!-- TEXT -->
 
 
 <section id="text" class="screen">
@@ -244,12 +242,13 @@ FX
 
 VIDEO
 
-
 <br>
 
 
 <span class="caption">
+
 TEST
+
 </span>
 
 
@@ -259,55 +258,63 @@ TEST
 
 <div class="timeline">
 
-━━━━━━━━━━
+TEXT TIMELINE
 
 </div>
-
 
 
 
 <div class="tools">
 
 
-<button>
+<button class="tool-btn active">
+
 
 <i data-lucide="plus"></i>
+
 
 <span>
 Add
 </span>
 
+
 </button>
 
 
 
+<button class="tool-btn">
 
-<button>
 
 <i data-lucide="type"></i>
+
 
 <span>
 Font
 </span>
 
+
 </button>
 
 
 
 
+<button class="tool-btn">
 
-<button>
 
 <i data-lucide="sparkles"></i>
+
 
 <span>
 FX
 </span>
 
+
 </button>
 
 
+
 </div>
+
 
 
 </section>
@@ -318,8 +325,6 @@ FX
 
 
 
-
-<!-- EXPORT -->
 
 
 <section id="export" class="screen">
@@ -357,7 +362,9 @@ EXPORT
 </button>
 
 
+
 </section>
+
 
 
 
@@ -367,18 +374,9 @@ EXPORT
 
 
 
-
 <script src="https://unpkg.com/lucide@latest"></script>
 
 <script src="js/ui.js"></script>
-
-
-<script>
-
-lucide.createIcons();
-
-</script>
-
 
 
 </body>
