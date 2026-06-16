@@ -165,6 +165,23 @@ font-size:13px;
 
 }
 
+button{
+
+min-height:75px;
+
+justify-content:center;
+
+gap:8px;
+
+}
+
+
+button:hover{
+
+border-color:#555;
+
+}
+
 
 
 .upload{
