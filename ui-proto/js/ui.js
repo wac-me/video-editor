@@ -110,6 +110,13 @@ document.addEventListener(
     updateLogo("start");
 
 
+    if(window.lucide){
+
+        lucide.createIcons();
+
+    }
+
+
 
     const upload =
         document.querySelector(
