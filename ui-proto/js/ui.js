@@ -49,6 +49,10 @@ function showScreen(id){
 
 
     currentScreen = id;
+    
+    updateLogo(id);
+    
+    updateLogo("start");
 
 
 }
@@ -171,3 +175,33 @@ window.addEventListener(
 
 
 });
+
+function updateLogo(screen){
+
+
+const full =
+document.querySelector(".logo-full");
+
+
+const icon =
+document.querySelector(".logo-icon");
+
+
+
+if(screen==="start"){
+
+    full.style.display="block";
+
+    icon.style.display="none";
+
+}
+else{
+
+    full.style.display="none";
+
+    icon.style.display="block";
+
+}
+
+
+}
