@@ -52,7 +52,7 @@ function showScreen(id){
     
     updateLogo(id);
     
-    
+    updateLogo("start");
     
 
 
@@ -207,4 +207,3 @@ else{
 
 }
 
-updateLogo("start");
