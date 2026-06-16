@@ -5,8 +5,7 @@ export const icons = {
         "upload-cloud",
 
 
-    cut:
-        "scissors",
+    cut:"scissors-line"
 
 
     text:
