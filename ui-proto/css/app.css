@@ -434,3 +434,72 @@ label{
     }
 
 }
+
+/* LOGO SWITCH */
+
+
+.logo-full{
+
+    height:35px;
+
+    display:none;
+
+}
+
+
+
+.logo-icon{
+
+    height:32px;
+
+    display:block;
+
+}
+
+
+
+.app.start-mode .logo-full{
+
+    display:block;
+
+}
+
+
+
+.app.start-mode .logo-icon{
+
+    display:none;
+
+}
+
+
+
+
+
+
+/* ACTIVE TOOL BUTTON */
+
+
+button.active{
+
+
+    border-color:var(--accent);
+
+    color:var(--accent);
+
+    background:#151015;
+
+
+    box-shadow:
+    0 0 0 1px rgba(200,92,255,.15);
+
+}
+
+
+
+button.active svg{
+
+
+    stroke:var(--accent);
+
+}
