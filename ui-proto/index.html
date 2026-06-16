@@ -22,37 +22,39 @@
 <header>
 
 <div class="logo">
+
 EV
-<span>video editor</span>
+
+<span>
+video editor
+</span>
+
 </div>
 
-<div class="back" onclick="goBack()">
-←
-</div>
 
+<div class="menu" onclick="goBack()">
 
-<div class="menu">
-☰
+<i data-lucide="text-align-end"></i>
+
 </div>
 
 </header>
 
 
 
-<!-- START -->
 
 <section id="start" class="screen active">
 
 
 <button class="upload">
 
-＋
+<i  class="upload-icon" data-lucide="arrow-big-up-dash"></i>
 
-<br>
-
+<span>
 Upload video
 <br>
 or project
+</span>
 
 </button>
 
@@ -62,17 +64,13 @@ or project
 
 
 
-<!-- EDITOR -->
-
 
 <section id="editor" class="screen">
 
 
 <div class="canvas">
 
-
-VIDEO
-FRAME
+VIDEO FRAME
 
 </div>
 
@@ -83,27 +81,35 @@ FRAME
 
 <button onclick="showScreen('cut')">
 
-✂
-<br>
+<i data-lucide="clapperboard"></i>
+
+<span>
 CUT
+</span>
 
 </button>
+
 
 
 <button onclick="showScreen('text')">
 
-Aa
-<br>
+<i data-lucide="type-outline"></i>
+
+<span>
 TEXT
+</span>
 
 </button>
 
 
+
 <button onclick="showScreen('export')">
 
-▣
-<br>
+<i data-lucide="save"></i>
+
+<span>
 SAVE
+</span>
 
 </button>
 
@@ -117,8 +123,6 @@ SAVE
 
 
 
-
-<!-- CUT -->
 
 
 <section id="cut" class="screen">
@@ -131,53 +135,51 @@ VIDEO
 </div>
 
 
-
 <div class="timeline">
 
-━━━━━━━━━━
+TIMELINE
 
 </div>
-
 
 
 
 <div class="tools">
 
 
-<button>
+<button class="active">
 
-◷
-<br>
+<i data-lucide="clock"></i>
+
+<span>
 Speed
+</span>
 
 </button>
 
 
 <button>
 
-≡
-<br>
+<i data-lucide="sliders"></i>
+
+<span>
 Adjust
+</span>
 
 </button>
 
 
 <button>
 
-✦
-<br>
+<i data-lucide="sparkles"></i>
+
+<span>
 FX
+</span>
 
 </button>
 
 
-<button onclick="showScreen('editor')">
 
-▣
-<br>
-Save
-
-</button>
 
 
 </div>
@@ -190,14 +192,11 @@ Save
 
 
 
-<!-- TEXT -->
-
 
 <section id="text" class="screen">
 
 
 <div class="canvas">
-
 
 VIDEO
 
@@ -207,14 +206,13 @@ VIDEO
 TEST
 </span>
 
-
 </div>
 
 
 
 <div class="timeline">
 
-━━━━━━━━━━
+TEXT TIMELINE
 
 </div>
 
@@ -224,11 +222,13 @@ TEST
 <div class="tools">
 
 
-<button>
+<button class="active">
 
-＋
-<br>
+<i data-lucide="plus"></i>
+
+<span>
 Add
+</span>
 
 </button>
 
@@ -236,9 +236,11 @@ Add
 
 <button>
 
-Aa
-<br>
+<i data-lucide="type"></i>
+
+<span>
 Font
+</span>
 
 </button>
 
@@ -246,21 +248,17 @@ Font
 
 <button>
 
-✦
-<br>
+<i data-lucide="sparkles"></i>
+
+<span>
 FX
+</span>
 
 </button>
 
 
 
-<button onclick="showScreen('editor')">
 
-▣
-<br>
-Save
-
-</button>
 
 
 </div>
@@ -272,10 +270,6 @@ Save
 
 
 
-
-
-
-<!-- EXPORT -->
 
 
 <section id="export" class="screen">
@@ -296,6 +290,7 @@ WEBM
 </label>
 
 
+
 <label>
 
 <input type="radio" name="format">
@@ -308,26 +303,32 @@ MP4
 
 <button class="export">
 
+<i data-lucide="download"></i>
+
 EXPORT
 
 </button>
 
 
 
-<button>
+<button onclick="showScreen('editor')">
 
-Save project
+BACK
 
 </button>
-
 
 
 </section>
 
 
 
+
 </div>
 
+
+
+
+<script src="https://unpkg.com/lucide@latest"></script>
 
 <script src="js/ui.js"></script>
 
