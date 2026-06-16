@@ -5,7 +5,7 @@ export const icons = {
         "icon-banknote-check",
 
 
-    cut:"scissors-line"
+    cut:"scissors-line",
 
 
     text:
