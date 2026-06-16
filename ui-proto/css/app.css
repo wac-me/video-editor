@@ -182,7 +182,20 @@ border-color:#555;
 
 }
 
+button.active{
 
+border-color:#d89b3c;
+
+color:#d89b3c;
+
+}
+
+
+button.active svg{
+
+stroke:#d89b3c;
+
+}
 
 .upload{
 
