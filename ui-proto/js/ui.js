@@ -16,45 +16,28 @@ function showScreen(id){
 
 
 
-    if(!next || currentScreen === id){
-
+    if(!next || currentScreen === id)
         return;
 
-    }
 
 
-
-    // zapamiętaj poprzedni ekran
-
-    screenHistory.push(currentScreen);
-
-
-
-    if(current){
-
-        current.classList.remove("active");
-
-    }
+    current.classList.remove("active");
 
 
 
     setTimeout(()=>{
 
-
         next.classList.add("active");
-
 
     },50);
 
 
 
     currentScreen = id;
-    
-    updateLogo(id);
-    
-    updateLogo("start");
-    
 
+
+
+    updateLogo(id);
 
 }
 
@@ -62,6 +45,40 @@ function showScreen(id){
 
 
 
+function updateLogo(screen){
+
+
+    const full =
+        document.querySelector(".logo-full");
+
+
+    const icon =
+        document.querySelector(".logo-icon");
+
+
+
+    if(!full || !icon)
+        return;
+
+
+
+    if(screen === "start"){
+
+        full.style.display="block";
+
+        icon.style.display="none";
+
+    }
+
+    else{
+
+        full.style.display="none";
+
+        icon.style.display="block";
+
+    }
+
+}
 
 function goBack(){
 
@@ -176,34 +193,4 @@ window.addEventListener(
 
 
 });
-
-function updateLogo(screen){
-
-
-const full =
-document.querySelector(".logo-full");
-
-
-const icon =
-document.querySelector(".logo-icon");
-
-
-
-if(screen==="start"){
-
-    full.style.display="block";
-
-    icon.style.display="none";
-
-}
-else{
-
-    full.style.display="none";
-
-    icon.style.display="block";
-
-}
-
-
-}
 
