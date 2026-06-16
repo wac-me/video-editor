@@ -93,8 +93,12 @@ function showScreen(id){
     currentScreen=id;
 
 
+updateLogo(id);
 
-    updateLogo(id);
+
+if(window.lucide){
+
+    lucide.createIcons();
 
 }
 
