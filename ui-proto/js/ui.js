@@ -4,6 +4,8 @@ let currentScreen="start";
 
 function initIcons(){
 
+window.showScreen = showScreen;
+window.goBack = goBack;
 
 document
 .querySelectorAll("[data-icon]")
