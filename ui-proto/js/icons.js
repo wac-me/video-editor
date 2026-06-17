@@ -2,7 +2,7 @@ export const icons = {
 
 
     upload:
-        "upload",
+        "CircleFadingArrowUp",
 
 
     cut:"scissors",
