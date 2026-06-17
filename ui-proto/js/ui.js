@@ -127,15 +127,16 @@ lucide.createIcons();
 
 
 function goBack(){
-
-
-if(currentScreen!=="start"){
-
-showScreen("editor");
-
+   const backMap = {
+       "cut": "editor",
+       "text": "editor",
+       "export": "editor",
+       "editor": "start"
+   };
+   const target = backMap[currentScreen];
+   if(target) showScreen(target);
 }
 
-}
 
 
 
