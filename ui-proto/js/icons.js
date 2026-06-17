@@ -2,7 +2,7 @@ export const icons = {
 
 
     upload:
-        "icon-upload",
+        "upload",
 
 
     cut:"scissors",
