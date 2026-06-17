@@ -2,7 +2,7 @@ export const icons = {
 
 
     upload:
-        "icon-banknote-check",
+        "type",
 
 
     cut:"scissors",
