@@ -1,43 +1,41 @@
-export const icons = {
+
+window.APP_ICONS = {
 
 
     upload:
-        "CircleFadingArrowUp",
+    "CircleFadingArrowUp",
 
 
-    cut:"scissors",
+    cut:
+    "scissors",
 
 
     text:
-        "type",
+    "type",
 
 
     save:
-        "save",
+    "save",
 
 
     speed:
-        "clock",
+    "clock",
 
 
     adjust:
-        "sliders-horizontal",
+    "sliders-horizontal",
 
 
     fx:
-        "sparkles",
+    "sparkles",
 
 
     add:
-        "plus",
+    "plus",
 
 
     menu:
-        "menu",
-
-
-    back:
-        "arrow-left"
+    "menu"
 
 
 };
