@@ -38,7 +38,45 @@ function initIcons(){
 
     }
 
+
 }
+
+
+
+
+function initLabels(){
+
+
+    document
+    .querySelectorAll("[data-label]")
+    .forEach(element=>{
+
+
+        const key =
+        element.dataset.label;
+
+
+
+        const value =
+        window.APP_LABELS[key];
+
+
+
+        if(value){
+
+
+            element.textContent =
+            value;
+
+
+        }
+
+
+    });
+
+
+}
+
 
 
 
@@ -51,6 +89,9 @@ document.addEventListener(
     initIcons();
 
 
+    initLabels();
+
+
 
     const upload =
     document.querySelector(".upload");
@@ -60,7 +101,7 @@ document.addEventListener(
     if(upload){
 
 
-        upload.onclick=()=>{
+        upload.onclick = ()=>{
 
 
             showScreen("editor");
