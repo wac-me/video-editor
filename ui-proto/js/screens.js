@@ -1,4 +1,40 @@
-let currentScreen="start";
+let currentScreen = "start";
+
+
+function updateLogo(screen){
+
+
+    const app =
+    document.querySelector(".app");
+
+
+    if(!app)
+        return;
+
+
+
+    if(screen === "start"){
+
+
+        app.classList.add(
+            "start-mode"
+        );
+
+
+    }else{
+
+
+        app.classList.remove(
+            "start-mode"
+        );
+
+
+    }
+
+}
+
+
+
 
 
 function showScreen(id){
@@ -15,37 +51,51 @@ function showScreen(id){
 
 
     if(!next)
-    return;
+        return;
 
 
 
     if(current){
 
-        current.classList.remove("active");
+        current.classList.remove(
+            "active"
+        );
 
     }
 
 
 
-    next.classList.add("active");
+    next.classList.add(
+        "active"
+    );
 
 
 
-    currentScreen=id;
+    currentScreen = id;
 
 
 
-    initIcons();
+    updateLogo(id);
+
+
+
+    if(window.initIcons){
+
+        initIcons();
+
+    }
 
 
 }
 
 
 
+
+
 function goBack(){
 
 
-    const previous={
+    const previous = {
 
 
         editor:"start",
@@ -58,6 +108,7 @@ function goBack(){
 
 
     };
+
 
 
     if(previous[currentScreen]){
