@@ -1,142 +1,44 @@
-import { icons } from "./icons.js";
-
-let currentScreen="start";
-
 function initIcons(){
 
-window.showScreen = showScreen;
-window.goBack = goBack;
 
-document
-.querySelectorAll("[data-icon]")
-.forEach(icon=>{
+    document
+    .querySelectorAll("[data-icon]")
+    .forEach(icon=>{
 
 
-const name =
-icon.dataset.icon;
+        const name =
+        icon.dataset.icon;
 
 
-if(icons[name]){
+
+        const lucideName =
+        window.APP_ICONS[name];
 
 
-icon.setAttribute(
-"data-lucide",
-icons[name]
-);
+
+        if(lucideName){
 
 
-}
+            icon.setAttribute(
+                "data-lucide",
+                lucideName
+            );
 
 
-});
+        }
 
 
-if(window.lucide){
-
-    lucide.createIcons();
-
-}
+    });
 
 
-}
 
-function updateLogo(screen){
+    if(window.lucide){
 
+        lucide.createIcons();
 
-const app=document.querySelector(".app");
-
-
-if(screen==="start"){
-
-app.classList.add(
-"start-mode"
-);
+    }
 
 }
-else{
-
-app.classList.remove(
-"start-mode"
-);
-
-}
-
-
-}
-
-
-
-
-function showScreen(id){
-
-
-const current=
-document.getElementById(currentScreen);
-
-
-const next=
-document.getElementById(id);
-
-
-
-if(!next)
-return;
-
-
-
-if(current){
-
-current.classList.remove(
-"active"
-);
-
-}
-
-
-
-setTimeout(()=>{
-
-
-next.classList.add(
-"active"
-);
-
-
-},50);
-
-
-
-currentScreen=id;
-
-
-updateLogo(id);
-
-
-
-if(window.lucide){
-
-lucide.createIcons();
-
-}
-
-
-}
-
-
-
-
-
-function goBack(){
-   const backMap = {
-       "cut": "editor",
-       "text": "editor",
-       "export": "editor",
-       "editor": "start"
-   };
-   const target = backMap[currentScreen];
-   if(target) showScreen(target);
-}
-
 
 
 
@@ -145,40 +47,29 @@ document.addEventListener(
 "DOMContentLoaded",
 ()=>{
 
-initIcons();
 
-updateLogo(
-"start"
-);
+    initIcons();
 
 
 
-if(window.lucide){
-
-lucide.createIcons();
-
-}
+    const upload =
+    document.querySelector(".upload");
 
 
 
-const upload=
-document.querySelector(".upload");
+    if(upload){
 
 
-
-if(upload){
-
-
-upload.onclick=()=>{
+        upload.onclick=()=>{
 
 
-showScreen("editor");
+            showScreen("editor");
 
 
-};
+        };
 
 
-}
+    }
 
 
 
