@@ -167,7 +167,51 @@ transform:none;
 }
 
 
+.canvas{
 
+    flex:1;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#000;
+
+    border-radius:12px;
+
+}
+
+
+
+.video-frame{
+
+    max-height:100%;
+
+    max-width:100%;
+
+    aspect-ratio:16/9;
+
+    background:#111;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+
+.video-placeholder{
+
+    color:#555;
+
+    font-size:24px;
+
+}
 
 
 button{
