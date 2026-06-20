@@ -214,6 +214,20 @@ transform:none;
 }
 
 
+.video-frame.vertical{
+
+    aspect-ratio:9/16;
+
+}
+
+
+
+.video-frame.horizontal{
+
+    aspect-ratio:16/9;
+
+}
+
 button{
 
 background:var(--button);
