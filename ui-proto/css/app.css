@@ -177,7 +177,7 @@ transform:none;
 
     align-items:center;
 
-    background:#777;
+    background:#000;
 
     border-radius:12px;
 
@@ -193,7 +193,7 @@ transform:none;
 
     aspect-ratio:16/9;
 
-    background:#111;
+    background:#fff;
 
     display:flex;
 
