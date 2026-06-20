@@ -2,7 +2,7 @@
     
     
 --header-start:90px;
---header-editor:40px;
+--header-editor:50px;
 --bg:#080808;
 --panel:#161616;
 --button:#1b1b1b;
@@ -177,7 +177,7 @@ transform:none;
 
     align-items:center;
 
-    background:#000;
+    background:#777;
 
     border-radius:12px;
 
