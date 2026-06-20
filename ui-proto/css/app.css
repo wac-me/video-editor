@@ -193,7 +193,7 @@ transform:none;
 
     aspect-ratio:16/9;
 
-    background:#fff;
+    background:#111;
 
     display:flex;
 
@@ -207,7 +207,7 @@ transform:none;
 
 .video-placeholder{
 
-    color:#555;
+    color:#fff;
 
     font-size:24px;
 
