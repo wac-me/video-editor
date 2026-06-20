@@ -54,17 +54,20 @@ flex-direction:column;
 
 header{
 
-height:80px;
+    height:var(--header-editor);
 
-display:flex;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 
-align-items:center;
+    padding:15px 20px;
 
-justify-content:space-between;
+    background:var(--bg);
 
-padding:15px 20px;
+    border-bottom:1px solid var(--border);
 
-border-bottom:1px solid var(--border);
+    transition:
+    height .25s ease;
 
 }
 
