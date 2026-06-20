@@ -6,7 +6,7 @@ window.APP_LABELS = {
 
 
     uploadProject:
-    "or project",
+    "or photo",
 
 
 
@@ -50,7 +50,7 @@ window.APP_LABELS = {
 
 
     saveProject:
-    "Save project",
+    "SAVE VIDEO",
 
 
 
