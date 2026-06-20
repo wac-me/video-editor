@@ -365,3 +365,27 @@ background:white;
 color:black;
 
 }
+
+/* START HEADER */
+
+.app.start-mode header{
+
+    height:var(--header-start);
+
+}
+
+
+
+.app.start-mode .logo-full{
+
+    height:60px;
+
+}
+
+
+.app:not(.start-mode) .logo-full{
+
+    height:35px;
+
+}
+
