@@ -70,7 +70,7 @@ border-bottom:1px solid var(--border);
 
 .logo{
 
-height:80px;
+height:70px;
 
 display:flex;
 
@@ -82,7 +82,7 @@ align-items:center;
 
 .logo-full{
 
-height:80px;
+height:70px;
 
 display:none;
 
