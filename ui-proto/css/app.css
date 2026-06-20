@@ -1,5 +1,8 @@
 :root{
-
+    
+    
+--header-start:90px;
+--header-editor:60px;
 --bg:#080808;
 --panel:#161616;
 --button:#1b1b1b;
