@@ -11,6 +11,8 @@ window.APP_ICONS = {
     add:"plus",
     move:"move",
     audio:"music",
-    menu:"menu"
+    menu:"menu",
+    close:"x",
+    check:"check"
 
 };
