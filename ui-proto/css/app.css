@@ -795,3 +795,9 @@ background:var(--accent);
     background:var(--accent);
 
 }
+
+.track-label.active-layer{
+
+    color:var(--accent);
+
+}
