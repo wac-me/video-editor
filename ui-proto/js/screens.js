@@ -42,10 +42,6 @@ function goBack(){
 
         format:"start",
         editor:"start",
-        cut:"editor",
-        video:"editor",
-        text:"editor",
-        audio:"editor",
         export:"editor"
 
     };
