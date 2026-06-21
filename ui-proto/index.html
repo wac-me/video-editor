@@ -217,13 +217,13 @@ onclick="selectFormat('9:16')">
 
 <button 
 class="tool-btn"
-onclick="showScreen('video')">
+onclick="openEditorTool('video')">
 
 
 <i data-icon="video"></i>
 
 
-<span data-label="video"></span>
+<span data-label="addVideo"></span>
 
 
 </button>
@@ -234,13 +234,13 @@ onclick="showScreen('video')">
 
 <button 
 class="tool-btn"
-onclick="showScreen('text')">
+onclick="openEditorTool('text')">
 
 
 <i data-icon="text"></i>
 
 
-<span data-label="text"></span>
+<span data-label="addText"></span>
 
 
 </button>
@@ -251,13 +251,13 @@ onclick="showScreen('text')">
 
 <button 
 class="tool-btn"
-onclick="showScreen('audio')">
+onclick="openEditorTool('audio')">
 
 
 <i data-icon="audio"></i>
 
 
-<span data-label="audio"></span>
+<span data-label="addAudio"></span>
 
 
 </button>
@@ -271,6 +271,82 @@ onclick="showScreen('audio')">
 </section>
 
 
+
+
+
+<section id="video" class="screen">
+
+<div class="tool-header">
+
+<button onclick="showScreen('editor')">
+<i data-icon="close"></i>
+</button>
+
+<h2>VIDEO</h2>
+
+<button onclick="showScreen('editor')">
+<i data-icon="check"></i>
+</button>
+
+</div>
+
+<div class="tools">
+
+<button class="tool-btn">
+<i data-icon="speed"></i>
+<span data-label="speed"></span>
+</button>
+
+<button class="tool-btn">
+<i data-icon="adjust"></i>
+<span data-label="adjust"></span>
+</button>
+
+<button class="tool-btn">
+<i data-icon="fx"></i>
+<span data-label="fx"></span>
+</button>
+
+</div>
+
+</section>
+
+
+<section id="audio" class="screen">
+
+<div class="tool-header">
+
+<button onclick="showScreen('editor')">
+<i data-icon="close"></i>
+</button>
+
+<h2>AUDIO</h2>
+
+<button onclick="showScreen('editor')">
+<i data-icon="check"></i>
+</button>
+
+</div>
+
+<div class="tools">
+
+<button class="tool-btn">
+<i data-icon="audio"></i>
+<span>Volume</span>
+</button>
+
+<button class="tool-btn">
+<span>Fade</span>
+</button>
+
+<button class="tool-btn">
+<i data-icon="fx"></i>
+<span data-label="fx"></span>
+</button>
+
+</div>
+
+</section>
 
 
 <!-- CUT -->
@@ -585,6 +661,7 @@ TEKST
 
 <script src="js/timeline.js"></script>
 <script src="js/layers.js"></script>
+<script src="js/editor-tools.js"></script>
 
 <script src="js/ui.js"></script>
 
