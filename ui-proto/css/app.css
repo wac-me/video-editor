@@ -390,7 +390,7 @@ stroke:var(--accent);
 
     transform:translateY(-2px);
 
-    box-shadow:0 0 10px var(--accent);
+    box-shadow:0 0 120px var(--accent);
 
 }
 
