@@ -63,6 +63,7 @@ function selectFormat(format){
 
 function selectLayer(layer){
     console.log("active layer:", layer);
+    openEditorTool(layer);
 }
 
 window.showScreen = showScreen;
