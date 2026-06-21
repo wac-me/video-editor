@@ -854,3 +854,38 @@ display:none;
     
 }
 
+
+/* EDITOR ADD TOOLBAR */
+
+#addTools {
+    width:100%;
+    display:flex;
+    gap:8px;
+    padding:0 8px;
+}
+
+
+#addTools .tool-btn {
+
+    flex:1;
+
+    min-height:70px;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:6px;
+
+}
+
+
+#addTools .tool-btn svg {
+
+    width:28px;
+    height:28px;
+
+}
+
