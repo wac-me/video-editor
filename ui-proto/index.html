@@ -101,8 +101,6 @@ onclick="selectFormat('9:16')">
 <section id="editor" class="screen">
 
 
-
-
 <div class="canvas">
 
 
@@ -111,7 +109,7 @@ onclick="selectFormat('9:16')">
 
         <div class="video-placeholder">
 
-            VIDEO FRAME
+            16:9 VIDEO FRAME
 
         </div>
 
@@ -123,23 +121,118 @@ onclick="selectFormat('9:16')">
 
 
 
+<div class="timeline">
 
 
-<div class="bottom">
+    <div class="timeline-header">
+
+        <span data-label="videoTimeline"></span>
+
+        <div class="time">
+            00:00
+        </div>
+
+
+    </div>
+
+
+
+    <div class="timeline-area">
+
+
+        <div class="timeline-row">
+
+
+            <div class="track-label">
+
+                VIDEO
+
+            </div>
+
+
+            <div class="timeline-track">
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <div class="timeline-row">
+
+
+            <div class="track-label">
+
+                TEXT
+
+            </div>
+
+
+            <div class="timeline-track">
+
+            </div>
+
+
+        </div>
+
+
+
+
+        <div class="timeline-row">
+
+
+            <div class="track-label">
+
+                AUDIO
+
+            </div>
+
+
+            <div class="timeline-track">
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="playhead"></div>
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+<div class="tools">
 
 
 <button 
 class="tool-btn"
-onclick="showScreen('cut')">
+onclick="showScreen('video')">
 
-<i data-icon="cut"></i>
 
-<span data-label="cut"></span>
+<i data-icon="video"></i>
+
+
+<span data-label="video"></span>
+
 
 </button>
 
 
-<button
+
+
+
+<button 
 class="tool-btn"
 onclick="showScreen('text')">
 
@@ -156,20 +249,23 @@ onclick="showScreen('text')">
 
 
 
-<button
-onclick="showScreen('export')">
+<button 
+class="tool-btn"
+onclick="showScreen('audio')">
 
 
-<i data-icon="save"></i>
+<i data-icon="audio"></i>
 
 
-<span data-label="save"></span>
+<span data-label="audio"></span>
 
 
 </button>
 
 
+
 </div>
+
 
 
 </section>
