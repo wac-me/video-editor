@@ -104,7 +104,7 @@ document.addEventListener(
         upload.onclick = ()=>{
 
 
-            showScreen("editor");
+            showScreen("format");
 
 
         };
