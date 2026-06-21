@@ -96,6 +96,10 @@ window.APP_LABELS = {
     
     addText:"ADD TEXT",
     
-    addAudio:"ADD AUDIO"
+    addAudio:"ADD AUDIO",
+    
+    videoFrame:"VIDEO FRAME",
+
+    timeline:"TIMELINE"
 
 };
