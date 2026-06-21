@@ -581,17 +581,139 @@ color:black;
 
 
 
+/* MULTI TRACK TIMELINE */
+
+
+.timeline-area{
+
+    position:relative;
+
+    background:#111;
+
+    padding:15px;
+
+    border-radius:10px;
+
+}
+
+
+
+
+.timeline-row{
+
+    display:flex;
+
+    align-items:center;
+
+    height:45px;
+
+    margin-bottom:8px;
+
+}
+
+
+
+
+.track-label{
+
+    width:60px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+}
+
+
+
+
+
 .timeline-track{
 
-    height:55px;
+    flex:1;
 
-    background:#0d0d0d;
+    height:32px;
+
+    background:#080808;
 
     border-radius:8px;
 
     position:relative;
 
     overflow:hidden;
+
+}
+
+
+
+
+.clip{
+
+
+    height:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    padding-left:15px;
+
+    font-size:13px;
+
+    color:white;
+
+}
+
+
+
+
+.video-clip{
+
+    width:90%;
+
+    background:#252525;
+
+    border:1px solid #444;
+
+}
+
+
+
+
+.text-clip{
+
+
+    width:30%;
+
+    margin-left:25%;
+
+    background:#25132e;
+
+    border:1px solid var(--accent);
+
+    color:var(--accent);
+
+}
+
+
+
+
+.playhead{
+
+
+    position:absolute;
+
+    top:0;
+
+    bottom:0;
+
+    left:20%;
+
+    width:2px;
+
+    background:var(--accent);
+
+    pointer-events:none;
 
 }
 
