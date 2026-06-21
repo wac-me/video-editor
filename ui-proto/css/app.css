@@ -842,8 +842,10 @@ color:#c54cff!important;
 display:none;
 }
 
-.tool-panel.active{
-gap: 10px;
+.tool-panel.active {
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
     width: 100%;
 }
 
