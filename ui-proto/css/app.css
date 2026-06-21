@@ -848,7 +848,7 @@ display:none;
     
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    width: 50%;
+    width: 100vh;
     
     
     
