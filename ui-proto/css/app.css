@@ -466,7 +466,27 @@ color:var(--muted);
 
 }
 
+.timeline-track{
 
+    cursor:pointer;
+
+}
+
+
+
+.playhead{
+
+    transition:left .15s ease;
+
+}
+
+
+
+.time{
+
+    font-variant-numeric:tabular-nums;
+
+}
 
 
 .tools{
