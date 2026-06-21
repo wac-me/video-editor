@@ -39,7 +39,7 @@ window.APP_LABELS = {
 
 
     add:
-    "Add",
+    "ADD T",
 
 
     font:
