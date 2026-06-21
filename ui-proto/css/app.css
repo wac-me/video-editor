@@ -801,3 +801,39 @@ background:var(--accent);
     color:var(--accent);
 
 }
+
+.tool-header{
+
+height:60px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 20px;
+
+}
+
+
+
+.tool-header button{
+
+background:none;
+
+border:0;
+
+font-size:28px;
+
+color:white;
+
+}
+
+
+
+.tool-ok{
+
+color:#c54cff!important;
+
+}
