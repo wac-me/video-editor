@@ -75,5 +75,22 @@ window.APP_LABELS = {
 
     textTimeline:
     "TEXT TIMELINE"
+    
+    
+    video:"VIDEO",
+    
+    audio:"AUDIO",
+    
+    move:"MOVE",
+    
+    chooseFormat:"CHOOSE FORMAT",
+    
+    format916:"9:16",
+    
+    format169:"16:9",
+    
+    format11:"1:1",
+    
+    format45:"4:5"
 
 };
