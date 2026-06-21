@@ -215,52 +215,120 @@ onclick="selectFormat('9:16')">
 <div class="tools">
 
 
-<button 
-class="tool-btn"
+<div id="addTools" class="tool-panel active">
+
+
+<button class="tool-btn"
 onclick="openEditorTool('video')">
 
-
 <i data-icon="video"></i>
-
-
 <span data-label="addVideo"></span>
 
-
 </button>
 
 
 
-
-
-<button 
-class="tool-btn"
+<button class="tool-btn"
 onclick="openEditorTool('text')">
 
-
 <i data-icon="text"></i>
-
-
 <span data-label="addText"></span>
 
-
 </button>
 
 
 
-
-
-<button 
-class="tool-btn"
+<button class="tool-btn"
 onclick="openEditorTool('audio')">
 
-
 <i data-icon="audio"></i>
-
-
 <span data-label="addAudio"></span>
 
-
 </button>
+
+
+</div>
+
+
+
+
+
+<div id="videoTools" class="tool-panel">
+
+
+<div class="tool-header">
+
+<button onclick="cancelEditorTool()">
+<i data-icon="close"></i>
+</button>
+
+
+<span>VIDEO</span>
+
+
+<button onclick="confirmEditorTool()">
+<i data-icon="check"></i>
+</button>
+
+
+</div>
+
+
+
+<button class="tool-btn">
+Speed
+</button>
+
+<button class="tool-btn">
+Adjust
+</button>
+
+<button class="tool-btn">
+FX
+</button>
+
+
+</div>
+
+
+
+
+
+<div id="audioTools" class="tool-panel">
+
+<div class="tool-header">
+
+<button onclick="cancelEditorTool()">
+<i data-icon="close"></i>
+</button>
+
+
+<span>AUDIO</span>
+
+
+<button onclick="confirmEditorTool()">
+<i data-icon="check"></i>
+</button>
+
+</div>
+
+
+<button class="tool-btn">
+Volume
+</button>
+
+
+<button class="tool-btn">
+Fade
+</button>
+
+
+<button class="tool-btn">
+FX
+</button>
+
+
+</div>
 
 
 
