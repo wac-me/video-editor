@@ -1,49 +1,8 @@
-window.editorSession = {
-
-    activeTool:null,
-    changed:false
-
-};
-
-
-
 function openEditorTool(type){
-
-
-    editorSession.activeTool = type;
-
-    editorSession.changed = false;
-
-
-    showScreen(type);
-
-
+ showScreen(type);
 }
-
-
-
-
-function confirmEditorTool(){
-
-
-    editorSession.changed = true;
-
-
-    showScreen("editor");
-
-
-}
-
-
-
-
-function cancelEditorTool(){
-
-
-    editorSession.changed = false;
-
-
-    showScreen("editor");
-
-
-}
+function confirmEditorTool(){ showScreen('editor'); }
+function cancelEditorTool(){ showScreen('editor'); }
+window.openEditorTool=openEditorTool;
+window.confirmEditorTool=confirmEditorTool;
+window.cancelEditorTool=cancelEditorTool;
