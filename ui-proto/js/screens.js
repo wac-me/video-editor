@@ -43,7 +43,9 @@ function goBack(){
         format:"start",
         editor:"format",
         cut:"editor",
+        video:"editor",
         text:"editor",
+        audio:"editor",
         export:"editor"
 
     };
