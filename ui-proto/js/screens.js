@@ -98,13 +98,11 @@ function goBack(){
     const previous = {
 
 
-        editor:"start",
+        format:"start",
 
-        cut:"editor",
+        editor:"format",
 
-        text:"editor",
-
-        export:"editor"
+        export:"editor" "
 
 
     };
@@ -121,5 +119,20 @@ function goBack(){
 
     }
 
+
+}
+
+function selectFormat(format){
+
+    console.log("format:", format);
+
+    showScreen("editor");
+
+}
+
+
+function selectLayer(layer){
+
+    console.log("active layer:", layer);
 
 }
