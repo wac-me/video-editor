@@ -74,8 +74,7 @@ window.APP_LABELS = {
 
 
     textTimeline:
-    "TEXT TIMELINE"
-    
+    "TEXT TIMELINE",
     
     video:"VIDEO",
     
