@@ -33,7 +33,7 @@ function initTimeline(){
 
 
     const track =
-        document.querySelector(".timeline-track");
+document.querySelector(".timeline-area");
 
 
     const playhead =
