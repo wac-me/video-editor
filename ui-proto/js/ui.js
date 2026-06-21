@@ -12,7 +12,7 @@ function initIcons(){
 
 
         const lucideName =
-        window.APP_ICONS[name];
+        window.APP_ICONS[name] || name;
 
 
 
