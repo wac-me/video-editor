@@ -1,37 +1,58 @@
 window.LAYERS = {
 
+
     video:[],
     text:[],
     audio:[]
 
+
 };
 
 
-function addLayer(type){
 
-    if(!window.LAYERS[type]){
-        return;
-    }
+window.editorState = {
 
-    LAYERS[type].push({
 
-        id:Date.now(),
-        type:type,
-        start:0,
-        end:10
+    activeLayer:null
+
+
+};
+
+
+
+function selectLayer(type){
+
+
+    editorState.activeLayer = type;
+
+
+    updateTools(type);
+
+
+
+    document
+    .querySelectorAll(".track-label")
+    .forEach(el=>{
+
+        el.classList.remove("active-layer");
 
     });
 
-    renderLayers();
+
+
+    const active =
+    document.querySelector(
+        `[data-layer="${type}"]`
+    );
+
+
+    if(active){
+
+        active.classList.add(
+            "active-layer"
+        );
+
+    }
+
 
 }
-
-
-function renderLayers(){
-
-    console.log("layers", LAYERS);
-
-}
-
-
-window.addLayer = addLayer;
