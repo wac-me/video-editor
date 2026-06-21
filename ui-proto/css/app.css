@@ -925,36 +925,29 @@ display:none;
 
 }
 
-/* editor toolbar order */
+/* EDITOR TOOLBAR LAYOUT */
 
 #editor .tools {
-    display:flex;
-    flex-direction:column;
-}
 
-
-/* panele kontekstowe wyżej */
-
-#editor .tool-panel:not(#addTools) {
-    order:1;
-}
-
-
-/* ADD toolbar na dole */
-
-#editor #addTools {
-    order:2;
-}
-
-/* FIX CONTEXT TOOL PANELS */
-
-#editor .tools {
     width:100%;
-    display:block;
+
+    display:flex;
+
+    flex-direction:column;
+
 }
 
 
-/* aktywny panel narzędzi */
+/* panele */
+
+#editor .tool-panel {
+
+    width:100%;
+
+}
+
+
+/* aktywny panel */
 
 #editor .tool-panel.active {
 
@@ -964,14 +957,14 @@ display:none;
 
     width:100%;
 
+    gap:8px;
+
 }
 
 
-/* header X - VIDEO - V */
+/* header X VIDEO ✓ */
 
-#editor .tool-panel.active .tool-header {
-
-    order:1;
+#editor .tool-header {
 
     width:100%;
 
@@ -984,26 +977,36 @@ display:none;
 }
 
 
-/* przyciski narzędzi */
+/* narzędzia w jednej linii */
 
 #editor .tool-panel.active > .tool-btn {
 
-    order:2;
+    flex:1;
 
 }
 
 
-/* trzy narzędzia w jednej linii */
+/* ADD na dole */
 
-#editor .tool-panel.active {
+#editor #addTools {
+
+    order:2;
+
+    display:flex;
+
+    flex-direction:row;
 
     gap:8px;
 
 }
 
 
-#editor .tool-panel.active .tool-btn {
+/* VIDEO/TEXT/AUDIO wyżej */
 
-    flex:1;
+#editor #videoTools,
+#editor #audioTools,
+#editor #textTools {
+
+    order:1;
 
 }
