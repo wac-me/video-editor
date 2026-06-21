@@ -41,7 +41,7 @@ function goBack(){
     const previous = {
 
         format:"start",
-        editor:"format",
+        editor:"start",
         cut:"editor",
         video:"editor",
         text:"editor",
