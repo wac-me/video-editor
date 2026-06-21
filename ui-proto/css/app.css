@@ -885,6 +885,7 @@ display:none;
 .tool-panel.active {
 
     display:flex;
+    flex-direction:column;
     width:100%;
 }
 
