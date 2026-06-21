@@ -914,3 +914,24 @@ display:none;
 
 }
 
+/* editor toolbar order */
+
+#editor .tools {
+    display:flex;
+    flex-direction:column;
+}
+
+
+/* panele kontekstowe wyżej */
+
+#editor .tool-panel:not(#addTools) {
+    order:1;
+}
+
+
+/* ADD toolbar na dole */
+
+#editor #addTools {
+    order:2;
+}
+
