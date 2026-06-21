@@ -42,7 +42,25 @@ function openEditorTool(type){
 
     setActiveToolButton(type);
 
-    showScreen(type);
+
+    document
+    .querySelectorAll("#editor .tool-panel")
+    .forEach(panel=>{
+
+        panel.classList.remove("active");
+
+    });
+
+
+    const panel =
+    document.getElementById(type + "Tools");
+
+
+    if(panel){
+
+        panel.classList.add("active");
+
+    }
 
 }
 
