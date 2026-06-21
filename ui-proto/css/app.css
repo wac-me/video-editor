@@ -1024,3 +1024,41 @@ display:none;
     order:1;
 
 }
+
+
+.placeholder-video,
+.placeholder-text {
+
+    height:28px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 12px;
+
+    border-radius:6px;
+
+    font-size:12px;
+
+    opacity:.8;
+
+}
+
+
+.placeholder-video {
+
+    background:rgba(120,80,255,.25);
+
+    border:1px solid var(--accent);
+
+}
+
+
+.placeholder-text {
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.25);
+
+}
