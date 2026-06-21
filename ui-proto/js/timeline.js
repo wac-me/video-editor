@@ -92,3 +92,11 @@ function initTimeline(){
     );
 
 }
+
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
+
+    initTimeline();
+
+});
