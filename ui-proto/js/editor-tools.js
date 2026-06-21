@@ -15,52 +15,34 @@ function hideToolPanels(){
 
 
 
-function openEditorTool(type){
+function setActiveToolButton(type){
+
+    document
+    .querySelectorAll("#addTools .tool-btn")
+    .forEach(btn=>{
+        btn.classList.remove("active");
+    });
 
 
-    hideToolPanels();
+    const btn =
+    document.querySelector(
+        `[data-tool="${type}"]`
+    );
 
 
-
-    const panel =
-    document.getElementById(type+"Tools");
-
-
-
-    if(panel){
-
-        panel.classList.add("active");
-
+    if(btn){
+        btn.classList.add("active");
     }
-
-
-    activeTool = type;
-
-
 
 }
 
 
 
-function closeEditorTool(){
+function openEditorTool(type){
 
+    setActiveToolButton(type);
 
-    hideToolPanels();
-
-
-    const add =
-    document.getElementById("addTools");
-
-
-    if(add){
-
-        add.classList.add("active");
-
-    }
-
-
-    activeTool="add";
-
+    showScreen(type);
 
 }
 
@@ -68,7 +50,7 @@ function closeEditorTool(){
 
 function confirmEditorTool(){
 
-    closeEditorTool();
+    showScreen('editor');
 
 }
 
@@ -76,23 +58,13 @@ function confirmEditorTool(){
 
 function cancelEditorTool(){
 
-    closeEditorTool();
+    showScreen('editor');
 
 }
 
 
 
-window.openEditorTool =
-openEditorTool;
-
-
-window.closeEditorTool =
-closeEditorTool;
-
-
-window.confirmEditorTool =
-confirmEditorTool;
-
-
-window.cancelEditorTool =
-cancelEditorTool;
+window.openEditorTool = openEditorTool;
+window.confirmEditorTool = confirmEditorTool;
+window.cancelEditorTool = cancelEditorTool;
+window.setActiveToolButton = setActiveToolButton;
