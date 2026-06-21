@@ -837,3 +837,12 @@ color:white;
 color:#c54cff!important;
 
 }
+
+.tool-panel{
+display:none;
+}
+
+.tool-panel.active{
+display:flex;
+}
+
