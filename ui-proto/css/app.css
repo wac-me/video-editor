@@ -845,9 +845,14 @@ display:none;
 .tool-panel.active {
 
     display:grid;
-    align-items:center;
-    grid-template-columns: repeat(2, 2fr);
+    
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     width: 100%;
+    
+    align-items:center;
+
+    justify-content:center;
+    
 }
 
