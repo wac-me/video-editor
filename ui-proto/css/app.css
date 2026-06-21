@@ -590,7 +590,7 @@ color:black;
 
     background:#111;
 
-    padding:15px;
+    padding:10px;
 
     border-radius:10px;
     
@@ -625,7 +625,7 @@ background:var(--accent);
 
     align-items:center;
 
-    height:45px;
+    height:38px;
 
     margin-bottom:8px;
 
@@ -652,7 +652,7 @@ background:var(--accent);
 
     flex:1;
 
-    height:32px;
+    height:26px;
 
     background:#080808;
 
