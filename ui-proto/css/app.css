@@ -382,7 +382,13 @@ stroke:var(--accent);
 
 }
 
+.tool-btn.active {
 
+    border:1px solid #fff;
+
+    transform:translateY(-2px);
+
+}
 
 
 
