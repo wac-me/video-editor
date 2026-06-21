@@ -384,9 +384,13 @@ stroke:var(--accent);
 
 .tool-btn.active {
 
-    border:19px solid #fff;
+    border-color:var(--accent);
+
+    color:var(--accent);
 
     transform:translateY(-2px);
+
+    box-shadow:0 0 10px var(--accent);
 
 }
 
