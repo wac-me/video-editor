@@ -100,3 +100,33 @@ document.addEventListener(
     initTimeline();
 
 });
+
+
+const projectTimeline={
+
+
+    video:{
+
+        start:0,
+
+        end:15
+
+    },
+
+
+    text:[
+
+        {
+
+            text:"TEST",
+
+            start:4,
+
+            end:8
+
+        }
+
+    ]
+
+
+};
