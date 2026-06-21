@@ -91,6 +91,12 @@ window.APP_LABELS = {
     
     format11:"1:1",
     
-    format45:"4:5"
+    format45:"4:5",
+    
+    addVideo:"ADD VIDEO",
+    
+    addText:"ADD TEXT",
+    
+    addAudio:"ADD AUDIO"
 
 };
