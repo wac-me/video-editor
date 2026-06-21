@@ -945,3 +945,64 @@ display:none;
     order:2;
 }
 
+/* FIX CONTEXT TOOL PANELS */
+
+#editor .tools {
+    width:100%;
+    display:block;
+}
+
+
+/* aktywny panel narzędzi */
+
+#editor .tool-panel.active {
+
+    display:flex;
+
+    flex-direction:column;
+
+    width:100%;
+
+}
+
+
+/* header X - VIDEO - V */
+
+#editor .tool-panel.active .tool-header {
+
+    order:1;
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+/* przyciski narzędzi */
+
+#editor .tool-panel.active > .tool-btn {
+
+    order:2;
+
+}
+
+
+/* trzy narzędzia w jednej linii */
+
+#editor .tool-panel.active {
+
+    gap:8px;
+
+}
+
+
+#editor .tool-panel.active .tool-btn {
+
+    flex:1;
+
+}
