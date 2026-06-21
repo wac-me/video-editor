@@ -55,7 +55,7 @@ onclick="goBack()">
 
 <button 
 class="upload"
-onclick="openEditorTool('video')">
+onclick="showScreen('format')">
 
 <i data-icon="video"></i>
 
@@ -143,14 +143,11 @@ onclick="selectFormat('9:16')">
         <div class="timeline-row">
 
 
-          <div 
-class="track-label"
-data-layer="video"
-onclick="selectLayer('video')">
+            <div class="track-label">
 
-VIDEO
+                VIDEO
 
-</div>
+            </div>
 
 
             <div class="timeline-track">
@@ -166,14 +163,11 @@ VIDEO
         <div class="timeline-row">
 
 
-            <div 
-class="track-label"
-data-layer="text"
-onclick="selectLayer('text')">
+            <div class="track-label">
 
-TEXT
+                TEXT
 
-</div>
+            </div>
 
 
             <div class="timeline-track">
@@ -189,14 +183,11 @@ TEXT
         <div class="timeline-row">
 
 
-            <div 
-class="track-label"
-data-layer="audio"
-onclick="selectLayer('audio')">
+            <div class="track-label">
 
-AUDIO
+                AUDIO
 
-</div>
+            </div>
 
 
             <div class="timeline-track">
@@ -226,13 +217,13 @@ AUDIO
 
 <button 
 class="tool-btn"
-onclick="openEditorTool('video')">
+onclick="showScreen('video')">
 
 
 <i data-icon="video"></i>
 
 
-<span data-label="addVideo"></span>
+<span data-label="video"></span>
 
 
 </button>
@@ -243,13 +234,13 @@ onclick="openEditorTool('video')">
 
 <button 
 class="tool-btn"
-onclick="openEditorTool('video')">
+onclick="showScreen('text')">
 
 
 <i data-icon="text"></i>
 
 
-<span data-label="addText"></span>
+<span data-label="text"></span>
 
 
 </button>
@@ -260,13 +251,13 @@ onclick="openEditorTool('video')">
 
 <button 
 class="tool-btn"
-onclick="openEditorTool('video')">
+onclick="showScreen('audio')">
 
 
 <i data-icon="audio"></i>
 
 
-<span data-label="addAudio"></span>
+<span data-label="audio"></span>
 
 
 </button>
@@ -286,35 +277,6 @@ onclick="openEditorTool('video')">
 
 <section id="cut" class="screen">
 
-<div class="tool-header">
-
-
-<button 
-class="tool-close"
-onclick="cancelEditorTool()">
-
-<i data-icon="close"></i>
-
-</button>
-
-
-
-<h2>
-VIDEO
-</h2>
-
-
-
-<button 
-class="tool-ok"
-onclick="confirmEditorTool()">
-
-<i data-icon="check"></i>
-
-</button>
-
-
-</div>
 
 <div class="canvas">
 
@@ -357,14 +319,9 @@ onclick="confirmEditorTool()">
         <div class="timeline-row">
 
 
-           <div 
-class="track-label"
-data-layer="video"
-onclick="selectLayer('video')">
-
-VIDEO
-
-</div>
+            <div class="track-label">
+                VIDEO
+            </div>
 
 
             <div class="timeline-track">
@@ -387,14 +344,9 @@ VIDEO
         <div class="timeline-row">
 
 
-            <div 
-class="track-label"
-data-layer="text"
-onclick="selectLayer('text')">
-
-TEXT
-
-</div>
+            <div class="track-label">
+                TEXT
+            </div>
 
 
             <div class="timeline-track">
@@ -415,13 +367,8 @@ TEXT
         
 <div class="timeline-row">
 
-<div 
-class="track-label"
-data-layer="audio"
-onclick="selectLayer('audio')">
-
+<div class="track-label">
 AUDIO
-
 </div>
 
 <div class="timeline-track">
@@ -637,13 +584,7 @@ TEKST
 <script src="js/screens.js"></script>
 
 <script src="js/timeline.js"></script>
-
-<script src="js/tools.js"></script>
-
 <script src="js/layers.js"></script>
-
-<script src="js/editor-tools.js"></script>
-
 
 <script src="js/ui.js"></script>
 
