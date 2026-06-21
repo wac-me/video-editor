@@ -12,6 +12,9 @@ window.APP_ICONS = {
     move:"move",
     audio:"music",
     menu:"menu",
+    color:"palette",
+    volume:"volume",
+    fade:"sliders-horizontal",
     close:"x",
     check:"check"
 
