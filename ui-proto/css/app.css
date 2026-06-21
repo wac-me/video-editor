@@ -845,7 +845,7 @@ display:none;
 .tool-panel.active {
 
     display:gird;
-    grid-template-columns: repeat(3, 1fr);
+    
     gap: 10px;
     width: 100%;
 }
