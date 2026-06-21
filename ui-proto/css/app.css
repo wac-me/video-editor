@@ -593,11 +593,31 @@ color:black;
     padding:15px;
 
     border-radius:10px;
+    
+    left:0%;
 
 }
 
 
+.playhead::before{
 
+content:"";
+
+position:absolute;
+
+top:-6px;
+
+left:-5px;
+
+width:12px;
+
+height:12px;
+
+border-radius:50%;
+
+background:var(--accent);
+
+}
 
 .timeline-row{
 
