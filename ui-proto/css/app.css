@@ -855,13 +855,40 @@ display:none;
 }
 
 
-/* EDITOR ADD TOOLBAR */
+/* TOOLBAR CONTAINER */
+
+.tools {
+    width:100%;
+    display:block;
+}
+
+
+/* EACH TOOL PANEL */
+
+.tool-panel {
+
+    width:100%;
+
+}
+
+
+.tool-panel.active {
+
+    display:flex;
+    width:100%;
+}
+
+
+
+/* ADD BUTTONS */
 
 #addTools {
-    width:100%;
+
     display:flex;
+    width:100%;
     gap:8px;
-    padding:0 8px;
+    padding:8px;
+
 }
 
 
@@ -869,7 +896,7 @@ display:none;
 
     flex:1;
 
-    min-height:70px;
+    height:80px;
 
     display:flex;
     flex-direction:column;
@@ -877,15 +904,13 @@ display:none;
     align-items:center;
     justify-content:center;
 
-    gap:6px;
-
 }
 
 
 #addTools .tool-btn svg {
 
-    width:28px;
-    height:28px;
+    width:30px;
+    height:30px;
 
 }
 
