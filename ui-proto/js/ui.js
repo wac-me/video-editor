@@ -93,24 +93,7 @@ document.addEventListener(
 
 
 
-    const upload =
-    document.querySelector(".upload");
-
-
-
-    if(upload){
-
-
-        upload.onclick = ()=>{
-
-
-            showScreen("format");
-
-
-        };
-
-
-    }
+    
 
 
 
