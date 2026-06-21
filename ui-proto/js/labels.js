@@ -1,7 +1,7 @@
 window.APP_LABELS = {
 
 
-    makeVideo:"MAKE VIDEO"
+    makeVideo:"MAKE VIDEO",
 
     upload:
     "Upload video",
