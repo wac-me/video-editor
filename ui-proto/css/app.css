@@ -978,6 +978,12 @@ display:none;
 
 /* EDITOR TOOLBAR LAYOUT */
 
+#editor {
+
+    position:relative;
+
+}
+
 #editor .tools {
 
     width:100%;
