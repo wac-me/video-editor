@@ -1386,13 +1386,30 @@ display:none;
 
 /* empty project state */
 
+.empty-project .timeline .clip {
+    opacity:0;
+    pointer-events:none;
+}
+
+
+.empty-project .timeline .clip-placeholder {
+    opacity:0;
+    pointer-events:none;
+}
+
+
+.empty-project .timeline .timeline-item {
+    opacity:0;
+    pointer-events:none;
+}
+/*
 .empty-project .clip-placeholder,
 .empty-project .timeline-clip,
 .empty-project .timeline-item {
     opacity:0;
     pointer-events:none;
 }
-
+*/
 #emptyEditorAdd {
 
     position:absolute;
