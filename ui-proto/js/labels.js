@@ -100,10 +100,8 @@ window.APP_LABELS = {
     
     videoFrame:"VIDEO FRAME",
 
-    timeline:"TIMELINE",
+    timeline:"TIMELINE"
     
-    check:"OK",
-
-    clous:"clous"
+    
 
 };
