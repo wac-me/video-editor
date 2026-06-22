@@ -1282,4 +1282,104 @@ display:none;
     box-shadow:0 0 20px var(--accent);
 }
 
+/* ==========================
+   SETTINGS OVERLAY
+========================== */
 
+
+.settings-overlay {
+
+
+    position:absolute;
+
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+
+    z-index:100;
+
+
+    display:none;
+
+
+    background:var(--panel-bg, #111);
+
+
+    border-radius:18px 18px 0 0;
+
+
+    padding:12px;
+
+
+}
+
+
+
+.settings-overlay.active {
+
+
+    display:block;
+
+
+}
+
+
+
+/* top mini nav */
+
+.settings-bar {
+
+
+    height:56px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:space-between;
+
+
+    border-bottom:1px solid rgba(255,255,255,.1);
+
+
+}
+
+
+
+.settings-bar button {
+
+
+    width:45px;
+
+    height:45px;
+
+
+}
+
+
+
+/* content */
+
+.settings-placeholder {
+
+
+    height:120px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+}
