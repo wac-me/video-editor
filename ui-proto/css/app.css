@@ -1470,7 +1470,13 @@ display:none;
 }
 
 
+.canvas {
 
+    position:relative;
+
+    overflow:hidden;
+
+}
 
 
 
