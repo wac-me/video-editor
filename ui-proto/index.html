@@ -256,11 +256,41 @@ onclick="selectFormat('9:16')">
     <button class="tool-btn"><span>✦</span><span>FX</span></button>
   </div>
 
-  <div id="addTools" class="tool-panel active">
-    <button class="tool-btn"><span>▣</span><span>ADD VIDEO</span></button>
-    <button class="tool-btn"><span>T</span><span>ADD TEXT</span></button>
-    <button class="tool-btn"><span>♫</span><span>ADD AUDIO</span></button>
-  </div>
+<div id="addTools" class="tool-panel active">
+
+    <button 
+        class="tool-btn"
+        data-tool="video"
+        onclick="openEditorTool('video')">
+
+        <span>▣</span>
+        <span>ADD VIDEO</span>
+
+    </button>
+
+
+    <button 
+        class="tool-btn"
+        data-tool="text"
+        onclick="openEditorTool('text')">
+
+        <span>T</span>
+        <span>ADD TEXT</span>
+
+    </button>
+
+
+    <button 
+        class="tool-btn"
+        data-tool="audio"
+        onclick="openEditorTool('audio')">
+
+        <span>♫</span>
+        <span>ADD AUDIO</span>
+
+    </button>
+
+</div>
 
 </div>
 
