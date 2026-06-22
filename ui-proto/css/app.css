@@ -812,6 +812,40 @@ background:var(--accent);
 
 }
 
+
+
+
+.settings-panel {
+
+    position:absolute;
+
+    bottom:0;
+
+    left:0;
+
+    right:0;
+
+    z-index:20;
+
+    display:none;
+
+    background:#111;
+
+    padding:15px;
+
+}
+
+
+.settings-panel.active {
+
+    display:block;
+
+}
+
+
+
+
+
 .tool-header{
 
 height:60px;
