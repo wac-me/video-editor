@@ -1165,4 +1165,43 @@ display:none;
 }
 
 
+/* unify tool panels */
 
+#editor .tools {
+
+    width:100%;
+
+}
+
+
+#editor .tool-panel {
+
+    width:100%;
+
+}
+
+
+#editor #addTools,
+#editor #videoTools,
+#editor #audioTools {
+
+    display:flex;
+
+    flex-direction:row;
+
+    gap:8px;
+
+    width:100%;
+
+    align-items:stretch;
+
+}
+
+
+#editor #addTools .tool-btn,
+#editor #videoTools .tool-btn,
+#editor #audioTools .tool-btn {
+
+    flex:1;
+
+}
