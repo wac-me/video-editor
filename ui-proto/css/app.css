@@ -1181,9 +1181,18 @@ display:none;
 }
 
 
-#editor #addTools,
-#editor #videoTools,
-#editor #audioTools {
+/* TOOL PANELS */
+
+#editor .tool-panel {
+
+    width:100%;
+
+}
+
+
+/* tylko aktywny panel */
+
+#editor .tool-panel.active {
 
     display:flex;
 
@@ -1198,10 +1207,21 @@ display:none;
 }
 
 
-#editor #addTools .tool-btn,
-#editor #videoTools .tool-btn,
-#editor #audioTools .tool-btn {
+/* nieaktywne ukryte */
+
+#editor .tool-panel:not(.active){
+
+    display:none;
+
+}
+
+
+/* wszystkie buttony identyczne */
+
+#editor .tool-panel.active .tool-btn {
 
     flex:1;
+
+    min-height:96px;
 
 }
