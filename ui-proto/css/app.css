@@ -1462,3 +1462,7 @@ display:none;
 .empty-project .timeline .timeline-item {
     display:none;
 }
+
+.empty-project .timeline  {
+    display:none;
+}
