@@ -1383,3 +1383,14 @@ display:none;
 
 
 }
+
+/* empty project state */
+
+.empty-project .clip-placeholder,
+.empty-project .timeline-clip,
+.empty-project .timeline-item {
+    opacity:0;
+    pointer-events:none;
+}
+
+
