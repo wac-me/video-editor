@@ -1164,32 +1164,9 @@ display:none;
 
 }
 
-/* unify ADD toolbar with editor tools */
-
-#editor #addTools {
-
-    display:flex;
-
-    gap:8px;
-
-    width:100%;
-
-}
-
-
-#editor #addTools .tool-btn {
-
-    flex:1;
+.tool-btn {
 
     min-height:96px;
-
-    display:flex;
-
-    flex-direction:column;
-
-    justify-content:center;
-
-    align-items:center;
 
 }
 
