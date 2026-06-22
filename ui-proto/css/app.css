@@ -1225,3 +1225,52 @@ display:none;
     min-height:96px;
 
 }
+
+
+/* unified editor tool bars */
+
+#editor .tools {
+    width:100%;
+    position:relative;
+}
+
+#editor .tool-panel {
+    display:none;
+    width:100%;
+}
+
+#editor .tool-panel.active {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+#editor .tool-header {
+    flex:0 0 100%;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+#editor .tool-btn {
+    flex:1;
+    min-height:96px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+#editor .settings-panel {
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:50;
+    display:none;
+}
+
+#editor .settings-panel.active {
+    display:block;
+}
