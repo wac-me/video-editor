@@ -1486,7 +1486,7 @@ display:none;
 }
 
 .empty-project .timeline .timeline-area  .timeline-row .timeline-track .clip-placeholder-video,
-.empty-project .clip-placeholder-text,
+.empty-project timeline .clip-placeholder-text,
 .empty-project .clip-placeholder-audio {
 
     display:none;
