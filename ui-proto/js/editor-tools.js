@@ -36,7 +36,64 @@ function setActiveToolButton(type){
 
 }
 
+// SETTINGS PANEL
 
+function openSettings(type){
+
+    const panel = document.getElementById("settingsPanel");
+
+
+    if(!panel){
+        console.log("settingsPanel missing");
+        return;
+    }
+
+
+    panel.classList.add("active");
+
+
+    const title =
+    document.getElementById("settingsTitle");
+
+
+    if(title){
+        title.innerText = type.toUpperCase();
+    }
+
+
+    console.log("open settings:", type);
+
+}
+
+
+
+function closeSettings(){
+
+    const panel =
+    document.getElementById("settingsPanel");
+
+
+    if(panel){
+
+        panel.classList.remove("active");
+
+    }
+
+}
+
+
+
+function confirmSettings(){
+
+    closeSettings();
+
+}
+
+
+
+window.openSettings = openSettings;
+window.closeSettings = closeSettings;
+window.confirmSettings = confirmSettings;
 
 function openEditorTool(type){
 
