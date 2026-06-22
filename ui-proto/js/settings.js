@@ -16,12 +16,16 @@ panel.classList.add("active");
 if(type==="speed"){
 
 
-panel.innerHTML = `
+document
+.getElementById("settingsTitle")
+.textContent = "SPEED";
+
+
+document
+.getElementById("settingsContent")
+.innerHTML = `
 
 <div class="settings-box">
-
-<h3>Speed</h3>
-
 
 <input 
 type="range"
@@ -30,18 +34,9 @@ max="2"
 step="0.1"
 value="1">
 
-
 </div>
 
 `;
-
-
-}
-
-
-
-}
-
 
 
 function closeSettings(){
