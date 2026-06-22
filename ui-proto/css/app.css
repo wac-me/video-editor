@@ -843,7 +843,13 @@ background:var(--accent);
 }
 
 
+.editor.settings-open .tools {
 
+    pointer-events:none;
+
+    opacity:.5;
+
+}
 
 
 .tool-header{
