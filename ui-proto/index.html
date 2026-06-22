@@ -220,42 +220,50 @@ onclick="selectFormat('9:16')">
 
 
 
+<!-- Unified editor tools fragment -->
 <div class="tools">
 
+  <div id="videoTools" class="tool-panel">
+    <div class="tool-header">
+      <button onclick="cancelEditorTool()">X</button>
+      <span>VIDEO</span>
+      <button onclick="confirmEditorTool()">✓</button>
+    </div>
+    <button class="tool-btn"><span>◷</span><span>Speed</span></button>
+    <button class="tool-btn"><span>☷</span><span>Adjust</span></button>
+    <button class="tool-btn"><span>✦</span><span>FX</span></button>
+  </div>
 
-<div id="addTools" class="tool-panel active">
+  <div id="audioTools" class="tool-panel">
+    <div class="tool-header">
+      <button onclick="cancelEditorTool()">X</button>
+      <span>AUDIO</span>
+      <button onclick="confirmEditorTool()">✓</button>
+    </div>
+    <button class="tool-btn"><span>♫</span><span>Volume</span></button>
+    <button class="tool-btn"><span>Fade</span></button>
+    <button class="tool-btn"><span>✦</span><span>FX</span></button>
+  </div>
 
+  <div id="textTools" class="tool-panel">
+    <div class="tool-header">
+      <button onclick="cancelEditorTool()">X</button>
+      <span>TEXT</span>
+      <button onclick="confirmEditorTool()">✓</button>
+    </div>
+    <button class="tool-btn"><span>T</span><span>Font</span></button>
+    <button class="tool-btn"><span>Color</span></button>
+    <button class="tool-btn"><span>✦</span><span>FX</span></button>
+  </div>
 
-<button class="tool-btn" data-tool="video"
-onclick="openEditorTool('video')">
-
-<i data-icon="video"></i>
-<span data-label="addVideo"></span>
-
-</button>
-
-
-
-<button class="tool-btn" data-tool="text"
-onclick="openEditorTool('text')">
-
-<i data-icon="text"></i>
-<span data-label="addText"></span>
-
-</button>
-
-
-
-<button class="tool-btn" data-tool="audio"
-onclick="openEditorTool('audio')">
-
-<i data-icon="audio"></i>
-<span data-label="addAudio"></span>
-
-</button>
-
+  <div id="addTools" class="tool-panel active">
+    <button class="tool-btn"><span>▣</span><span>ADD VIDEO</span></button>
+    <button class="tool-btn"><span>T</span><span>ADD TEXT</span></button>
+    <button class="tool-btn"><span>♫</span><span>ADD AUDIO</span></button>
+  </div>
 
 </div>
+
 
 
 <div id="settingsPanel" class="settings-panel">
