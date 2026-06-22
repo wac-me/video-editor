@@ -1384,38 +1384,7 @@ display:none;
 
 }
 
-/* empty project state */
 
-
-
-
-
-
-/*
-.empty-project .timeline .clip {
-    opacity:0;
-    pointer-events:none;
-}
-
-
-.empty-project .timeline .clip-placeholder {
-    opacity:0;
-    pointer-events:none;
-}
-
-
-.empty-project .timeline .timeline-item {
-    opacity:0;
-    pointer-events:none;
-}
-
-.empty-project .clip-placeholder,
-.empty-project .timeline-clip,
-.empty-project .timeline-item {
-    opacity:0;
-    pointer-events:none;
-}
-*/
 #emptyEditorAdd {
 
     position:absolute;
@@ -1470,6 +1439,38 @@ display:none;
 
 }
 
+/* empty project state */
+
+
+
+
+
+
+/*
+.empty-project .timeline .clip {
+    opacity:0;
+    pointer-events:none;
+}
+
+
+.empty-project .timeline .clip-placeholder {
+    opacity:0;
+    pointer-events:none;
+}
+
+
+.empty-project .timeline .timeline-item {
+    opacity:0;
+    pointer-events:none;
+}
+
+.empty-project .clip-placeholder,
+.empty-project .timeline-clip,
+.empty-project .timeline-item {
+    opacity:0;
+    pointer-events:none;
+}
+*/
 
 /* .empty-project .timeline-area > * {
     opacity:0;
@@ -1484,7 +1485,7 @@ display:none;
 
 }
 
-.empty-project .clip-placeholder-video,
+.empty-project .timeline .timeline-area  .timeline-row .timeline-track .clip-placeholder-video,
 .empty-project .clip-placeholder-text,
 .empty-project .clip-placeholder-audio {
 
