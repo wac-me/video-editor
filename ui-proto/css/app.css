@@ -1084,9 +1084,10 @@ display:none;
 
 
 .placeholder-video,
+.placeholder-video,
 .placeholder-text {
 
-    height:24px;
+    height:14px;
 
     display:flex;
 
