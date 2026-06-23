@@ -1488,12 +1488,18 @@ display:none;
 
 
 .empty-project .placeholder-video,
-.empty-project  .placeholder-text
+.empty-project  .placeholder-text,
+.empty-project   .playhead
  {
 
     display:none;
 
 }
+
+
+
+
+
 
 
 
