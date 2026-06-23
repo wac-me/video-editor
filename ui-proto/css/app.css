@@ -1492,7 +1492,7 @@ display:none;
 .empty-project   .playhead
  {
 
-    display:none;
+        opacity:0;
 
 }
 
