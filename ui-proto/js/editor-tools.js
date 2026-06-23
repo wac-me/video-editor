@@ -13,7 +13,34 @@ function hideToolPanels(){
 
 }
 
+// remove class timeline 
 
+function activateTimeline(){
+
+    const editor =
+        document.getElementById("editor");
+
+
+    if(!editor) return;
+
+
+    // zmiana stanu projektu
+    editor.classList.remove("empty-project");
+
+
+    // chowamy przycisk ADD
+    const emptyAdd =
+        document.getElementById("emptyEditorAdd");
+
+
+    if(emptyAdd){
+
+        emptyAdd.style.display="none";
+
+    }
+
+
+}
 
 function setActiveToolButton(type){
 
