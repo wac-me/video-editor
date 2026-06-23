@@ -1492,14 +1492,11 @@ display:none;
 .empty-project   .playhead
  {
 
-        opacity:1;
+        opacity:0;
 
 }
 
-#emptyEditorAdd {
-    
-    display:none
-}
+
 
 
 
