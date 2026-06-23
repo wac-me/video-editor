@@ -235,7 +235,7 @@ transform:none;
 
 
 
-
+/*
 .video-placeholder{
 
 
@@ -244,12 +244,12 @@ transform:none;
     font-size:24px;
 
 }
-
+*/
 .video-placeholder{
 
     color:#666;
 
-    font-size:24px;
+    font-size:14px;
 
     opacity:.5;
 
@@ -276,7 +276,7 @@ transform:none;
 }
 
 
-
+/*
 .video-placeholder{
 
     color:#c85cff;
@@ -284,7 +284,7 @@ transform:none;
     font-size:24px;
 
 }
-
+*/
 
 .video-frame.vertical{
 
