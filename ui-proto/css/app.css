@@ -1486,6 +1486,16 @@ display:none;
 
 }
 
+
+.empty-project .placeholder-video,
+.empty-project  .placeholder-text
+ {
+
+    display:none;
+
+}
+
+/*
 .empty-project .timeline .timeline-area  .timeline-row .timeline-track .placeholder-video,
 .empty-project .timeline .timeline-area  .timeline-row .timeline-track .placeholder-text
  {
@@ -1494,5 +1504,5 @@ display:none;
 
 }
 
-
+*/
 
