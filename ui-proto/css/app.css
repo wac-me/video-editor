@@ -1485,7 +1485,8 @@ display:none;
 
 }
 
-.empty-project .timeline .timeline-area  .timeline-row .timeline-track .placeholder-video
+.empty-project .timeline .timeline-area  .timeline-row .timeline-track .placeholder-video,
+.empty-project .timeline .timeline-area  .timeline-row .timeline-track .placeholder-text
  {
 
     display:none;
