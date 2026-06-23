@@ -1473,7 +1473,7 @@ display:none;
 */
 
 /* */
-.empty-projec .timeline-area > * {
+.empty-project .timeline-area > * {
     opacity:0;
 } 
 
@@ -1495,14 +1495,5 @@ display:none;
 
 }
 
-/*
-.empty-project .timeline .timeline-area  .timeline-row .timeline-track .placeholder-video,
-.empty-project .timeline .timeline-area  .timeline-row .timeline-track .placeholder-text
- {
 
-    display:none;
-
-}
-
-*/
 
