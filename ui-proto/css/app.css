@@ -1,0 +1,1520 @@
+:root{
+    
+    
+--header-start:90px;
+--header-editor:50px;
+--bg:#080808;
+--panel:#161616;
+--button:#1b1b1b;
+--border:#333;
+--accent:#c85cff;
+--text:#fff;
+--muted:#888;
+
+}
+
+
+*{
+
+box-sizing:border-box;
+
+}
+
+
+
+body{
+
+margin:0;
+
+height:100vh;
+
+background:var(--bg);
+
+color:var(--text);
+
+font-family:Arial,sans-serif;
+
+}
+
+
+
+
+.app{
+
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+
+
+
+header{
+
+    height:var(--header-editor);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:15px 20px;
+
+    background:var(--bg);
+
+    border-bottom:1px solid var(--border);
+
+    transition:
+    height .25s ease;
+
+}
+
+
+
+
+.logo{
+
+height:70px;
+
+display:flex;
+
+align-items:center;
+
+}
+
+
+
+.logo-full{
+
+height:70px;
+
+display:none;
+
+}
+
+
+
+.logo-icon{
+
+height:44px;
+
+display:block;
+
+}
+
+
+
+.start-mode .logo-full{
+
+display:block;
+
+}
+
+
+
+.start-mode .logo-icon{
+
+display:none;
+
+}
+
+
+
+
+
+.menu{
+
+font-size:28px;
+
+cursor:pointer;
+
+}
+
+
+
+
+.screen{
+
+display:none;
+
+flex:1;
+
+padding:20px;
+
+opacity:0;
+
+transform:translateX(20px);
+
+transition:.25s;
+
+}
+
+
+
+
+.screen.active{
+
+display:flex;
+
+flex-direction:column;
+
+opacity:1;
+
+transform:none;
+
+}
+
+
+/* VIDEO CANVAS */
+
+
+.canvas{
+
+    flex:1;
+
+    min-height:200px;
+
+    background:#000;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    overflow:hidden;
+
+}
+
+
+
+
+.video-frame{
+
+
+    max-width:100%;
+
+    max-height:100%;
+
+    background:#111;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+
+
+.video-frame.horizontal{
+
+    aspect-ratio:16/9;
+
+    width:100%;
+
+}
+
+
+
+.video-frame.vertical{
+
+    aspect-ratio:9/16;
+
+    height:100%;
+
+}
+
+
+
+/*
+.video-placeholder{
+
+
+    color:#666;
+
+    font-size:24px;
+
+}
+*/
+.video-placeholder{
+
+    color:#666;
+
+    font-size:14px;
+
+    opacity:.5;
+
+}
+
+
+
+.video-frame{
+
+    max-height:100%;
+
+    max-width:100%;
+
+    aspect-ratio:16/9;
+
+    background:#111;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+
+/*
+.video-placeholder{
+
+    color:#c85cff;
+
+    font-size:24px;
+
+}
+*/
+
+.video-frame.vertical{
+
+    aspect-ratio:9/16;
+
+}
+
+
+
+.video-frame.horizontal{
+
+    aspect-ratio:16/9;
+
+}
+
+button{
+
+background:var(--button);
+
+border:1px solid var(--border);
+
+border-radius:12px;
+
+color:white;
+
+font-size:16px;
+
+min-height:75px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+flex-direction:column;
+
+gap:8px;
+
+}
+
+
+
+
+button svg{
+
+width:28px;
+
+height:28px;
+
+stroke-width:1.5;
+
+}
+
+
+
+
+button span{
+
+font-size:13px;
+
+}
+
+
+
+
+button:hover{
+
+border-color:#555;
+
+}
+
+
+
+
+.tool-btn.active{
+
+border-color:var(--accent);
+
+color:var(--accent);
+
+background:#151015;
+
+box-shadow:
+0 0 0 1px rgba(200,92,255,.2);
+
+}
+
+
+
+
+.tool-btn.active svg{
+
+stroke:var(--accent);
+
+}
+
+.tool-btn.active {
+
+    border-color:var(--accent);
+
+    color:var(--accent);
+
+    transform:translateY(-2px);
+
+    box-shadow:0 0 56px var(--accent);
+
+}
+
+
+
+.upload{
+
+margin:auto;
+
+padding:45px;
+
+}
+
+
+
+.upload svg{
+
+width:100px;
+
+height:100px;
+
+stroke-width:1.3;
+
+}
+
+
+
+
+
+.canvas{
+
+flex:1;
+
+min-height:250px;
+
+background:#000;
+
+border:1px solid var(--border);
+
+border-radius:12px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+color:#666;
+
+font-size:24px;
+
+}
+
+
+
+
+.bottom{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:10px;
+
+margin-top:15px;
+
+}
+
+
+
+
+.timeline{
+
+margin:15px 0;
+
+padding:20px;
+
+background:var(--panel);
+
+border-radius:10px;
+
+color:var(--muted);
+
+}
+
+.timeline-track{
+
+    cursor:pointer;
+
+}
+
+
+
+.playhead{
+
+    transition:left .15s ease;
+
+}
+
+
+
+.time{
+
+    font-variant-numeric:tabular-nums;
+
+}
+
+
+.tools{
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:10px;
+
+}
+
+
+
+
+
+.caption{
+
+font-size:35px;
+
+}
+
+
+
+
+.export{
+
+margin-top:30px;
+
+background:white;
+
+color:black;
+
+}
+
+/* START HEADER */
+
+.app.start-mode header{
+
+    height:var(--header-start);
+
+}
+
+
+
+.app.start-mode .logo-full{
+
+    height:60px;
+
+}
+
+
+.app:not(.start-mode) .logo-full{
+
+    height:35px;
+
+}
+
+
+/* TIMELINE */
+
+
+.timeline{
+
+    background:var(--panel);
+
+    border-radius:12px;
+
+    padding:12px;
+
+    margin-top:15px;
+
+}
+
+
+
+.timeline-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+/* MULTI TRACK TIMELINE */
+
+
+.timeline-area{
+
+    position:relative;
+
+    background:#111;
+
+    padding:10px;
+
+    border-radius:10px;
+    
+    left:0%;
+
+}
+
+
+.playhead::before{
+
+content:"";
+
+position:absolute;
+
+top:-6px;
+
+left:-5px;
+
+width:12px;
+
+height:12px;
+
+border-radius:50%;
+
+background:var(--accent);
+
+}
+
+.timeline-row{
+
+    display:flex;
+
+    align-items:center;
+
+    height:38px;
+
+    margin-bottom:8px;
+
+}
+
+
+
+
+.track-label{
+
+    width:60px;
+
+    color:var(--muted);
+
+    font-size:12px;
+
+}
+
+
+
+
+
+.timeline-track{
+
+    flex:1;
+
+    height:26px;
+
+    background:#080808;
+
+    border-radius:8px;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+
+
+.clip{
+
+
+    height:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    padding-left:15px;
+
+    font-size:13px;
+
+    color:white;
+
+}
+
+
+
+
+.video-clip{
+
+    width:90%;
+
+    background:#252525;
+
+    border:1px solid #444;
+
+}
+
+
+
+
+.text-clip{
+
+
+    width:30%;
+
+    margin-left:25%;
+
+    background:#25132e;
+
+    border:1px solid var(--accent);
+
+    color:var(--accent);
+
+}
+
+
+
+
+.playhead{
+
+
+    position:absolute;
+
+    top:0;
+
+    bottom:0;
+
+    left:20%;
+
+    width:2px;
+
+    background:var(--accent);
+
+    pointer-events:none;
+
+}
+
+
+
+
+.clip{
+
+    position:absolute;
+
+    left:10px;
+
+    right:10px;
+
+    top:10px;
+
+    height:35px;
+
+    background:#252525;
+
+    border:1px solid #444;
+
+    border-radius:6px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding-left:15px;
+
+}
+
+
+
+.clip-name{
+
+    font-size:12px;
+
+    color:#aaa;
+
+}
+
+
+
+
+
+.playhead{
+
+    position:absolute;
+
+    top:0;
+
+    bottom:0;
+
+    left:30%;
+
+    width:2px;
+
+    background:var(--accent);
+
+}
+
+.track-label.active-layer{
+
+    color:var(--accent);
+
+}
+
+
+
+
+.settings-panel {
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+    z-index:50;
+
+    display:none;
+
+    width:100%;
+
+    background:var(--panel-bg);
+
+    border-radius:18px 18px 0 0;
+
+    padding:12px;
+
+}
+
+
+.settings-panel.active {
+
+    display:block;
+
+}
+
+
+.settings-panel.active {
+
+    display:block;
+
+}
+
+
+.editor.settings-open .tools {
+
+    pointer-events:none;
+
+    opacity:.5;
+
+}
+
+
+.tool-header{
+
+height:60px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 20px;
+
+}
+
+
+
+.tool-header button{
+
+background:none;
+
+border:0;
+
+font-size:28px;
+
+color:white;
+
+}
+
+
+
+.tool-ok{
+
+color:#c54cff!important;
+
+}
+
+.tool-panel{
+display:none;
+}
+
+.tool-panel.active {
+
+    display:grid;
+    
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+    
+    
+    
+}
+
+
+/* TOOLBAR CONTAINER */
+
+.tools {
+    width:100%;
+    display:block;
+}
+
+
+/* EACH TOOL PANEL */
+
+.tool-panel {
+
+    width:100%;
+
+}
+
+
+.tool-panel.active {
+
+    display:flex;
+
+    width:100%;
+}
+
+
+
+/* ADD BUTTONS */
+
+#addTools {
+
+    display:flex;
+    width:100%;
+    gap:0px;
+    padding:0px;
+
+}
+
+
+#addTools .tool-btn {
+
+    flex:1;
+
+    height:80px;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+}
+
+
+#addTools .tool-btn svg {
+
+    width:30px;
+    height:30px;
+
+}
+
+/* EDITOR TOOLBAR LAYOUT */
+
+#editor {
+
+    position:relative;
+
+}
+
+#editor .tools {
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+/* panele */
+
+#editor .tool-panel {
+
+    width:100%;
+
+}
+
+
+/* aktywny panel */
+
+#editor .tool-panel.active {
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr 1fr;
+
+    width:100%;
+
+    gap:8px;
+
+}
+
+
+#editor .tool-panel.active .tool-header {
+
+    grid-column:1 / -1;
+
+}
+
+
+#editor .tool-panel.active .tool-btn {
+
+    width:100%;
+
+}
+
+
+/* header X VIDEO ✓ */
+
+#editor .tool-header {
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+/* narzędzia w jednej linii */
+
+#editor .tool-panel.active > .tool-btn {
+
+    flex:1;
+
+}
+
+
+/* ADD na dole */
+
+#editor #addTools {
+
+    order:2;
+
+    display:flex;
+
+    flex-direction:row;
+
+    gap:8px;
+
+}
+
+
+/* VIDEO/TEXT/AUDIO wyżej */
+
+#editor #videoTools,
+#editor #audioTools,
+#editor #textTools {
+
+    order:1;
+
+}
+
+
+.placeholder-video,
+.placeholder-audio,
+.placeholder-text {
+
+    height:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    padding:0 12px;
+
+    border-radius:6px;
+
+    font-size:10px;
+
+    opacity:.8;
+
+}
+
+
+.placeholder-video {
+
+    background:rgba(120,80,255,.25);
+
+    border:1px solid var(--accent);
+
+}
+
+
+.placeholder-text {
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.25);
+
+}
+
+.settings-panel {
+
+    display:none;
+
+    width:100%;
+
+    padding:15px;
+
+    border-radius:0px;
+
+    background:rgba(50,50,50, 0.8);
+
+}
+
+
+.settings-panel.active {
+
+    display:block;
+
+}
+
+
+.settings-box {
+
+    width:100%;
+
+}
+
+
+.settings-box h3 {
+
+    margin:0 0 12px;
+
+    font-size:16px;
+
+}
+
+
+.settings-box input[type="range"] {
+
+    width:100%;
+
+}
+
+
+/* unify tool panels */
+
+#editor .tools {
+
+    width:100%;
+
+}
+
+
+#editor .tool-panel {
+
+    width:100%;
+
+}
+
+
+/* TOOL PANELS */
+
+#editor .tool-panel {
+
+    width:100%;
+
+}
+
+
+/* tylko aktywny panel */
+
+#editor .tool-panel.active {
+
+    display:flex;
+
+    flex-direction:row;
+
+    gap:8px;
+
+    width:100%;
+
+    align-items:stretch;
+
+}
+
+
+/* nieaktywne ukryte */
+
+#editor .tool-panel:not(.active){
+
+    display:none;
+
+}
+
+
+/* wszystkie buttony identyczne */
+
+#editor .tool-panel.active .tool-btn {
+
+    flex:1;
+
+    min-height:96px;
+
+}
+
+
+/* unified editor tool bars */
+
+#editor .tools {
+    width:100%;
+    position:relative;
+}
+
+#editor .tool-panel {
+    display:none;
+    width:100%;
+}
+
+#editor .tool-panel.active {
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+#editor .tool-header {
+    flex:0 0 100%;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+#editor .tool-btn {
+    flex:1;
+    min-height:96px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+#editor .settings-panel {
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:50;
+    display:none;
+}
+
+#editor .settings-panel.active {
+    display:block;
+}
+
+
+.tool-btn.active {
+    border-color:var(--accent);
+    color:var(--accent);
+    box-shadow:0 0 20px var(--accent);
+}
+
+/* ==========================
+   SETTINGS OVERLAY
+========================== */
+
+
+.settings-overlay {
+
+
+    position:absolute;
+
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+
+    z-index:100;
+
+
+    display:none;
+
+
+    background:var(--panel-bg, #111);
+
+
+    border-radius:18px 18px 0 0;
+
+
+    padding:12px;
+
+
+}
+
+
+
+.settings-overlay.active {
+
+
+    display:block;
+
+
+}
+
+
+
+/* top mini nav */
+
+.settings-bar {
+
+
+    height:56px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:space-between;
+
+
+    border-bottom:1px solid rgba(255,255,255,.1);
+
+
+}
+
+
+
+.settings-bar button {
+
+
+    width:45px;
+
+    height:45px;
+
+
+}
+
+
+
+/* content */
+
+.settings-placeholder {
+
+
+    height:120px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+}
+
+
+#emptyEditorAdd {
+
+    position:absolute;
+
+    inset:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:5;
+
+}
+
+
+.empty-add-btn {
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:20px;
+
+    border:1px solid var(--accent);
+
+    background:transparent;
+
+    color:white;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+.empty-add-icon {
+
+    font-size:64px;
+
+    line-height:1;
+
+    color:var(--accent);
+
+}
+
+/* empty project state */
+
+
+
+
+
+
+/*
+.empty-project .timeline .clip {
+    opacity:0;
+    pointer-events:none;
+}
+
+
+.empty-project .timeline .clip-placeholder {
+    opacity:0;
+    pointer-events:none;
+}
+
+
+.empty-project .timeline .timeline-item {
+    opacity:0;
+    pointer-events:none;
+}
+
+.empty-project .clip-placeholder,
+.empty-project .timeline-clip,
+.empty-project .timeline-item {
+    opacity:0;
+    pointer-events:none;
+}
+*/
+
+/* 
+.empty-project .timeline-area > * {
+    opacity:0;
+} 
+*/
+
+.timeline {
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.empty-project .timeline-row,
+.empty-project .placeholder-video,
+.empty-project  .placeholder-text,
+.empty-project   .playhead
+ {
+
+        opacity:0;
+        pointer-events:none;
+
+}
+
+
+
+/* EMPTY EDITOR STATE */
+
+.empty-project .tools {
+    display:none !important;
+}
+
+
+/* po aktywacji projektu */
+
+.tools {
+    display:block;
+}
+
+
+
+
+
+

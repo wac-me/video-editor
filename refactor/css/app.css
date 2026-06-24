@@ -1,0 +1,87 @@
+body{
+    margin:0;
+    background:#111;
+    color:#fff;
+    font-family:Arial;
+}
+
+
+header{
+    padding:12px 20px;
+    border-bottom:1px solid #222;
+}
+
+
+.app{
+    display:grid;
+    grid-template-columns:1fr;
+    width:100%;
+}
+
+
+.preview{
+    padding:20px;
+    width:100%;
+    box-sizing:border-box;
+    overflow:hidden;
+}
+
+
+.side{
+    background:#1a1a1a;
+    padding:20px;
+    width:100%;
+    box-sizing:border-box;
+
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+
+canvas{
+
+    display:block;
+
+    max-width:100%;
+
+    width:auto;
+
+    height:auto;
+
+    background:#000;
+
+    border:1px solid #333;
+
+    border-radius:10px;
+
+}
+
+
+.timeline{
+
+    margin-top:10px;
+
+}
+
+
+button,
+input{
+
+    font-size:16px;
+
+}
+
+
+input[type="range"]{
+
+    width:100%;
+
+}
+
+
+#video{
+
+    display:none;
+
+}

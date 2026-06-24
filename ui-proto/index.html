@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="pl">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>EV Video Editor</title>
+
+<link rel="stylesheet" href="css/app.css">
+
+</head>
+
+
+<body>
+
+
+<div class="app start-mode">
+
+
+<header>
+
+
+<div class="logo">
+
+<img 
+class="logo-full"
+src="assets/VE_video_editor_camera_logo.svg">
+
+<img 
+class="logo-icon"
+src="assets/VE_video_editor_app_icon.svg">
+
+</div>
+
+
+
+<div 
+class="menu"
+onclick="goBack()">
+
+ <i data-icon="menu"></i>
+
+</div>
+
+
+</header>
+
+
+
+
+
+<section id="start" class="screen active">
+
+<button 
+class="upload"
+onclick="showScreen('format')">
+
+<i data-icon="video"></i>
+
+<span data-label="makeVideo"></span>
+
+</button>
+
+</section>
+
+
+
+<section id="format" class="screen">
+
+<h2 data-label="formatTitle"></h2>
+
+<button 
+class="tool-btn active"
+onclick="selectFormat('9:16')">
+
+<span>
+9:16
+</span>
+
+</button>
+
+
+<button class="tool-btn">
+16:9
+</button>
+
+
+<button class="tool-btn">
+1:1
+</button>
+
+
+<button class="tool-btn">
+4:5
+</button>
+
+</section>
+
+
+
+
+<section id="editor" class="screen editor empty-project">
+
+
+<div class="canvas">
+
+    <div class="video-frame horizontal">
+
+
+        <div class="video-placeholder">
+
+            16:9 VIDEO FRAME
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+
+  
+
+    <div class="timeline-header">
+
+        <span data-label="videoTimeline"></span>
+
+        <div class="time">
+            00:00
+        </div>
+
+
+    </div>
+
+
+
+    <div class="timeline-area">
+        
+<div class="timeline">
+
+<div id="emptyEditorAdd">
+
+    <button class="empty-add-btn"
+   onclick="activateTimeline()"    
+        >
+
+        <span class="empty-add-icon">
+            +
+        </span>
+
+        <span>
+            ADD<br>
+            MEDIA
+        </span>
+
+    </button>
+
+</div>
+      
+
+
+        <div class="timeline-row">
+
+
+            <div class="track-label" data-layer="video" onclick="selectLayer('video')">
+
+                VIDEO
+
+            </div>
+
+
+            <div class="timeline-track">
+
+    <div class="clip placeholder-video">
+        VIDEO
+    </div>
+
+</div>
+
+
+        </div>
+
+
+
+
+        <div class="timeline-row">
+
+
+            <div class="track-label" data-layer="text" onclick="selectLayer('text')">
+
+                TEXT
+
+            </div>
+
+
+            <div class="timeline-track">
+
+    <div class="clip placeholder-text">
+        TEXT
+    </div>
+
+</div>
+
+
+        </div>
+
+
+
+
+        <div class="timeline-row">
+
+
+            <div class="track-label" data-layer="audio" onclick="selectLayer('audio')">
+
+                AUDIO
+
+            </div>
+
+
+           <div class="timeline-track">
+
+ <div class="clip placeholder-audio">
+        AUDIO
+    </div>
+
+</div>
+
+
+        </div>
+
+
+
+        <div class="playhead"></div>
+
+
+    </div>
+
+
+
+</div>
+
+
+<div id="settingsPanel" class="settings-overlay">
+
+
+    <div class="settings-bar">
+
+
+        <button 
+        onclick="closeSettings()">
+
+            <i data-icon="close"></i>
+
+
+             <span id="settingsTitle">
+            Close
+        </span>
+
+        </button>
+
+
+
+       
+
+
+
+        <button 
+        onclick="confirmSettings()">
+
+            <i data-icon="check"></i>
+
+        </button>
+
+
+    </div>
+
+
+
+    <div id="settingsContent">
+
+
+        <div class="settings-placeholder">
+
+            SPEED SETTINGS
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- Unified editor tools fragment -->
+<div class="tools">
+
+  <div id="videoTools" class="tool-panel">
+    <div class="tool-header">
+      <button onclick="cancelEditorTool()">X</button>
+      <span>VIDEO</span>
+      <button onclick="confirmEditorTool()">✓</button>
+    </div>
+
+    <button 
+class="tool-btn"
+onclick="openSettings('speed')">
+
+<i data-icon="speed"></i>
+
+<span>
+SPEED
+</span>
+
+</button>
+
+
+
+    <button class="tool-btn">
+       <i data-icon="adjust"></i>
+        <span>Adjust</span></button>
+    
+    
+    <button class="tool-btn">
+       <i data-icon="fx"></i>
+        <span>FX</span></button>
+  </div>
+
+  <div id="audioTools" class="tool-panel">
+    <div class="tool-header">
+      <button onclick="cancelEditorTool()">X</button>
+      <span>AUDIO</span>
+      <button onclick="confirmEditorTool()">✓</button>
+    </div>
+    <button class="tool-btn">
+        
+      <i data-icon="Volume2"></i>
+        <span>Volume</span></button>
+    <button class="tool-btn">
+         <i data-icon="fx"></i>
+        <span>Fade</span></button>
+    <button class="tool-btn">
+       <i data-icon="ChartNoAxesColumnDecreasing"></i>
+        <span>FX</span></button>
+  </div>
+
+  <div id="textTools" class="tool-panel">
+    <div class="tool-header">
+      <button onclick="cancelEditorTool()">X</button>
+      <span>TEXT</span>
+      <button onclick="confirmEditorTool()">✓</button>
+    </div>
+    <button class="tool-btn">
+        <i data-icon="CaseSensitive"></i>
+        <span>Font</span></button>
+        
+    <button class="tool-btn">
+        <i data-icon="color"></i>
+        <span>Color</span>
+    </button>
+    
+    <button class="tool-btn">
+        <i data-icon="fx"></i>
+        <span>FX</span></button>
+  </div>
+
+<div id="addTools" class="tools tool-panel active">
+
+    <button 
+        class="tool-btn"
+        data-tool="video"
+        onclick="openEditorTool('video')">
+
+      <i data-icon="video"></i>
+        <span>VIDEO</span>
+
+    </button>
+
+
+    <button 
+        class="tool-btn"
+        data-tool="text"
+        onclick="openEditorTool('text')">
+
+       <i data-icon="text"></i>
+        <span>TEXT</span>
+
+    </button>
+
+
+    <button 
+        class="tool-btn"
+        data-tool="audio"
+        onclick="openEditorTool('audio')">
+
+       <i data-icon="audio"></i>
+        <span> AUDIO</span>
+
+    </button>
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+<div id="audioTools" class="tool-panel">
+
+<div class="tool-header">
+
+<button onclick="cancelEditorTool()">
+<i data-icon="close"></i>
+</button>
+
+
+<span>AUDIO</span>
+
+
+<button onclick="confirmEditorTool()">
+<i data-icon="check"></i>
+</button>
+
+</div>
+
+
+<button class="tool-btn">
+Volume
+</button>
+
+
+<button class="tool-btn">
+Fade
+</button>
+
+
+<button class="tool-btn">
+FX
+</button>
+
+
+</div>
+
+<div id="textTools" class="tool-panel">
+
+  <div class="tool-header">
+    <button onclick="cancelEditorTool()">
+      <i data-icon="close"></i>
+    </button>
+    <span>TEXT</span>
+    <button onclick="confirmEditorTool()">
+      <i data-icon="check"></i>
+    </button>
+  </div>
+
+  <button class="tool-btn">Font</button>
+  <button class="tool-btn">Color</button>
+  <button class="tool-btn">FX</button>
+
+</div>
+
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+<section id="export" class="screen">
+
+
+<h2 data-label="exportTitle"></h2>
+
+
+<label>
+
+<input type="radio" name="format">
+
+<span data-label="webm"></span>
+
+</label>
+
+
+
+<label>
+
+<input type="radio" name="format">
+
+<span data-label="mp4"></span>
+
+</label>
+
+
+
+<button class="export">
+
+<span data-label="saveProject"></span>
+
+</button>
+
+
+
+</section>
+
+
+
+
+
+</div>
+
+
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<script src="js/icons.js"></script>
+
+<script src="js/labels.js"></script>
+
+<script src="js/theme.js"></script>
+
+<script src="js/screens.js"></script>
+
+<script src="js/timeline.js"></script>
+
+<script src="js/layers.js"></script>
+
+<script src="js/editor-tools.js"></script>
+
+<script src="js/settings.js"></script>
+
+<script src="js/ui.js"></script>
+
+
+
+
+</body>
+
+</html>
