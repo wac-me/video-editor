@@ -24,13 +24,20 @@ function activateTimeline(){
     if(!editor) return;
 
 
-    // zmiana stanu projektu
-    editor.classList.remove("empty-project");
+    // przechodzimy z pustego projektu
+
+    editor.classList.remove(
+        "empty-project"
+    );
 
 
-    // chowamy przycisk ADD
+
+    // chowamy ADD MEDIA
+
     const emptyAdd =
-        document.getElementById("emptyEditorAdd");
+    document.getElementById(
+        "emptyEditorAdd"
+    );
 
 
     if(emptyAdd){
@@ -39,6 +46,27 @@ function activateTimeline(){
 
     }
 
+
+
+    // pokazujemy toolbar
+
+    const tools =
+    document.querySelector(
+        ".tools"
+    );
+
+
+    if(tools){
+
+        tools.style.display="block";
+
+    }
+
+
+
+    console.log(
+        "timeline activated"
+    );
 
 }
 
