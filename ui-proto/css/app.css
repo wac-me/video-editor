@@ -1503,7 +1503,7 @@ display:none;
 /* EMPTY EDITOR STATE */
 
 .empty-project .tools {
-    display:none; !important
+    display:none !important;
 }
 
 
