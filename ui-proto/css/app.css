@@ -1500,7 +1500,18 @@ display:none;
 
 
 
+/* EMPTY EDITOR STATE */
 
+.empty-project .tools {
+    display:none;
+}
+
+
+/* po aktywacji projektu */
+
+.tools {
+    display:block;
+}
 
 
 
