@@ -1510,7 +1510,7 @@ display:none;
 /* po aktywacji projektu */
 
 .tools {
-    display:none 
+    display:block;
 }
 
 
