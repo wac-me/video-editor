@@ -1503,14 +1503,14 @@ display:none;
 /* EMPTY EDITOR STATE */
 
 .empty-project .tools {
-    display:none;
+    display:none; !important
 }
 
 
 /* po aktywacji projektu */
 
 .tools {
-    display:none !important
+    display:none 
 }
 
 
