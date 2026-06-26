@@ -1514,6 +1514,79 @@ display:none;
 }
 
 
+/* =========================
+   VE APP SHELL v16
+========================= */
+
+
+html,
+body {
+    height:100%;
+    overflow:hidden;
+}
+
+
+.ve-app {
+
+    height:100dvh;
+
+    display:flex;
+
+    flex-direction:column;
+
+    overflow:hidden;
+
+}
+
+
+.top-bar {
+
+    flex-shrink:0;
+
+}
+
+
+.workspace {
+
+    flex:1;
+
+    min-height:0;
+
+    overflow:hidden;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+.preview-area {
+
+    flex:1;
+
+    min-height:0;
+
+}
+
+
+.timeline-area {
+
+    flex-shrink:0;
+
+}
+
+
+.main-bar {
+
+    flex-shrink:0;
+
+    padding-bottom:
+    env(safe-area-inset-bottom);
+
+}
+
+
 
 
 
