@@ -1516,37 +1516,56 @@ display:none;
 }
 
 
-/* =========================
-   VE APP SHELL v16
-========================= */
+/* =====================================
+   VE v16.2 MOBILE LAYOUT PATCH
+   Safari / iPhone SE
+===================================== */
 
+
+/* viewport */
 
 html,
 body {
+
     height:100%;
+
     overflow:hidden;
+
 }
 
 
+
+/* app shell */
+
+.app,
 .ve-app {
 
     height:100dvh;
+
+    min-height:100dvh;
+
+    overflow:hidden;
 
     display:flex;
 
     flex-direction:column;
 
-    overflow:hidden;
+}
+
+
+
+/* remove old flex conflicts */
+
+.screen,
+.editor {
+
+    min-height:0;
 
 }
 
 
-.top-bar {
 
-    flex-shrink:0;
-
-}
-
+/* workspace */
 
 .workspace {
 
@@ -1563,26 +1582,70 @@ body {
 }
 
 
+
+/* preview */
+
 .preview-area {
-    flex: 1;
-    min-height: 0;
-    padding: 12px;
+
+    flex:1;
+
+    min-height:0;
+
+    overflow:hidden;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:10px;
+
 }
+
+
+
+.video-frame {
+
+    width:min(100%,720px);
+
+    max-width:100%;
+
+    max-height:100%;
+
+    aspect-ratio:16 / 9;
+
+}
+
+
+
+/* timeline */
 
 .timeline-area {
 
+    height:clamp(140px,24vh,240px);
+
     flex-shrink:0;
+
+    min-height:0;
+
+    overflow:hidden;
 
 }
 
 
+
+/* bottom bar */
+
 .main-bar {
 
-    flex-shrink:0;
-    
-    height:auto;
+    height:clamp(72px,12vh,96px);
 
-    min-height:86px;
+    min-height:72px;
+
+    max-height:96px;
+
+    flex-shrink:0;
 
     padding-bottom:
     env(safe-area-inset-bottom);
@@ -1590,7 +1653,15 @@ body {
 }
 
 
+/* safety */
 
+.preview-area,
+.timeline-area,
+.main-bar {
+
+    box-sizing:border-box;
+
+}
 
 
 
