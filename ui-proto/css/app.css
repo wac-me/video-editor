@@ -597,6 +597,8 @@ color:black;
 .timeline-area{
 
     position:relative;
+    
+    height:180px;
 
     background:#111;
 
@@ -1562,13 +1564,10 @@ body {
 
 
 .preview-area {
-
-    flex:1;
-
-    min-height:0;
-
+    flex: 1;
+    min-height: 0;
+    padding: 12px;
 }
-
 
 .timeline-area {
 
