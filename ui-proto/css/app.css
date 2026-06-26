@@ -382,20 +382,6 @@ stroke:var(--accent);
 
 }
 
-.tool-btn.active {
-
-    border-color:var(--accent);
-
-    color:var(--accent);
-
-    transform:translateY(-2px);
-
-    box-shadow:0 0 56px var(--accent);
-
-}
-
-
-
 .upload{
 
 margin:auto;
@@ -417,32 +403,6 @@ stroke-width:1.3;
 }
 
 
-
-
-
-.canvas{
-
-flex:1;
-
-min-height:250px;
-
-background:#000;
-
-border:1px solid var(--border);
-
-border-radius:12px;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-color:#666;
-
-font-size:24px;
-
-}
 
 
 
@@ -818,43 +778,21 @@ background:var(--accent);
 
 
 .settings-panel {
-
     position:absolute;
-
     left:0;
-
     right:0;
-
     bottom:0;
-
     z-index:50;
-
     display:none;
-
     width:100%;
-
     background:var(--panel-bg);
-
     border-radius:18px 18px 0 0;
-
     padding:12px;
-
 }
-
 
 .settings-panel.active {
-
     display:block;
-
 }
-
-
-.settings-panel.active {
-
-    display:block;
-
-}
-
 
 .editor.settings-open .tools {
 
@@ -901,45 +839,22 @@ color:#c54cff!important;
 
 }
 
-.tool-panel{
-display:none;
+.tool-panel {
+    display:none;
+    width:100%;
 }
 
 .tool-panel.active {
-
-    display:grid;
-    
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    width: 100%;
-    
-    
-    
+    display:flex;
+    width:100%;
+    gap:10px;
 }
-
 
 /* TOOLBAR CONTAINER */
 
 .tools {
     width:100%;
     display:block;
-}
-
-
-/* EACH TOOL PANEL */
-
-.tool-panel {
-
-    width:100%;
-
-}
-
-
-.tool-panel.active {
-
-    display:flex;
-
-    width:100%;
 }
 
 
@@ -1000,26 +915,17 @@ display:none;
 /* panele */
 
 #editor .tool-panel {
-
     width:100%;
-
 }
-
 
 /* aktywny panel */
 
 #editor .tool-panel.active {
-
     display:grid;
-
     grid-template-columns:1fr 1fr 1fr;
-
     width:100%;
-
     gap:8px;
-
 }
-
 
 #editor .tool-panel.active .tool-header {
 
