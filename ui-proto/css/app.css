@@ -1373,6 +1373,8 @@ body {
     height:var(--mainbar-height);
     
     z-index:50;
+    
+    bottom:0;
 
     
 
