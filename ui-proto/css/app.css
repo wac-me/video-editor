@@ -1382,7 +1382,7 @@ body {
     right:0;
     bottom:0;
 
-    z-index:100;
+    z-index:100 !important;
 
 }
 
@@ -1398,15 +1398,7 @@ body {
 }
 
 
-.main-bar {
 
-    display:flex;
-
-    align-items:flex-end;
-
-    padding-bottom:10px;
-
-}
 
 
 
