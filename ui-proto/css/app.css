@@ -10,6 +10,7 @@
 --accent:#c85cff;
 --text:#fff;
 --muted:#888;
+--mainbar-height:90px;
 
 }
 
@@ -454,16 +455,44 @@ margin-top:15px;
 
 }
 
+/* =====================
+   TOOL PANEL
+===================== */
 
-.tools{
+.tools {
 
-display:grid;
+    width:100%;
 
-grid-template-columns:repeat(3,1fr);
+    display:flex;
 
-gap:10px;
+    flex-direction:column;
+
+    gap:10px;
 
 }
+
+.tool-btn {
+
+    flex:1;
+
+    min-height:70px;
+
+}
+
+.tool-panel {
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    bottom:var(--mainbar-height);
+
+    z-index:50;
+
+}
+
 
 
 
@@ -762,12 +791,7 @@ color:#c54cff!important;
     gap:10px;
 }
 
-/* TOOLBAR CONTAINER */
 
-.tools {
-    width:100%;
-    display:block;
-}
 
 
 
@@ -1243,9 +1267,7 @@ color:#c54cff!important;
 
 /* po aktywacji projektu */
 
-.tools {
-    display:block;
-}
+
 
 
 /* =====================================
@@ -1360,16 +1382,9 @@ body {
 
 .main-bar {
 
-    height:clamp(72px,12vh,96px);
+    height:var(--mainbar-height);
 
-    min-height:72px;
-
-    max-height:96px;
-
-    flex-shrink:0;
-
-    padding-bottom:
-    env(safe-area-inset-bottom);
+    
 
 }
 
