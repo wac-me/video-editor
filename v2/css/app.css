@@ -46,7 +46,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 8px;
     min-height: 0;
     overflow: hidden;
 }
@@ -54,7 +54,7 @@ body {
 .video-frame {
     width: 100%;
     max-width: 100%;
-    height: auto;
+    height: 100%;
     max-height: 100%;
     aspect-ratio: 9 / 16;
     background: #1e1e1e;
@@ -67,6 +67,7 @@ body {
     flex-direction: column;
     gap: 12px;
     color: #888;
+    object-fit: contain;
 }
 
 /* Timeline */
