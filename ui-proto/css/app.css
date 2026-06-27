@@ -1373,16 +1373,16 @@ body {
 /* bottom bar */
 
 .main-bar {
-    
-    position:absolute;
 
     height:var(--mainbar-height);
-    
-    z-index:100;
-    
-    
 
-    
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    z-index:100;
 
 }
 
