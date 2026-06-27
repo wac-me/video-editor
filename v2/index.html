@@ -2,52 +2,62 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EV Video Editor v2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>EV Video Editor</title>
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
     <div class="app">
-        <!-- Header -->
+
+        <!-- Top Bar -->
         <header class="top-bar">
-            <div class="logo">
-                <span>EV Video Editor</span>
-            </div>
-            <div class="project-name">Nowy projekt 1</div>
+            <button class="icon-btn"><i class="fas fa-chevron-left"></i></button>
+            <div class="project-title">Mój filmik</div>
+            <button class="export-btn">Eksportuj</button>
         </header>
 
-        <!-- Główny obszar -->
-        <div class="main-content">
-            <!-- Preview -->
-            <div class="preview-area">
-                <div class="video-frame">
-                    <div class="placeholder">
-                        <i class="fas fa-play-circle"></i>
-                        <p>16:9 VIDEO FRAME</p>
-                    </div>
+        <!-- Preview -->
+        <div class="preview-container">
+            <div class="video-frame">
+                <div class="video-placeholder">
+                    <i class="fas fa-play-circle fa-4x"></i>
+                    <p>9:16 Preview</p>
                 </div>
-            </div>
-
-            <!-- Tools -->
-            <div class="tools-panel">
-                <button onclick="addMedia('video')"><i class="fas fa-video"></i> Video</button>
-                <button onclick="addMedia('text')"><i class="fas fa-font"></i> Text</button>
-                <button onclick="addMedia('audio')"><i class="fas fa-music"></i> Audio</button>
             </div>
         </div>
 
         <!-- Timeline -->
-        <div class="timeline-area">
+        <div class="timeline-container">
             <div class="timeline-header">
                 <span>TIMELINE</span>
+                <div class="timecode">00:00 / 00:42</div>
             </div>
-            <div class="timeline">
-                <div class="empty-state">
-                    <button onclick="addFirstClip()">+ Dodaj pierwsze media</button>
+            
+            <div class="tracks">
+                <!-- Warstwy -->
+                <div class="track video-track">
+                    <div class="track-label">VIDEO</div>
+                    <div class="timeline-track">
+                        <div class="clip video-clip">Główny klip</div>
+                    </div>
+                </div>
+                <div class="track text-track">
+                    <div class="track-label">TEXT</div>
+                    <div class="timeline-track">
+                        <div class="clip text-clip">Tytuł</div>
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="bottom-bar">
+            <button><i class="fas fa-video"></i><span>Media</span></button>
+            <button><i class="fas fa-font"></i><span>Tekst</span></button>
+            <button><i class="fas fa-music"></i><span>Audio</span></button>
+            <button><i class="fas fa-magic"></i><span>Efekty</span></button>
+            <button><i class="fas fa-sliders-h"></i><span>Dostosuj</span></button>
         </div>
     </div>
 
