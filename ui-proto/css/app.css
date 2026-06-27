@@ -1063,7 +1063,7 @@ color:#c54cff!important;
     
     bottom:var(--mainbar-height);
     
-    z-index:100;
+    z-index:50;
     
     display:none;
     background:var(--panel-bg, #111);
@@ -1372,11 +1372,9 @@ body {
 
     height:var(--mainbar-height);
     
-    z-index:50;
+    z-index:100;
     
-    bottom:0;
     
-    position:absolute;
 
     
 
