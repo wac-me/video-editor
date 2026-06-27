@@ -1281,6 +1281,8 @@ body {
 
 .app,
 .ve-app {
+    
+    position:relative;
 
     height:100dvh;
 
@@ -1320,6 +1322,8 @@ body {
     display:flex;
 
     flex-direction:column;
+    
+    padding-bottom:var(--mainbar-height);
 
 }
 
@@ -1369,6 +1373,8 @@ body {
 /* bottom bar */
 
 .main-bar {
+    
+    position:absolute;
 
     height:var(--mainbar-height);
     
