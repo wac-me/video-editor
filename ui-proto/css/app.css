@@ -1058,29 +1058,17 @@ color:#c54cff!important;
 
 
     position:absolute;
-
-
     left:0;
-
     right:0;
-
-    bottom:0;
-
-
-    z-index:100;
-
-
+    
+    bottom:var(--mainbar-height);
+    
+    z-index:50;
+    
     display:none;
-
-
     background:var(--panel-bg, #111);
-
-
     border-radius:18px 18px 0 0;
-
-
     padding:12px;
-
 
 }
 
@@ -1383,6 +1371,8 @@ body {
 .main-bar {
 
     height:var(--mainbar-height);
+    
+    z-index:100;
 
     
 
