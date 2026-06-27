@@ -40,21 +40,25 @@ body {
 }
 
 /* Preview - zajmuje większość miejsca */
+
+
 .preview-container {
     flex: 1;
     background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 15px;
+    padding: 12px;
     min-height: 0;
+    overflow: hidden;
 }
 
 /* Reszta styli (timeline, bottom bar) bez zmian */
 
 .video-frame {
     width: 100%;
-    max-width: 380px;
+    max-width: 100%;
+    max-height: 100%;
     aspect-ratio: 9 / 16;
     background: #1e1e1e;
     border-radius: 16px;
@@ -144,3 +148,11 @@ body {
 .bottom-bar button i {
     font-size: 1.5rem;
 }
+
+/* Dodatkowe ograniczenie na bardzo małych ekranach */
+@media (max-height: 620px) {
+    .video-frame {
+        max-width: 92%;
+    }
+}
+
