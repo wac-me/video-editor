@@ -1398,13 +1398,13 @@ body {
 }
 
 
-.main-bar > * {
+.main-bar {
 
-    transform:none !important;
+    display:flex;
 
-    margin-top:0 !important;
+    align-items:flex-end;
 
-    margin-bottom:0 !important;
+    padding-bottom:10px;
 
 }
 
