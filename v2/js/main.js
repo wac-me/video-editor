@@ -1,4 +1,4 @@
-const resizer = document.getElementById('resizer');
+
 const resizer = document.getElementById('resizer');
 resizer.style.touchAction = 'none';   // blokuje scroll podczas przeciągania
 const preview = document.querySelector('.preview-container');
