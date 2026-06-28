@@ -188,12 +188,12 @@ body {
 
 /* Resizer */
 .resizer {
-    height: 16px;              /* grubszy — łatwiej trafić */
-    background: #555;
-    cursor: ns-resize;
-    flex-shrink: 0;
-    z-index: 30;               /* wyżej niż scroll */
+    height: 20px;              /* grubsza belka */
+    background: transparent;
     position: relative;
+    z-index: 100;
+    margin-top: -10px;         /* overlap z preview i timeline */
+    cursor: ns-resize;
 }
 
 .resizer::after {
@@ -206,4 +206,5 @@ body {
     height: 5px;
     background: #e91e63;
     border-radius: 5px;
+    opacity: 0.6;
 }
