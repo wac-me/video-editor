@@ -49,14 +49,15 @@ body {
     /* overflow-y: auto;  ← wyłączone */
 }
 
-.preview-container {
+preview-container {
     flex: 1 1 auto;
-    min-height: 40px;           /* można zmniejszyć do 40px */
+    min-height: 40px;
     background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 8px;
+    overflow: hidden;
 }
 
 .timeline-container {
@@ -93,9 +94,6 @@ body {
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0,0,0,0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 /* Timeline */
