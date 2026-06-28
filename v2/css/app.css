@@ -166,24 +166,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #181818;
-    border: 2px dashed #666;
-    position: relative;
+    background: #1a1a1a;
+    border: 2px dashed #555;
+    border-radius: 12px;
 }
 
-.aspect-placeholder {
+.placeholder-svg {
     width: 85%;
-    aspect-ratio: 9 / 16;           /* sztywne proporcje */
+    height: 85%;
     max-height: 85%;
-    border: 3px solid #888;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #eee;
-    font-size: 2.4rem;
-    font-weight: 700;
-    background: #111;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.7);
-    text-align: center;
 }
