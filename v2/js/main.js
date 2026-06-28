@@ -1,27 +1,21 @@
-console.log('main.js loaded');
+const resizer = document.getElementById('resizer');
+const preview = document.querySelector('.preview-container');
 
-document.addEventListener('DOMContentLoaded', () => {
-    const resizer = document.getElementById('resizer');
-    const preview = document.querySelector('.preview-container');
+let isResizing = false;
 
-    if (!resizer || !preview) return;
+resizer.addEventListener('mousedown', () => isResizing = true);
+resizer.addEventListener('touchstart', () => isResizing = true, { passive: true });
 
-    let isResizing = false;
+const doResize = (clientY) => {
+    if (!isResizing) return;
+    const newH = clientY - 70;
+    if (newH > 40) {
+        preview.style.flexBasis = newH + 'px';
+    }
+};
 
-    resizer.addEventListener('mousedown', () => isResizing = true);
-    resizer.addEventListener('touchstart', () => isResizing = true, { passive: true });
+document.addEventListener('mousemove', e => doResize(e.clientY));
+document.addEventListener('touchmove', e => doResize(e.touches[0].clientY));
 
-    const doResize = (clientY) => {
-        if (!isResizing) return;
-        const newH = clientY - 70;
-        if (newH > 40) {
-            preview.style.flexBasis = newH + 'px';
-        }
-    };
-
-    document.addEventListener('mousemove', e => doResize(e.clientY));
-    document.addEventListener('touchmove', e => doResize(e.touches[0].clientY));
-
-    document.addEventListener('mouseup', () => isResizing = false);
-    document.addEventListener('touchend', () => isResizing = false);
-});
+document.addEventListener('mouseup', () => isResizing = false);
+document.addEventListener('touchend', () => isResizing = false);
