@@ -167,23 +167,23 @@ body {
     align-items: center;
     justify-content: center;
     background: #181818;
-    border: 2px dashed #555;
+    border: 2px dashed #666;
     position: relative;
 }
 
 .aspect-placeholder {
-    width: 88%;
-    height: 88%;
-    max-height: 88%;
-    aspect-ratio: 9 / 16;
-    border: 3px solid #777;
-    border-radius: 12px;
+    width: 85%;
+    aspect-ratio: 9 / 16;           /* sztywne proporcje */
+    max-height: 85%;
+    border: 3px solid #888;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ddd;
-    font-size: 2.1rem;
+    color: #eee;
+    font-size: 2.4rem;
     font-weight: 700;
-    background: rgba(0, 0, 0, 0.7);
-    box-shadow: 0 4px 25px rgba(0,0,0,0.6);
+    background: #111;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+    text-align: center;
 }
