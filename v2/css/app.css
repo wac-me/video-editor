@@ -50,7 +50,7 @@ body {
 
 .timeline-placeholder {
     flex-shrink: 0;
-    height: 80px;
+    height: 280px;
     background: #222;
     color: #666;
     display: flex;
@@ -64,7 +64,7 @@ body {
 
 .preview-container {
     flex: 0 0 auto;           /* ważna zmiana */
-    height: 200px;            /* początkowa wysokość */
+    height: 400px;            /* początkowa wysokość */
     min-height: 40px;
     background: #000;
     display: flex;
