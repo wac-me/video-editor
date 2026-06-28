@@ -50,7 +50,7 @@ body {
 
 .preview-container {
     flex: 1 1 auto;
-    min-height: 40px;           /* można zmniejszyć do 40px */
+    min-height: 40px;
     background: #000;
     display: flex;
     align-items: center;
