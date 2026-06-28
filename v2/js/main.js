@@ -13,33 +13,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isResizing = false;
 
-    // Start
-    const startResize = (e) => {
+    const startResize = () => {
         isResizing = true;
-        console.log('Start resizing');
     };
 
-    // Resize
     const doResize = (clientY) => {
         if (!isResizing) return;
 
-        const appTop = document.querySelector('.app').getBoundingClientRect().top;
-        let newHeight = clientY - appTop - 60;
+        const appRect = document.querySelector('.app').getBoundingClientRect();
+        let newHeight = clientY - appRect.top - 55;
 
-        if (newHeight > 180 && newHeight < window.innerHeight * 0.72) {
+        // Tylko dolne ograniczenie (timeline może być spychany)
+        if (newHeight > 60) {
             preview.style.flexBasis = newHeight + 'px';
             preview.style.flexGrow = '0';
-            console.log('Resizing →', newHeight);
         }
     };
 
-    // Stop
     const stopResize = () => {
         isResizing = false;
-        console.log('Stopped resizing');
     };
 
-    // Events
     resizer.addEventListener('mousedown', startResize);
     resizer.addEventListener('touchstart', startResize, { passive: true });
 
