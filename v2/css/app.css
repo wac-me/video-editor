@@ -44,7 +44,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 0;
-    overflow: hidden;
+    overflow-y: auto;        /* ← to jest kluczowe */
+    -webkit-overflow-scrolling: touch;
 }
 
 
@@ -76,14 +77,11 @@ body {
 
 /* Timeline */
 .timeline-container {
-    flex: 0 0 260px;
-    min-height: 120px;
+    flex-shrink: 0;          /* nie kurcz się */
+    height: 280px;           /* stała wysokość */
     background: #161616;
     border-top: 1px solid #333;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-} 
+}
 
 .timeline-header {
     padding: 10px 15px;
