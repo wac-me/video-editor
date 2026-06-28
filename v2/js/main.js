@@ -1,20 +1,19 @@
-import './ui/preview.js';
-import './ui/timeline.js';
-import './ui/tools.js';
-import { initEditor } from './core/editor.js';
-
+// Main initialization
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 Video Editor v2 uruchomiony');
-    initEditor();
+    
+    initResizer();
 });
 
-<script>
-// Resizer between preview and timeline
-document.addEventListener('DOMContentLoaded', () => {
+// Resizer
+function initResizer() {
     const resizer = document.getElementById('resizer');
     const previewContainer = document.querySelector('.preview-container');
 
-    if (!resizer || !previewContainer) return;
+    if (!resizer || !previewContainer) {
+        console.warn('Resizer or preview container not found');
+        return;
+    }
 
     let isResizing = false;
 
@@ -48,5 +47,4 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('touchmove', resize, { passive: false });
     document.addEventListener('mouseup', stopResize);
     document.addEventListener('touchend', stopResize);
-});
-
+}
