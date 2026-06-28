@@ -47,10 +47,10 @@ body {
     flex-direction: column;
     min-height: 0;
 }
-/*
+
 .timeline-placeholder {
     flex-shrink: 0;
-    height: 280px;
+    height: 180px;
     background: #222;
     color: #666;
     display: flex;
@@ -60,7 +60,7 @@ body {
     font-weight: 600;
     border-top: 1px solid #444;
 }
-*/
+
 
 .preview-container {
     flex: 0 0 auto;           /* ważna zmiana */
