@@ -44,8 +44,10 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 0;
-    /* Nie dajemy tutaj overflow-y: auto — to psuje resizer */
+    overflow-y: scroll;        /* scroll całego workspace */
+    -webkit-overflow-scrolling: touch;
 }
+
 
 
 /* === PREVIEW === */
@@ -76,8 +78,9 @@ body {
 
 /* Timeline */
 .timeline-container {
-    flex-shrink: 0;
-    height: 280px;
+    flex-shrink: 0;            /* nie kurcz się automatycznie */
+    height: 280px;             /* stała wysokość */
+    min-height: 120px;
     background: #161616;
     border-top: 1px solid #333;
 }
