@@ -13,36 +13,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isResizing = false;
 
-    const startResize = () => {
+    // Start
+    const startResize = (e) => {
         isResizing = true;
         console.log('Start resizing');
     };
 
+    // Resize
     const doResize = (clientY) => {
         if (!isResizing) return;
 
         const appTop = document.querySelector('.app').getBoundingClientRect().top;
-        let newHeight = clientY - appTop - 55;
+        let newHeight = clientY - appTop - 60;
 
-        if (newHeight > 200 && newHeight < window.innerHeight * 0.7) {
+        if (newHeight > 180 && newHeight < window.innerHeight * 0.72) {
             preview.style.flexBasis = newHeight + 'px';
             preview.style.flexGrow = '0';
-            console.log('Resizing to:', newHeight);
+            console.log('Resizing →', newHeight);
         }
     };
 
+    // Stop
     const stopResize = () => {
         isResizing = false;
-        console.log('Stop resizing');
+        console.log('Stopped resizing');
     };
 
-    // Mouse
+    // Events
     resizer.addEventListener('mousedown', startResize);
-    document.addEventListener('mousemove', (e) => doResize(e.clientY));
-    document.addEventListener('mouseup', stopResize);
-
-    // Touch
     resizer.addEventListener('touchstart', startResize, { passive: true });
+
+    document.addEventListener('mousemove', (e) => doResize(e.clientY));
     document.addEventListener('touchmove', (e) => doResize(e.touches[0].clientY));
+
+    document.addEventListener('mouseup', stopResize);
     document.addEventListener('touchend', stopResize);
 });
