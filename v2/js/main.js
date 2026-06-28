@@ -1,50 +1,34 @@
-// Main initialization
 document.addEventListener('DOMContentLoaded', () => {
     console.log('🚀 Video Editor v2 uruchomiony');
-    
-    initResizer();
-});
 
-// Resizer
-function initResizer() {
     const resizer = document.getElementById('resizer');
-    const previewContainer = document.querySelector('.preview-container');
+    const preview = document.querySelector('.preview-container');
 
-    if (!resizer || !previewContainer) {
-        console.warn('Resizer or preview container not found');
+    if (!resizer || !preview) {
+        console.error('Resizer or preview not found!');
         return;
     }
 
     let isResizing = false;
 
-    function startResize(e) {
-        isResizing = true;
-        document.body.style.userSelect = 'none';
-    }
+    resizer.addEventListener('mousedown', () => isResizing = true);
+    resizer.addEventListener('touchstart', () => isResizing = true, { passive: true });
 
-    function resize(e) {
+    const doResize = (clientY) => {
         if (!isResizing) return;
+        const appTop = document.querySelector('.app').getBoundingClientRect().top;
+        let newH = clientY - appTop - 55;
 
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        const appRect = document.querySelector('.app').getBoundingClientRect();
-        let newHeight = clientY - appRect.top - 60;
-
-        if (newHeight > 180 && newHeight < window.innerHeight * 0.75) {
-            previewContainer.style.flexBasis = `${newHeight}px`;
-            previewContainer.style.flexGrow = '0';
+        if (newH > 180 && newH < window.innerHeight * 0.72) {
+            preview.style.flexBasis = newH + 'px';
+            preview.style.flexGrow = '0';
         }
-    }
+    };
 
-    function stopResize() {
-        isResizing = false;
-        document.body.style.userSelect = '';
-    }
+    document.addEventListener('mousemove', e => doResize(e.clientY));
+    document.addEventListener('touchmove', e => doResize(e.touches[0].clientY));
 
-    resizer.addEventListener('mousedown', startResize);
-    resizer.addEventListener('touchstart', startResize, { passive: true });
-
-    document.addEventListener('mousemove', resize);
-    document.addEventListener('touchmove', resize, { passive: false });
-    document.addEventListener('mouseup', stopResize);
-    document.addEventListener('touchend', stopResize);
-}
+    const stop = () => isResizing = false;
+    document.addEventListener('mouseup', stop);
+    document.addEventListener('touchend', stop);
+});
