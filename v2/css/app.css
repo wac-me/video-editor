@@ -64,7 +64,7 @@ body {
 
 .preview-container {
     flex: 0 0 auto;           /* ważna zmiana */
-    height: 400px;            /* początkowa wysokość */
+    height: 200px;            /* początkowa wysokość */
     min-height: 40px;
     background: #000;
     display: flex;
