@@ -1,6 +1,20 @@
 const resizer = document.getElementById('resizer');
 const preview = document.querySelector('.preview-container');
 
+
+const doResize = (clientY) => {
+    if (!isResizing) return;
+
+    const appRect = document.querySelector('.app').getBoundingClientRect();
+    let newHeight = clientY - appRect.top - 60;
+
+    if (newHeight > 40) {
+        preview.style.height = newHeight + 'px';
+        preview.style.flexBasis = 'auto';   // reset
+        console.log('Preview height →', newHeight);
+    }
+};
+
 let isResizing = false;
 
 resizer.addEventListener('mousedown', () => isResizing = true);
