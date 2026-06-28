@@ -15,32 +15,27 @@
             display: flex;
             flex-direction: column;
         }
-
         .top {
             background: #111;
             padding: 12px;
             text-align: center;
             border-bottom: 1px solid #333;
         }
-
         .workspace {
             flex: 1;
             display: flex;
             flex-direction: column;
             min-height: 0;
-            position: relative;
         }
-
         .preview {
+            flex: 0 0 300px;
+            min-height: 40px;
             background: #000;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex: 0 0 300px;           /* startowa wysokość */
-            min-height: 40px;
             position: relative;
         }
-
         .preview-content {
             width: 85%;
             aspect-ratio: 9 / 16;
@@ -53,37 +48,32 @@
             color: #777;
             font-size: 2rem;
         }
-
         .resizer {
-            position: absolute;
-            left: 0;
-            right: 0;
             height: 20px;
-            background: rgba(233, 30, 99, 0.3);
+            background: rgba(233, 30, 99, 0.4);
             cursor: ns-resize;
+            position: relative;
             z-index: 100;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
-
         .resizer::after {
             content: '≡';
             color: #e91e63;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
-
         .timeline {
-            background: #222;
+            flex-shrink: 0;
             height: 200px;
+            background: #222;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #888;
             font-size: 1.3rem;
-            border-top: 1px solid #444;
         }
-
         .dock {
             background: #111;
             padding: 12px;
@@ -95,7 +85,7 @@
 </head>
 <body>
 
-    <div class="top">Top Bar (placeholder)</div>
+    <div class="top">Top Bar</div>
 
     <div class="workspace">
         <div class="preview" id="preview">
@@ -104,10 +94,10 @@
 
         <div class="resizer" id="resizer"></div>
 
-        <div class="timeline">TIMELINE (stała wysokość 200px)</div>
+        <div class="timeline">TIMELINE (200px)</div>
     </div>
 
-    <div class="dock">Dock / Bottom Bar</div>
+    <div class="dock">Dock</div>
 
     <script>
         const resizer = document.getElementById('resizer');
@@ -120,7 +110,7 @@
 
         const doResize = (clientY) => {
             if (!isResizing) return;
-            const newH = clientY - 70;
+            const newH = clientY - 80;
             if (newH > 40) {
                 preview.style.flexBasis = newH + 'px';
             }
