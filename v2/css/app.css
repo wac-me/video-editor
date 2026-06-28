@@ -46,23 +46,21 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 0;
-    /* overflow-y: auto;  ← wyłączone */
 }
 
 .preview-container {
     flex: 1 1 auto;
-    min-height: 40px;
+    min-height: 40px;           /* można zmniejszyć do 40px */
     background: #000;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 8px;
-    overflow: hidden;
 }
 
 .timeline-container {
     flex-shrink: 0;
-    height: 280px;
+    height: 280px;              /* stała wysokość */
     min-height: 100px;
     background: #161616;
     border-top: 1px solid #333;
