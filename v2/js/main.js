@@ -29,20 +29,3 @@ document.addEventListener('touchmove', resize, { passive: false });
 document.addEventListener('mouseup', stopResize);
 document.addEventListener('touchend', stopResize);
 
-function resize(e) {
-    if (!isResizing) return;
-
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    const rect = document.querySelector('.app').getBoundingClientRect();
-    const newPreviewHeight = clientY - rect.top - 60; // 60px top bar approx
-
-    if (newPreviewHeight > 200 && newPreviewHeight < window.innerHeight * 0.7) {
-        previewContainer.style.flex = `0 0 ${newPreviewHeight}px`;
-    }
-}
-
-function stopResize() {
-    isResizing = false;
-    document.body.style.userSelect = '';
-}
-</script>
