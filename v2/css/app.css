@@ -44,8 +44,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 0;
-    overflow-y: auto;        /* ← to jest kluczowe */
-    -webkit-overflow-scrolling: touch;
+    /* Nie dajemy tutaj overflow-y: auto — to psuje resizer */
 }
 
 
@@ -77,8 +76,8 @@ body {
 
 /* Timeline */
 .timeline-container {
-    flex-shrink: 0;          /* nie kurcz się */
-    height: 280px;           /* stała wysokość */
+    flex-shrink: 0;
+    height: 280px;
     background: #161616;
     border-top: 1px solid #333;
 }
