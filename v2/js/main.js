@@ -4,31 +4,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const resizer = document.getElementById('resizer');
     const preview = document.querySelector('.preview-container');
 
-    if (!resizer || !preview) {
-        console.error('Resizer or preview not found!');
+    if (!resizer) {
+        console.error('Resizer not found!');
         return;
     }
 
     let isResizing = false;
 
-    resizer.addEventListener('mousedown', () => isResizing = true);
-    resizer.addEventListener('touchstart', () => isResizing = true, { passive: true });
+    resizer.style.background = '#e91e63'; // tymczasowo jaskrawy kolor żeby było widać
 
-    const doResize = (clientY) => {
+    resizer.addEventListener('mousedown', () => {
+        isResizing = true;
+        console.log('mousedown - start resizing');
+    });
+
+    document.addEventListener('mousemove', (e) => {
         if (!isResizing) return;
-        const appTop = document.querySelector('.app').getBoundingClientRect().top;
-        let newH = clientY - appTop - 55;
-
-        if (newH > 180 && newH < window.innerHeight * 0.72) {
-            preview.style.flexBasis = newH + 'px';
-            preview.style.flexGrow = '0';
+        console.log('moving', e.clientY);
+        
+        const newHeight = e.clientY - 80;
+        if (newHeight > 200) {
+            preview.style.height = newHeight + 'px';
         }
-    };
+    });
 
-    document.addEventListener('mousemove', e => doResize(e.clientY));
-    document.addEventListener('touchmove', e => doResize(e.touches[0].clientY));
+    document.addEventListener('mouseup', () => {
+        isResizing = false;
+        console.log('mouseup - stop');
+    });
 
-    const stop = () => isResizing = false;
-    document.addEventListener('mouseup', stop);
-    document.addEventListener('touchend', stop);
+    // Mobile
+    resizer.addEventListener('touchstart', () => {
+        isResizing = true;
+        console.log('touchstart');
+    }, { passive: true });
+
+    document.addEventListener('touchmove', (e) => {
+        if (!isResizing) return;
+        const newHeight = e.touches[0].clientY - 80;
+        if (newHeight > 200) {
+            preview.style.height = newHeight + 'px';
+        }
+    });
+
+    document.addEventListener('touchend', () => {
+        isResizing = false;
+    });
 });
