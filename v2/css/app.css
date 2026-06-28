@@ -176,3 +176,25 @@ body {
     height: 82%;
     max-height: 82%;
 }
+
+/* Resizer */
+.resizer {
+    height: 6px;
+    background: #444;
+    cursor: ns-resize;
+    position: relative;
+    flex-shrink: 0;
+    z-index: 10;
+}
+
+.resizer::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 3px;
+    background: #666;
+    border-radius: 3px;
+}
