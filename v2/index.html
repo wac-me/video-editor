@@ -17,42 +17,43 @@
             <button class="export-btn">Eksportuj</button>
         </header>
 
-        <!-- Preview -->
-<div class="preview-container">
-    <div class="video-frame">
-        <div class="video-placeholder">
-            <svg viewBox="0 0 9 16" class="placeholder-svg" preserveAspectRatio="xMidYMid meet">
-                <rect x="0.5" y="0.5" width="8" height="15" fill="none" stroke="#666" stroke-width="0.15" stroke-dasharray="0.4,0.2"/>
-                <text x="4.5" y="8" text-anchor="middle" dominant-baseline="middle" fill="#aaa" font-size="1" font-weight="700">9:16</text>
-            </svg>
-        </div>
-    </div>
-</div>
+        <!-- Workspace -->
+        <div class="workspace">
 
-<!-- Resizer -->
-<div class="resizer" id="resizer"></div>
-
-
-
-        <!-- Timeline -->
-        <div class="timeline-container">
-            <div class="timeline-header">
-                <span>TIMELINE</span>
-                <div class="timecode">00:00 / 00:42</div>
-            </div>
-            
-            <div class="tracks">
-                <!-- Warstwy -->
-                <div class="track video-track">
-                    <div class="track-label">VIDEO</div>
-                    <div class="timeline-track">
-                        <div class="clip video-clip">Główny klip</div>
+            <!-- Preview -->
+            <div class="preview-container">
+                <div class="video-frame">
+                    <div class="video-placeholder">
+                        <svg viewBox="0 0 9 16" class="placeholder-svg" preserveAspectRatio="xMidYMid meet">
+                            <rect x="0.5" y="0.5" width="8" height="15" fill="none" stroke="#666" stroke-width="0.15" stroke-dasharray="0.4,0.2"/>
+                            <text x="4.5" y="8" text-anchor="middle" dominant-baseline="middle" fill="#aaa" font-size="1.1" font-weight="700">9:16</text>
+                        </svg>
                     </div>
                 </div>
-                <div class="track text-track">
-                    <div class="track-label">TEXT</div>
-                    <div class="timeline-track">
-                        <div class="clip text-clip">Tytuł</div>
+            </div>
+
+            <!-- Resizer -->
+            <div class="resizer" id="resizer"></div>
+
+            <!-- Timeline -->
+            <div class="timeline-container">
+                <div class="timeline-header">
+                    <span>TIMELINE</span>
+                    <div class="timecode">00:00 / 00:42</div>
+                </div>
+                
+                <div class="tracks">
+                    <div class="track video-track">
+                        <div class="track-label">VIDEO</div>
+                        <div class="timeline-track">
+                            <div class="clip video-clip">Główny klip</div>
+                        </div>
+                    </div>
+                    <div class="track text-track">
+                        <div class="track-label">TEXT</div>
+                        <div class="timeline-track">
+                            <div class="clip text-clip">Tytuł</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -69,6 +70,5 @@
     </div>
 
     <script src="js/main.js"></script>
-    
 </body>
 </html>
