@@ -1,36 +1,22 @@
-console.log('main.js loaded');
+const resizer = document.getElementById('resizer');
+const preview = document.querySelector('.preview-container');
 
-document.addEventListener('DOMContentLoaded', () => {
-    const resizer = document.getElementById('resizer');
-    const preview = document.querySelector('.preview-container');
+let isResizing = false;
 
-    if (!resizer || !preview) return;
+resizer.addEventListener('mousedown', () => isResizing = true);
+resizer.addEventListener('touchstart', () => isResizing = true, { passive: true });
 
-    let isResizing = false;
-
-    const start = () => isResizing = true;
-    const stop = () => isResizing = false;
-
-    const resize = (clientY) => {
-        if (!isResizing) return;
-        const newH = clientY - 70;
-        if (newH > 60) {
-            preview.style.flexBasis = newH + 'px';
-        }
-    };
-
-    // Mouse
-    resizer.addEventListener('mousedown', start);
-    document.addEventListener('mousemove', e => resize(e.clientY));
-    document.addEventListener('mouseup', stop);
-
-    // Touch (z preventDefault)
-    resizer.addEventListener('touchstart', start, { passive: true });
-    document.addEventListener('touchmove', e => {
-        if (isResizing) {
-            e.preventDefault();   // blokuje scroll
-            resize(e.touches[0].clientY);
-        }
-    }, { passive: false });
-    document.addEventListener('touchend', stop);
+document.addEventListener('mousemove', (e) => {
+    if (!isResizing) return;
+    const newH = e.clientY - 70;
+    if (newH > 40) preview.style.flexBasis = newH + 'px';
 });
+
+document.addEventListener('touchmove', (e) => {
+    if (!isResizing) return;
+    const newH = e.touches[0].clientY - 70;
+    if (newH > 40) preview.style.flexBasis = newH + 'px';
+});
+
+document.addEventListener('mouseup', () => isResizing = false);
+document.addEventListener('touchend', () => isResizing = false);
