@@ -8,8 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let isResizing = false;
 
-    resizer.style.touchAction = 'none';
-
     const start = () => isResizing = true;
     const stop = () => isResizing = false;
 
@@ -21,15 +19,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Mouse
     resizer.addEventListener('mousedown', start);
-    resizer.addEventListener('touchstart', start, { passive: true });
-
     document.addEventListener('mousemove', e => resize(e.clientY));
-    document.addEventListener('touchmove', e => {
-        if (isResizing) e.preventDefault();   // blokuje scroll
-        resize(e.touches[0].clientY);
-    }, { passive: false });
-
     document.addEventListener('mouseup', stop);
+
+    // Touch (z preventDefault)
+    resizer.addEventListener('touchstart', start, { passive: true });
+    document.addEventListener('touchmove', e => {
+        if (isResizing) {
+            e.preventDefault();   // blokuje scroll
+            resize(e.touches[0].clientY);
+        }
+    }, { passive: false });
     document.addEventListener('touchend', stop);
 });
