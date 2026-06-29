@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Resizer Test - Poprawiony</title>
+    <title>Resizer Test</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -29,7 +29,7 @@
             min-height: 0;
         }
         .preview {
-            flex: 0 0 320px;           /* rozsądna początkowa wysokość */
+            flex: 0 0 200px;           /* startowa wysokość ~200px */
             min-height: 40px;
             background: #000;
             display: flex;
@@ -49,10 +49,11 @@
             font-size: 2rem;
         }
         .resizer {
-            height: 20px;
+            height: 24px;
             background: rgba(233, 30, 99, 0.4);
             cursor: ns-resize;
             position: relative;
+            z-index: 100;
         }
         .resizer::after {
             content: '≡';
@@ -106,14 +107,4 @@
         let isResizing = false;
 
         resizer.addEventListener('mousedown', () => isResizing = true);
-        resizer.addEventListener('touchstart', () => isResizing = true, { passive: true });
-
-        const doResize = (clientY) => {
-            if (!isResizing) return;
-            const newH = clientY - 80;   // offset od góry ekranu
-            if (newH > 40) {
-                preview.style.flexBasis = newH + 'px';
-            }
-        };
-
-        document.addEventListener
+        resizer.addEventListener
