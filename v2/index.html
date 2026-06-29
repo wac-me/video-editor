@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Resizer Test Final</title>
+    <title>Resizer Test - Poprawiony</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -20,6 +20,7 @@
             padding: 12px;
             text-align: center;
             border-bottom: 1px solid #333;
+            flex-shrink: 0;
         }
         .workspace {
             flex: 1;
@@ -28,7 +29,7 @@
             min-height: 0;
         }
         .preview {
-            flex: 0 0 320px;           /* początkowa wysokość */
+            flex: 0 0 320px;           /* rozsądna początkowa wysokość */
             min-height: 40px;
             background: #000;
             display: flex;
@@ -78,12 +79,13 @@
             display: flex;
             justify-content: space-around;
             border-top: 1px solid #333;
+            flex-shrink: 0;
         }
     </style>
 </head>
 <body>
 
-    <div class="top">Top Bar (placeholder)</div>
+    <div class="top">Top Bar</div>
 
     <div class="workspace">
         <div class="preview" id="preview">
@@ -95,7 +97,7 @@
         <div class="timeline">TIMELINE (200px)</div>
     </div>
 
-    <div class="dock">Dock / Bottom Bar</div>
+    <div class="dock">Dock</div>
 
     <script>
         const resizer = document.getElementById('resizer');
@@ -108,17 +110,10 @@
 
         const doResize = (clientY) => {
             if (!isResizing) return;
-            const newH = clientY - 80;
+            const newH = clientY - 80;   // offset od góry ekranu
             if (newH > 40) {
                 preview.style.flexBasis = newH + 'px';
             }
         };
 
-        document.addEventListener('mousemove', e => doResize(e.clientY));
-        document.addEventListener('touchmove', e => doResize(e.touches[0].clientY));
-
-        document.addEventListener('mouseup', () => isResizing = false);
-        document.addEventListener('touchend', () => isResizing = false);
-    </script>
-</body>
-</html>
+        document.addEventListener
