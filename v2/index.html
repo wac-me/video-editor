@@ -2,109 +2,68 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Resizer Test</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: system-ui, sans-serif;
-            background: #0a0a0a;
-            color: #eee;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .top {
-            background: #111;
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #333;
-            flex-shrink: 0;
-        }
-        .workspace {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            min-height: 0;
-        }
-        .preview {
-            flex: 0 0 200px;           /* startowa wysokość ~200px */
-            min-height: 40px;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .preview-content {
-            width: 85%;
-            aspect-ratio: 9 / 16;
-            background: #1e1e1e;
-            border: 2px dashed #555;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #777;
-            font-size: 2rem;
-        }
-        .resizer {
-            height: 24px;
-            background: rgba(233, 30, 99, 0.4);
-            cursor: ns-resize;
-            position: relative;
-            z-index: 100;
-        }
-        .resizer::after {
-            content: '≡';
-            color: #e91e63;
-            font-size: 1.8rem;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .timeline {
-            flex-shrink: 0;
-            height: 200px;
-            background: #222;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-size: 1.3rem;
-        }
-        .dock {
-            background: #111;
-            padding: 12px;
-            display: flex;
-            justify-content: space-around;
-            border-top: 1px solid #333;
-            flex-shrink: 0;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>EV Video Editor</title>
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
+    <div class="app">
 
-    <div class="top">Top Bar</div>
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <button class="icon-btn"><i class="fas fa-chevron-left"></i></button>
+            <div class="project-title">Mój filmik</div>
+            <button class="export-btn">Eksportuj</button>
+        </header>
 
-    <div class="workspace">
-        <div class="preview" id="preview">
-            <div class="preview-content">9:16 Preview</div>
+        <!-- Preview -->
+        <div class="preview-container">
+            <div class="video-frame">
+                <div class="video-placeholder">
+                    <svg viewBox="0 0 9 16" class="placeholder-svg" preserveAspectRatio="xMidYMid meet">
+                        <rect x="0.5" y="0.5" width="8" height="15" fill="none" stroke="#666" stroke-width="0.15" stroke-dasharray="0.4,0.2"/>
+                        <text x="4.5" y="8" text-anchor="middle" dominant-baseline="middle" fill="#aaa" font-size="1.1" font-weight="700">9:16</text>
+                    </svg>
+                </div>
+            </div>
         </div>
 
+        <!-- Resizer -->
         <div class="resizer" id="resizer"></div>
 
-        <div class="timeline">TIMELINE (200px)</div>
+        <!-- Timeline -->
+        <div class="timeline-container">
+            <div class="timeline-header">
+                <span>TIMELINE</span>
+                <div class="timecode">00:00 / 00:42</div>
+            </div>
+            <div class="tracks">
+                <div class="track video-track">
+                    <div class="track-label">VIDEO</div>
+                    <div class="timeline-track">
+                        <div class="clip video-clip">Główny klip</div>
+                    </div>
+                </div>
+                <div class="track text-track">
+                    <div class="track-label">TEXT</div>
+                    <div class="timeline-track">
+                        <div class="clip text-clip">Tytuł</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div class="bottom-bar">
+            <button><i class="fas fa-video"></i><span>Media</span></button>
+            <button><i class="fas fa-font"></i><span>Tekst</span></button>
+            <button><i class="fas fa-music"></i><span>Audio</span></button>
+            <button><i class="fas fa-magic"></i><span>Efekty</span></button>
+            <button><i class="fas fa-sliders-h"></i><span>Dostosuj</span></button>
+        </div>
     </div>
 
-    <div class="dock">Dock</div>
-
-    <script>
-        const resizer = document.getElementById('resizer');
-        const preview = document.getElementById('preview');
-
-        let isResizing = false;
-
-        resizer.addEventListener('mousedown', () => isResizing = true);
-        resizer.addEventListener
+    <script src="js/main.js"></script>
+</body>
+</html>
