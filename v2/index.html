@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Resizer Test</title>
+    <title>Resizer Test Final</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -28,13 +28,12 @@
             min-height: 0;
         }
         .preview {
-            flex: 0 0 300px;
+            flex: 0 0 320px;           /* początkowa wysokość */
             min-height: 40px;
             background: #000;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
         .preview-content {
             width: 85%;
@@ -53,7 +52,6 @@
             background: rgba(233, 30, 99, 0.4);
             cursor: ns-resize;
             position: relative;
-            z-index: 100;
         }
         .resizer::after {
             content: '≡';
@@ -85,7 +83,7 @@
 </head>
 <body>
 
-    <div class="top">Top Bar</div>
+    <div class="top">Top Bar (placeholder)</div>
 
     <div class="workspace">
         <div class="preview" id="preview">
@@ -97,7 +95,7 @@
         <div class="timeline">TIMELINE (200px)</div>
     </div>
 
-    <div class="dock">Dock</div>
+    <div class="dock">Dock / Bottom Bar</div>
 
     <script>
         const resizer = document.getElementById('resizer');
