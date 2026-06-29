@@ -1323,7 +1323,7 @@ body {
 
     flex-direction:column;
     
-    
+    padding-bottom:var(--mainbar-height);
 
 }
 
@@ -1402,3 +1402,64 @@ body {
 
 
 
+
+
+/* v18 dock test overrides */
+
+:root{
+    --mainbar-height:90px;
+}
+
+html,
+body{
+    height:100%;
+    min-height:100%;
+    overflow:hidden;
+}
+
+body{
+    height:100dvh;
+}
+
+.app.ve-app{
+    height:100dvh;
+    min-height:100dvh;
+    position:relative;
+    overflow:hidden;
+}
+
+.screen.active{
+    min-height:0;
+}
+
+.dock-layer{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:var(--mainbar-height);
+    z-index:100;
+    pointer-events:none;
+}
+
+.dock-layer .main-bar{
+    position:absolute;
+    inset:0;
+    height:var(--mainbar-height);
+    pointer-events:auto;
+}
+
+.timeline-area,
+.canvas{
+    min-height:0;
+}
+
+/* Add Media/editor content leaves room for the dock */
+.workspace,
+.editor.workspace{
+    padding-bottom:var(--mainbar-height);
+}
+
+.tool-panel{
+    bottom:var(--mainbar-height);
+}
